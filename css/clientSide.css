@@ -1,0 +1,51 @@
+.homepage-wrapper {
+  height: 100vh;
+  background: url("../css/landing-bg.png") no-repeat;
+  background-size: cover;
+}
+
+.request-wrapper {
+  height: 100vh;
+}
+
+.requestNav {
+  font-family: monospace;
+}
+
+.goToRequest {
+  font-family: none;
+  font-size: 1rem;
+}
+
+.goToRequest:hover {
+  color: white;
+}
+
+.home {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.requestTitle {
+  height: 25vh;
+  display: flex;
+  align-items: end;
+  margin-left: 5rem;
+  font-size: 2.5rem;
+  font-family: monospace;
+}
+
+.requestForm-container {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+
+  margin-left: 32rem;
+}
+
+.inputWidth {
+  width: 17rem;
+}

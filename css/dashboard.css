@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  background-color: rgb(43 227 43);
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 1rem;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.sidebar a:hover,
+.link:hover {
+  background-color: rgb(213, 255, 202);
+  color: rgb(3, 82, 3);
+}
+
+.imgDito {
+  width: 2.5rem;
+  border-radius: 50%;
+  margin: 1rem 0 10px 3.4rem;
+}
+
+.admin-text {
+  padding: 0 0 0 52px;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+.links {
+  margin-top: 4rem;
+}
+
+.logout-text {
+  margin-top: 17rem;
+}
+
+.forms-container {
+  height: 55vh;
+  width: 109vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+  flex-wrap: wrap;
+  margin-left: 5rem;
+}
+
+.forms-wrapper {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.greet-msg {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: monospace;
+}
+
+.greet {
+  margin-top: 2rem;
+  margin-left: 12rem;
+  font-size: 1.5rem;
+}
+
+.manage {
+  text-decoration: none;
+  color: black;
+  margin: 2rem 4rem 0 0;
+  font-size: 13px;
+}
+
+.btn {
+  width: 18rem;
+  height: 9rem;
+}

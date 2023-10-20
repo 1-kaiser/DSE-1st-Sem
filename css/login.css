@@ -1,0 +1,21 @@
+.login-wrapper {
+  gap: 6rem;
+  height: 100vh;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  gap: 0.5rem;
+  font-family: monospace;
+}
+
+.dito-img {
+  width: 20rem;
+}
+
+.greet {
+  font-size: 24px;
+  padding: 0 0 2rem 0;
+}
