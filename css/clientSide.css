@@ -4,10 +4,6 @@
   background-size: cover;
 }
 
-.request-wrapper {
-  height: 100vh;
-}
-
 .requestNav {
   font-family: monospace;
 }
@@ -28,24 +24,21 @@
 }
 
 .requestTitle {
-  height: 25vh;
-  display: flex;
-  align-items: end;
-  margin-left: 5rem;
-  font-size: 2.5rem;
+  margin: 3rem 0 31px 0;
   font-family: monospace;
+  font-size: 26px;
 }
 
-.requestForm-container {
-  height: 75vh;
+.request-wrapper {
+  height: 107vh;
   display: flex;
   flex-direction: column;
-
-  justify-content: flex-start;
-
-  margin-left: 32rem;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  background-color: #ffe6b7;
 }
 
-.inputWidth {
-  width: 17rem;
+.form-control {
+  width: 20rem;
 }
