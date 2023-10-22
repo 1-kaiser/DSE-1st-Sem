@@ -1,6 +1,12 @@
 .homepage-wrapper {
   height: 100vh;
-  background: url("../css/landing-bg.png") no-repeat;
+  background: url("../css/1st.png") no-repeat;
+  background-size: cover;
+}
+
+.homepage2-wrapper {
+  height: 100vh;
+  background: url("../css/2nd.png") no-repeat;
   background-size: cover;
 }
 
@@ -36,7 +42,7 @@
   align-items: center;
   justify-content: center;
   font-family: monospace;
-  background-color: #ffe6b7;
+  background-color: #b2f2bf;
 }
 
 .form-control {

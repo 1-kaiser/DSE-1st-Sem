@@ -31,13 +31,21 @@ require('../reusable.php');
 <body>
 
     <div class="homepage-wrapper">
-        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #dd7c37;">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #35c259;">
             <div class="container" >
                 <a class="navbar-brand" href="#">
                     <span class="home">DITO LMISCITNA</span></a>
         </nav>
-
     </div>
+
+    <div class="homepage2-wrapper">
+        
+    </div>
+
+
+
+
+
 
     <div class="request-wrapper" id="request">
 
@@ -51,6 +59,8 @@ require('../reusable.php');
                 <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="clientName" required>
                 <label for="floatingInput">Name</label>
             </div>
+
+            
             <div class="form-floating mb-2" data-aos="fade-up" data-aos-delay="200">
                 <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
                 <label for="floatingPassword">Email</label>
