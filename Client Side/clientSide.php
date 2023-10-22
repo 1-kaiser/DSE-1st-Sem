@@ -48,22 +48,22 @@ require('../reusable.php');
             <form action="" method="POST" class="requestForm">
 
             <div class="form-floating mb-2" data-aos="fade-up">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="clientName" required>
-            <label for="floatingInput">Name</label>
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="clientName" required>
+                <label for="floatingInput">Name</label>
             </div>
             <div class="form-floating mb-2" data-aos="fade-up" data-aos-delay="200">
-            <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
-            <label for="floatingPassword">Email</label>
+                <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
+                <label for="floatingPassword">Email</label>
             </div>
             <div class="form-floating mb-2" data-aos="fade-up" data-aos-delay="300"> 
-            <input type="text" class="form-control" id="floatingPassword" placeholder="Contact Number" name="clientContact" required>
-            <label for="floatingPassword">Contact</label>
+                <input type="number" class="form-control" id="floatingPassword" placeholder="Contact Number" name="clientContact" required>
+                <label for="floatingPassword">Contact</label>
             </div>
             <div class="mb-2" data-aos="fade-up" data-aos-delay="400">
-            <label class="form-label">Your Request</label>
-            <textarea class="form-control" id="clientRequest" rows="3" name="clientRequest" required></textarea>
+                <label class="form-label">Your Request</label>
+                <textarea class="form-control" id="clientRequest" rows="3" name="clientRequest" required></textarea>
             </div>
-            <button name="requestSubmit" class="btn btn-primary float-end" style="width: 6rem;" data-aos="fade-up" data-aos-delay="500">Submit</button>
+                <button name="requestSubmit" class="btn btn-primary float-end" style="width: 6rem;" data-aos="fade-up" data-aos-delay="500">Submit</button>
             </form>
 
         </div>

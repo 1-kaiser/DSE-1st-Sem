@@ -1,50 +1,45 @@
 <?php
 
-require('../../reusable.php');
+require_once __DIR__ . '/vendor/autoload.php';
 
-    if (isset($_POST['sendForm'])) {
-        
-        $clientName = $_POST['clientName'];
-        $clientEmail = $_POST['clientEmail'];
-        $clientContact = $_POST['clientContact'];
-        $clientRequest = $_POST['clientRequest'];
+ if (isset($_POST['sendForm'])) {
+    
+    $clientName = $_POST['clientName'];
+    $clientEmail = $_POST['clientEmail'];
+    $clientContact = $_POST['clientContact'];
+    $clientRequest = $_POST['clientRequest'];
+    $requestPrice = $_POST['requestPrice'];
 
-        $html = "<h1>Form Submission</h1>";
-        $html .= "<p><strong>Name:</strong> $clientName</p>";
-        $html .= "<p><strong>Email:</strong> $clientEmail</p>";
-        $html .= "<p><strong>Contact:</strong> $clientContact</p>";
-        $html .= "<p><strong>Request:</strong> $clientRequest</p>";
+    $mpdf = new \Mpdf\Mpdf();
+    $mpdf->SetAuthor("DITO");
 
-        require_once __DIR__ . '/vendor/autoload.php';
+    $html = "
+    <h1 style='font-family: sans-serif;'>Request Confirmation</h1>
+    <p style='font-family: sans-serif;'>Name: $clientName</p>
+    <p style='font-family: sans-serif;'>Email: $clientEmail</p>
+    <p style='font-family: sans-serif;'>Contact: $clientContact</p>
+        <table style='border: 1px solid black; width: 50rem; border-collapse: collapse;'>
+            <thead>
+            <tr >
+            <th style='border: 1px solid black; border-collapse: collapse;'  scope='col'>Product</th>
+            <th style='border: 1px solid black; border-collapse: collapse;'>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td style='border: 1px solid black; border-collapse: collapse; text-align: center;'>$clientRequest</td>
+            <td style='border: 1px solid black; border-collapse: collapse; text-align: center;'>$requestPrice</td>
+            </tr>
+        </tbody>
+        </table>
 
-        $mpdf = new \Mpdf\Mpdf();
-        $pdfFile = 'form_data.pdf';
-        $pdf->Output($pdfFile, 'F');
+    ";
 
-        require('./vendor/phpmailer/phpmailer/src/PHPMailer');
-        require('./vendor/phpmailer/phpmailer/src/SMTP');
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('confirmation.pdf', 'I');
 
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
+ }
 
-        $mail->isSMTP();
-        $mail->Host = 'emmanuelpunay6906@gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'emmanuelpunay6906@gmail.com';
-        $mail->Password = '';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port = 465;
-
-        $mail->setFrom('emmanuelpunay6906@gmail.com', 'Your Name');
-        $mail->addAddress($clientEmail, $clientName);
-        $mail->addAttachment($pdfFile); // Attach the PDF
-        $mail->isHTML(true);
-
-        if ($mail->send()) {
-            echo "<script> alert('Sent Successfully');</script>";
-        } else {
-            echo "<script> alert('Access Denied');</script>";
-        }
-    }
 
 
 ?>
@@ -59,6 +54,7 @@ require('../../reusable.php');
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/clientRequestList.css">
 </head>
+
 <body>
 
     <div class="sidebar">
@@ -96,7 +92,7 @@ require('../../reusable.php');
         <h4>Form</h4>
     </div>
 
-        <div class="form-container w-50">
+        <form class="form-container w-50" method="POST">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Name</span>
@@ -105,13 +101,13 @@ require('../../reusable.php');
 
                 <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Email</span>
-                    <input type="text" class="form-control" placeholder="Client's email" aria-label="Recipient's username" aria-describedby="basic-addon2" name="clientEmail">
+                    <input type="email" class="form-control" placeholder="Client's email" aria-label="Recipient's username" aria-describedby="basic-addon2" name="clientEmail">
                     
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Contact</span>
-                    <input type="text" class="form-control" placeholder="Client's contact number" aria-label="Username" aria-describedby="basic-addon1" name="clientContact">
+                    <input type="number" class="form-control" placeholder="Client's contact number" aria-label="Username" aria-describedby="basic-addon1" name="clientContact">
                 </div>
 
                 <div class="input-group mb-3">
@@ -121,11 +117,10 @@ require('../../reusable.php');
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">₱</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text">.00</span>
+                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="requestPrice">
                 </div>
                 <button class="btn btn-primary float-end" name="sendForm">Send</button>
-        </div>
+        </form> 
 
     </div>
     
