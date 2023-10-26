@@ -1,12 +1,12 @@
-body {
+/* body {
   overflow: hidden;
-}
+} */
 
-.homepage-wrapper {
+/* .homepage-wrapper {
   height: 100vh;
   background: url("../css/landing-bg.png") no-repeat;
   background-size: cover;
-}
+} */
 
 .requestNav {
   font-family: monospace;

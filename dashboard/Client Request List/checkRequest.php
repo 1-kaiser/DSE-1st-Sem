@@ -22,20 +22,20 @@
             <a href="../Client History/clientHIstory.php" class="link">
                 <img src="../../css/icons/icons8-history-50.png" class="icons">
             Client History</a>
-            <a href="../Packages List/packagesList.php" class="link">
+            <!-- <a href="../Packages List/packagesList.php" class="link">
                 <img src="../../css/icons/icons8-package-50.png" class="icons">
             Packages List</a>
             <a href="../Delivery Status/deliveryStatus.php" class="link">
                 <img src="../../css/icons/icons8-shipped-50.png" class="icons">
-            Delivery Status</a>
+            Delivery Status</a> -->
         </div>
     </div>
 
     <div class="greet-msg">
         <span class="greet">Client Request List</span>
-        <a href="" class="manage">
+        <!-- <a href="" class="manage">
         <span>Manage Your Account</span>
-        </a>
+        </a> -->
     </div>
 
     <?php
@@ -65,7 +65,7 @@
             <label class="checkForm">Request</label>
             <div><strong><?php echo $row['request'];?></strong></div>
         </div>
-        <a href="./makeForm.php?id=<?php echo $row['id'];?>" class="btn btn-primary float-end">Make a form</a>
+        <a href="./makeForm.php?id=<?php echo $row['id'];?>" class="btn btn-primary float-end" target="_blank">Make a form</a>
     </form>
 
     </div>

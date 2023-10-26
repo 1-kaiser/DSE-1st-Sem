@@ -35,7 +35,13 @@ require('../reusable.php');
             <div class="container" >
                 <a class="navbar-brand" href="#">
                     <span class="home">DITO LMISCITNA</span></a>
+                <a class="navbar-brand" href="#request">
+                    <span class="home">Request</span></a>
         </nav>
+
+        <div class="homepage-title">
+            <h2 style="font-size: 2.4rem; line-height: 3.4rem; font-family: math;">Logistics Management <br /> Integrating <br /> System-Controlled <br /> Innovators' Technical Needs Aid</h2>
+        </div>
     </div>
 
     <div class="homepage2-wrapper">

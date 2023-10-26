@@ -26,7 +26,10 @@
 .home {
   font-family: monospace;
   font-size: 1rem;
-  font-weight: 600;
+}
+
+.home:hover {
+  color: white;
 }
 
 .requestTitle {
@@ -47,4 +50,10 @@
 
 .form-control {
   width: 20rem;
+}
+
+.homepage-title {
+  text-align: end;
+  padding: 13rem 4rem;
+  color: #043c0b;
 }

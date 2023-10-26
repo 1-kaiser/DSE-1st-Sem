@@ -35,12 +35,12 @@ session_start();
             <a href="./Client History/clientHIstory.php" class="link">
                 <img src="../css/icons/icons8-history-50.png" class="icons">
             Client History</a>
-            <a href="./Packages List/packagesList.php" class="link">
+            <!-- <a href="./Packages List/packagesList.php" class="link">
                 <img src="../css/icons/icons8-package-50.png" class="icons">
             Packages List</a>
             <a href="./Delivery Status/deliveryStatus.php" class="link">
                 <img src="../css/icons/icons8-shipped-50.png" class="icons">
-            Delivery Status</a>
+            Delivery Status</a> -->
         </div>
 
         <form action="logout.php" method="POST">
@@ -54,9 +54,9 @@ session_start();
     
     <div class="greet-msg">
         <span class="greet">Dashboard</span>
-        <a href="" class="manage">
+        <!-- <a href="" class="manage">
         <span>Manage Your Account</span>
-        </a>
+        </a> -->
     </div>
 
     <div class="forms-wrapper">
@@ -75,7 +75,7 @@ session_start();
             </div>  
 
             <div class="card" style="background-color: #D4F673;">
-                <p class="clientTitle">Total Packages/ <br /> Parcels List</p>
+                <p class="clientTitle">Client Request <br /> History</p>
                 <?php
                 $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
                 $result = mysqli_query($conn, $query);
@@ -87,21 +87,21 @@ session_start();
                 
             </div> 
 
-            <div class="card" style="background-color: #D39AFF;">
+            <!-- <div class="card" style="background-color: #D39AFF;">
                 <p class="clientTitle">Total Clients</p>
                 <?php
-                $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                $result = mysqli_query($conn, $query);
-                $total = mysqli_fetch_assoc($result);
-                $totalRows = $total['total_rows'];
+                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
+                // $result = mysqli_query($conn, $query);
+                // $total = mysqli_fetch_assoc($result);
+                // $totalRows = $total['total_rows'];
                 ?>
 
                 <p style="margin: 2rem 0 1rem 14.5rem;
                         font-size: 20px;"> <?php echo $totalRows ?> </p>
                 
-            </div> 
+            </div>  -->
 
-            <div class="card" style="background-color: #61E840;">
+            <!-- <div class="card" style="background-color: #61E840;">
                 <p class="clientTitle">Total Deliveries</p>
                 <?php
                 // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
@@ -111,9 +111,8 @@ session_start();
                 ?>
 
                 <p style="margin: 2rem 0 1rem 14.5rem;
-                        font-size: 20px;"></p>
-                
-            </div> 
+                        font-size: 20px;"></p> 
+            </div>  -->
         </div>
     </div>
     

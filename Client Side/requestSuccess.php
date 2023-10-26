@@ -10,12 +10,12 @@
 <body>
 
     <div class="homepage-wrapper">
-        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #dd7c37;">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #35c259;">
             <div class="container" >
                 <a class="navbar-brand" href="#">
                     <span class="home">DITO LMISCITNA</span></a>
-                <a class="navbar-brand " href="#request">
-                    <span class="goToRequest">Go to Request Page</span></a>
+                <!-- <a class="navbar-brand " href="#request">
+                    <span class="goToRequest">Go to Request Page</span></a> -->
             </div>
         </nav>
 
@@ -27,17 +27,7 @@
             <img src="../css/icons8-success.gif" class="mb-3">
             <a href="./clientSide.php"><button class="btn btn-primary" style="letter-spacing: -1px;">Make a new request</button></a>
 
-            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
-  <div class="toast-header">
-    <img src="..." class="rounded me-2" alt="...">
-    <strong class="me-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
+            
     </div>
 
   
