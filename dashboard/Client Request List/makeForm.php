@@ -92,10 +92,10 @@
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
 
-        foreach ($productName as $key => $value) {
-            // $queryProductInsert = "INSERT INTO clientform VALUES (null, '$value', '$productPrice[$key]', '$productQuantity[$key]')";
-            // $queryProductResult = mysqli_query($conn, $queryProductInsert);
-        }
+        // foreach ($productName as $key => $value) {
+        //     $queryProductInsert = "INSERT INTO clientform VALUES (null, '$value', '$productPrice[$key]', '$productQuantity[$key]')";
+        //     $queryProductResult = mysqli_query($conn, $queryProductInsert);
+        // }
         
             $mpdf = new \Mpdf\Mpdf();
             $mpdf->SetAuthor("DITO");
@@ -207,12 +207,12 @@
             <a href="../Client History/clientHIstory.php" class="link">
                 <img src="../../css/icons/icons8-history-50.png" class="icons">
             Client History</a>
-            <a href="../Packages List/packagesList.php" class="link">
+            <a href="../Client History/archive.php" class="link">
                 <img src="../../css/icons/icons8-package-50.png" class="icons">
-            Packages List</a>
-            <a href="../Delivery Status/deliveryStatus.php" class="link">
+            Archive</a>
+            <!-- <a href="../Delivery Status/deliveryStatus.php" class="link">
                 <img src="../../css/icons/icons8-shipped-50.png" class="icons">
-            Delivery Status</a>
+            Delivery Status</a> -->
         </div>
     </div>
 
