@@ -18,28 +18,4 @@
         header("Location: $location");
         return $location;
     }
-
-    // //Issets
-    // function toClientRequestList() {
-    //     if (isset($_POST['clientRequestList'])) {
-    //         redirect('./Client Request List/clientRequestList.php');
-    //     }
-    // }
-    // function toClientHistory() {
-    //     if (isset($_POST['clientHistory'])) {
-    //         redirect('./Client History/clientHIstory.php');
-    //     }
-    // }
-    // function toPackagesList() {
-    //     if (isset($_POST['packagesList'])) {
-    //         redirect('./Packages List/packagesList.php');
-    //     }
-    // }
-    // function toDeliveryStatus() {
-    //     if (isset($_POST['deliveryStatus'])) {
-    //         redirect('./Delivery Status/deliveryStatus.php');
-    //     }
-    // }
-
-
 ?>

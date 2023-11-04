@@ -56,6 +56,7 @@
 
                 $query = "SELECT * FROM clientrequestlist";
                 $result = mysqli_query($conn, $query);
+                
 
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
@@ -66,7 +67,7 @@
                             <td><?php echo $row['contact'];?></td>
                             <td>
                                 <a href="./addClient.php?id=<?php echo $row['id'];?>"><button class="btn btn-success">Add</button></a>
-                                <a href="./clientHistory.php?id=<?php echo $row['id'];?>"><button class="btn btn-danger">Remove</button></a>
+                                <a href="./clientHistory.php?id=<?php echo $row['id'];?>" name="deleteForm"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
                     <?php

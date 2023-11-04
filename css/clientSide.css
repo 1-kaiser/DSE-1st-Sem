@@ -1,3 +1,7 @@
+body {
+  scroll-behavior: smooth;
+}
+
 .homepage-wrapper {
   height: 100vh;
   background: url("../css/1st.png") no-repeat;
@@ -10,6 +14,12 @@
   background-size: cover;
 }
 
+.homepage3-wrapper {
+  height: 100vh;
+  background: url("../css/3rd.png") no-repeat;
+  background-size: cover;
+}
+
 .requestNav {
   font-family: monospace;
 }
@@ -19,32 +29,29 @@
   font-size: 1rem;
 }
 
-.goToRequest:hover {
+/* .goToRequest:hover {
   color: white;
-}
+} */
 
 .home {
-  font-family: monospace;
-  font-size: 1rem;
-}
-
-.home:hover {
-  color: white;
+  font-family: sans-serif;
+  font-size: 14px;
+  margin-left: 0.4rem;
 }
 
 .requestTitle {
   margin: 3rem 0 31px 0;
-  font-family: monospace;
+  font-family: sans-serif;
   font-size: 26px;
 }
 
 .request-wrapper {
-  height: 107vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: monospace;
+  font-family: sans-serif;
   background-color: #b2f2bf;
 }
 
@@ -56,4 +63,28 @@
   text-align: end;
   padding: 13rem 4rem;
   color: #043c0b;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+.links-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+  letter-spacing: 1px;
+  font-family: sans-serif;
 }

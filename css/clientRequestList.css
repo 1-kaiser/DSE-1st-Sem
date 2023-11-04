@@ -1,13 +1,15 @@
 body {
   margin: 0;
   box-sizing: border-box;
+  background: url("./dashboard-bg.svg") no-repeat;
+  background-size: cover;
 }
 
 .sidebar {
   margin: 0;
   padding: 0;
   width: 160px;
-  background-color: rgb(43 227 43);
+  background-color: #1b9b50;
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -55,7 +57,7 @@ body {
 }
 
 .greet-msg {
-  height: 10vh;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -108,4 +110,24 @@ body {
 
 .form-control {
   margin-right: 1rem;
+}
+
+.dataTables_length {
+  padding: 0 0 0 7rem;
+  font-family: sans-serif;
+}
+
+.dataTables_info {
+  clear: both;
+  float: left;
+  padding: 4px 0 0 7rem;
+  font-family: sans-serif;
+}
+
+.dataTables_wrapper {
+  margin: 5rem 0 0 0;
+}
+
+.form-control {
+  margin: 0 6px;
 }

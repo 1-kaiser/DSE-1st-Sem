@@ -1,23 +1,22 @@
 <?php
 require('../reusable.php');
+session_start();
 
-            if (isset($_POST['requestSubmit'])) {
-                
-                $clientName = validate($_POST['clientName']);
-                $clientEmail = validate($_POST['clientEmail']);
-                $clientContact = validate($_POST['clientContact']);
-                $clientRequest = $_POST['clientRequest'];
+    if (isset($_POST['clientRequest'])) {
         
-                $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientRequest')";
-                $result = mysqli_query($conn, $query);
+        $clientName = validate($_POST['clientName']);
+        $clientEmail = validate($_POST['clientEmail']);
+        $clientContact = validate($_POST['clientContact']);
+        $clientRequest = $_POST['clientRequest'];
 
-                redirect('./requestSuccess.php');
-            }
+            $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientRequest')";
+            $result = mysqli_query($conn, $query);
 
+            $_SESSION['clientName'] = $clientName;
 
+            redirect('./requestSuccess.php');
+        }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,29 +28,31 @@ require('../reusable.php');
     <link rel="stylesheet" href="../css/aos.css">
 </head>
 <body>
-
     <div class="homepage-wrapper">
-        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #35c259;">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #115e31;">
             <div class="container" >
+                <div class="title-container" style="display: flex;">
                 <a class="navbar-brand" href="#">
+                    <img src="../css/dito.png" style="border-radius: 50%; width: 1.5rem;">
                     <span class="home">DITO LMISCITNA</span></a>
-                <a class="navbar-brand" href="#request">
-                    <span class="home">Request</span></a>
+                </div>
+                <div class="links-container">
+                    <a class="navbar-brand" href="#">
+                        <span class="home">Home</span></a>
+                    <a class="navbar-brand" href="#mission">
+                        <span class="home">Mission</span></a>
+                    <a class="navbar-brand" href="#aboutUs">
+                        <span class="home">About Us</span></a>
+                    <a class="navbar-brand" href="#request">
+                        <span class="home">Request</span></a>
+                </div>
+            </div>
         </nav>
-
-        <div class="homepage-title">
-            <h2 style="font-size: 2.4rem; line-height: 3.4rem; font-family: math;">Logistics Management <br /> Integrating <br /> System-Controlled <br /> Innovators' Technical Needs Aid</h2>
-        </div>
     </div>
 
-    <div class="homepage2-wrapper">
-        
-    </div>
+    <div class="homepage2-wrapper" id="mission"></div>
 
-
-
-
-
+    <div class="homepage3-wrapper" id="aboutUs"></div>
 
     <div class="request-wrapper" id="request">
 
@@ -59,36 +60,71 @@ require('../reusable.php');
             <strong data-aos="fade-up">Need a Request?</strong>
         </div>
 
-            <form action="" method="POST" class="requestForm">
+        <form action="" method="POST" class="requestForm" id="formRequest">
 
-            <div class="form-floating mb-2" data-aos="fade-up">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="clientName" required>
-                <label for="floatingInput">Name</label>
-            </div>
-
-            
-            <div class="form-floating mb-2" data-aos="fade-up" data-aos-delay="200">
-                <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
-                <label for="floatingPassword">Email</label>
-            </div>
-            <div class="form-floating mb-2" data-aos="fade-up" data-aos-delay="300"> 
-                <input type="number" class="form-control" id="floatingPassword" placeholder="Contact Number" name="clientContact" required>
-                <label for="floatingPassword">Contact</label>
-            </div>
-            <div class="mb-2" data-aos="fade-up" data-aos-delay="400">
-                <label class="form-label">Your Request</label>
-                <textarea class="form-control" id="clientRequest" rows="3" name="clientRequest" required></textarea>
-            </div>
-                <button name="requestSubmit" class="btn btn-primary float-end" style="width: 6rem;" data-aos="fade-up" data-aos-delay="500">Submit</button>
-            </form>
-
+        <div class="form mb-3">
+            <input type="text" class="form-control" id="floatingName" placeholder="Name" name="clientName" required>
         </div>
-    </div>
-  
-</body>
+        
+        <div class="form mb-3" >
+            <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
+        </div>
+                
+        <div class="form mb-3" >
+            <input type="number" class="form-control" id="floatingContact" placeholder="Contact Number" name="clientContact" required>
+        </div>
 
-        <script src="../css/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
+        <div class="form mb-3">
+            <textarea class="form-control" id="clientRequest" placeholder="Your request" rows="3" name="clientRequest" required></textarea>
+        </div>
+
+            <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
+
+            <!-- <button name="requestSubmit" type="button" data-bs-toggle="modal" data-bs-target="#myAlert" class="btn btn-primary float-end" style="width: 6rem;">Submit</button> -->
+        </form>
+    </div>
+
+
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="../css/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#formRequest').validate({
+                rules: {
+                    clientName: {
+                        minlength: 2
+                    },
+                    clientEmail: {
+                        email: true,
+                    },
+                    clientContact: {
+                        number: true,
+                        maxlength: 11,
+                        minlength: 11
+                    },
+                },
+                messages: {
+                    clientName: {
+                        required: "Please enter your name",
+                        minlength: "Name atleast 2 characters"
+                    },
+                    clientEmail: {
+                        required: "Please enter your email"
+                    },
+                    clientContact: {
+                        required: "Please enter your contact",
+                        minlength: "Must 11 digits length"
+                    },
+                    clientRequest: "Please enter your request"
+                }
+            })
+        })
+    </script>
 </html>

@@ -115,3 +115,9 @@ body {
   margin: 0 0 1rem 14.5rem;
   font-size: 20px;
 }
+
+.canvas-container {
+  width: 32rem;
+  height: 20rem;
+  margin: 4rem 0 0 14rem;
+}

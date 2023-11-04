@@ -1,16 +1,7 @@
 <?php
 require('../reusable.php');
 session_start();
-
-    // echo 'Your id: ' .$_SESSION['username'];
-
-    // toClientRequestList();
-    // toClientHistory(); 
-    // toPackagesList();
-    // toDeliveryStatus();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +12,11 @@ session_start();
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-
     <div class="sidebar">
         <img src="../css/dito.png" class="imgDito"> <br />
-        <span class="admin-text">Admin</span> <hr style="color: white;"/>
+        <span class="admin-text">Admin</span> 
+        <hr style="color: white;"/>
+
         <div class="links">
             <a href="#" class="link">
                 <img src="../css/icons/icons8-home-50.png" class="icons">
@@ -50,8 +42,6 @@ session_start();
         </form>
     </div>
 
-
-    
     <div class="greet-msg">
         <span class="greet">Dashboard</span>
         <!-- <a href="" class="manage">
@@ -114,8 +104,37 @@ session_start();
                         font-size: 20px;"></p> 
             </div>  -->
         </div>
+
+        
     </div>
+    <!-- <div class="canvas-container">
+        <canvas id="myChart"></canvas>
+    </div> -->
     
 </body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: 'Total Client Request',
+                data: [5, 25, 35, 50, 75, 100, 200, 500],
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: false
+                }
+            }
+            }
+        });
+    </script> -->
 
 </html>
