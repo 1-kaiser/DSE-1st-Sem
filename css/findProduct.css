@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background: url("./dashboard-bg.svg") no-repeat;
+  background-size: cover;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 160px;
+  background-color: #1b9b50;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  color: white;
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.icons {
+  width: 19px;
+}
+
+.sidebar a:hover,
+.link:hover {
+  background-color: rgb(14, 105, 55);
+  color: white;
+}
+
+.imgDito {
+  width: 2.5rem;
+  border-radius: 50%;
+  margin: 1rem 0 10px 3.4rem;
+}
+
+.admin-text {
+  padding: 0 0 0 52px;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+.links {
+  margin-top: 4rem;
+}
+
+.logout-text {
+  margin-top: 6rem;
+}
+
+.greet-msg {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+  background-color: #1c944e;
+  color: white;
+}
+.greet {
+  margin-left: 12rem;
+  font-size: 21px;
+}
+
+.manage {
+  text-decoration: none;
+  color: white;
+  margin: 0rem 4rem 0 0;
+  font-size: 13px;
+  display: flex;
+  gap: 7px;
+}
+
+.manage:hover {
+  color: black;
+}
+
+.shop-img {
+  width: 10rem;
+}
+
+.shops-wrapper {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.shop-group {
+  display: flex;
+  gap: 3rem;
+  margin: 0 0 0 10rem;
+}
+
+.shop-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}

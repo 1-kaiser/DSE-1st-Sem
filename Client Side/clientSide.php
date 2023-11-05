@@ -88,6 +88,7 @@ session_start();
 </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script>
     <script src="../css/aos.js"></script>
 
     <script>
@@ -99,10 +100,14 @@ session_start();
             $('#formRequest').validate({
                 rules: {
                     clientName: {
-                        minlength: 2
+                        required: true,
+                        lettersonly: true,
+                        minlength: 2,
+                        maxlength: 50
                     },
                     clientEmail: {
                         email: true,
+                        required: true
                     },
                     clientContact: {
                         number: true,
@@ -113,7 +118,7 @@ session_start();
                 messages: {
                     clientName: {
                         required: "Please enter your name",
-                        minlength: "Name atleast 2 characters"
+                        minlength: "Name atleast 2 characters", 
                     },
                     clientEmail: {
                         required: "Please enter your email"

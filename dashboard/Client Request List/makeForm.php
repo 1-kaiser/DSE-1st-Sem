@@ -181,53 +181,68 @@
     }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Request List</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- CSS -->
     <link rel="stylesheet" href="../../css/clientRequestList.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.1/bootstrap-icons.min.css">
+
 </head>
-
 <body>
-
     <div class="sidebar">
         <img src="../../css/dito.png" class="imgDito"> <br />
-        <span class="admin-text">Admin</span> <hr style="color: white;"/>
+        <span class="admin-text">Admin</span> 
+        <hr style="color: white;"/>
         <div class="links">
         <a href="../dashboard.php" class="link">
-                <img src="../../css/icons/icons8-home-50.png" class="icons">
+            <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
-            <a href="../Client Request List/clientRequestList.php" class="link">
-                <img src="../../css/icons/icons8-request-50.png" class="icons">
+            <a href="./clientRequestList.php" class="link">
+            <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
             <a href="../Client History/clientHIstory.php" class="link">
-                <img src="../../css/icons/icons8-history-50.png" class="icons">
+            <i class="bi bi-clock-history fs-5 text-white"></i>
             Client History</a>
             <a href="../Client History/archive.php" class="link">
-                <img src="../../css/icons/icons8-package-50.png" class="icons">
+            <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
-            <!-- <a href="../Delivery Status/deliveryStatus.php" class="link">
+            <!-- <a href="./Delivery Status/deliveryStatus.php" class="link">
                 <img src="../../css/icons/icons8-shipped-50.png" class="icons">
             Delivery Status</a> -->
         </div>
     </div>
 
     <div class="greet-msg">
-        <span class="greet">Client Request List</span>
-        <!-- <a href="" class="manage">
+        <span class="greet">Client Request Form</span>
+        <a href="" class="manage btn-btn-success">
+        <i class="bi bi-person-fill-gear"></i>
         <span>Manage Your Account</span>
-        </a> -->
+        </a>
+    </div>
+
+    <div class="client-details">
+
+    <div class="client-container">
+        <p class="details">Name: <strong><?php echo $row['name'];?></strong></p>
+        <p class="details">Email: <strong><?php echo $row['email'];?></strong></p>
+    </div>
+
     </div>
 
     <div class="makeForm-wrapper d-flex justify-content-start align-items-center flex-column">
 
-    <div class="formTitle">
+    <!-- <div class="formTitle">
         <h4>Request Product Form</h4>
-    </div>
+    </div> -->
 
         <form class="form-container w-50" action="" id="add_form" method="POST" target="_blank">
 
@@ -256,7 +271,11 @@
     </div>
 </body>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <script>
         $(document).ready(function() {

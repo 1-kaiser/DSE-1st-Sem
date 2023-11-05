@@ -16,23 +16,23 @@ body {
 }
 
 .sidebar a {
-  color: black;
+  color: white;
   padding: 1rem;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   column-gap: 10px;
 }
 
 .icons {
-  width: 1rem;
+  width: 19px;
 }
 
 .sidebar a:hover,
 .link:hover {
-  background-color: rgb(213, 255, 202);
-  color: rgb(3, 82, 3);
+  background-color: rgb(14, 105, 55);
+  color: white;
 }
 
 .imgDito {
@@ -57,24 +57,31 @@ body {
 }
 
 .greet-msg {
-  height: 5vh;
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: monospace;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+  background-color: #1c944e;
+  color: white;
 }
-
 .greet {
-  margin-top: 2rem;
   margin-left: 12rem;
-  font-size: 1.5rem;
+  font-size: 21px;
 }
 
 .manage {
   text-decoration: none;
-  color: black;
-  margin: 2rem 4rem 0 0;
+  color: white;
+  margin: 0rem 4rem 0 0;
   font-size: 13px;
+  display: flex;
+  gap: 7px;
+}
+
+.manage:hover {
+  color: black;
 }
 
 .clientRequestList-wrapper {
@@ -82,7 +89,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 2rem 0 0 3rem;
 }
 
 .checkRequest-wrapper {
@@ -100,8 +106,8 @@ body {
 }
 
 .makeForm-wrapper {
-  height: 79vh;
-  margin: 4rem 0 0 0;
+  height: 59vh;
+  margin: 2rem 0 0 0;
 }
 
 .formTitle {
@@ -124,10 +130,34 @@ body {
   font-family: sans-serif;
 }
 
-.dataTables_wrapper {
+/* .dataTables_wrapper {
   margin: 5rem 0 0 0;
-}
+} */
 
 .form-control {
   margin: 0 6px;
+}
+
+.table-container {
+  background-color: white;
+  padding: 2rem 5rem 2rem 0;
+  margin: 3rem 0 0 10rem;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.54);
+}
+
+.client-details {
+  height: 20vh;
+}
+
+.client-container {
+  background-color: #89f0b3;
+  width: 21vw;
+  height: 15vh;
+  margin: 9px 0 0 66.6rem;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.54);
+}
+
+.details {
+  margin: 0;
+  padding: 13px 0 0 12px;
 }
