@@ -101,9 +101,11 @@ session_start();
                 rules: {
                     clientName: {
                         required: true,
-                        lettersonly: true,
+                        // nowhitespace: false,
+                        // lettersonly: true,
                         minlength: 2,
-                        maxlength: 50
+                        maxlength: 50,
+                        
                     },
                     clientEmail: {
                         email: true,

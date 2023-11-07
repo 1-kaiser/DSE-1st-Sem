@@ -23,21 +23,27 @@
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
         <div class="links">
-        <a href="../dashboard.php" class="link">
+
+            <a href="../dashboard.php" class="link">
             <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
+
             <a href="#" class="link">
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
+
             <a href="../Client History/clientHIstory.php" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
             Client History</a>
+
+            <a href="../Client History/acceptedRequest.php" class="link">
+            <i class="bi bi-check2-circle fs-5 text-white"></i>
+            Accepted Request</a>
+
             <a href="../Client History/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
-            <!-- <a href="./Delivery Status/deliveryStatus.php" class="link">
-                <img src="../../css/icons/icons8-shipped-50.png" class="icons">
-            Delivery Status</a> -->
+
         </div>
     </div>
 
@@ -72,15 +78,15 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
-                                    <td><?php echo $row['id'];?></td>
-                                    <td><?php echo $row['name'];?></td>
-                                    <td><?php echo $row['email'];?></td>
-                                    <td><?php echo $row['contact'];?></td>
+                                    <td id="id"><?php echo $row['id'];?></td>
+                                    <td id="name"><?php echo $row['name'];?></td>
+                                    <td id="email"><?php echo $row['email'];?></td>
+                                    <td id="contact"><?php echo $row['contact'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
                                         
-                                        <a href="./checkRequest.php?id=<?php echo $row['id'];?>" style="text-decoration: none;" class="btn btn-secondary">
+                                        <button style="text-decoration: none;" class="reqDetails btn btn-secondary" data-id="<?php echo $row['id'];?>" data-bs-toggle="modal" data-bs-target="#checkRequest">
                                         <i class="bi bi-view-list"></i>
-                                        </a>
+                                        </button>
                                         
                                         <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
                                         <i class="bi bi-bag-fill"></i>
@@ -92,32 +98,35 @@
                             <?php
                         }
                     ?>
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="checkRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Client Request Details</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="mb-3"></div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
                 </tbody>
             </table>
         </div>
     </div>
 
     <!-- Modal Starts Here -->
+    <?php
+    // $id = $row['id'];
+    // $query = "SELECT * FROM clientrequestlist WHERE id = '$id' LIMIT 1";
+    // $result = mysqli_query($conn, $query);
+    // $row = mysqli_fetch_assoc($result);
+    ?>
 
-        <div class="modal fade" id="checkRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Client Request Details</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <div class="mb-3">
-                    <label class="checkForm">Name</label>
-                    <div><strong><?php echo $row['name'];?></strong></div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
-        </div>
+        
 
     <!-- Modal Ends Here -->
     
@@ -140,4 +149,30 @@
                 });
             } );
     </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.reqDetails').click(function() {
+                let id = $(this).data('id')
+                $.ajax({
+                    url: 'clientDetails.php',
+                    method: 'post',
+                    data: {id: id},
+                    success: function(response) {
+                        $('.modal-body').html(response)
+                        $('#checkRequest').modal('show')
+                    }
+                })
+            })
+        })
+
+        // function getID(id) {
+        //     const id = document.getElementById('#id' + id)
+        //     const name = document.getElementById('#name' + id)
+        //     const email = document.getElementById('#email' + id)
+        //     const contact = document.getElementById('#contact' + id)
+        // }
+    </script>
 </html>
+

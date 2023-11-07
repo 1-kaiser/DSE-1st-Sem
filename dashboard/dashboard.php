@@ -8,56 +8,68 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DITO | Dashboard</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
+        <!-- Icons -->
+        <link rel="stylesheet" href="../css/bootstrap-icons-1.11.1/bootstrap-icons.min.css">
 </head>
 <body>
-    <div class="sidebar">
+<div class="sidebar">
         <img src="../css/dito.png" class="imgDito"> <br />
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
-
         <div class="links">
-            <a href="#" class="link">
-                <img src="../css/icons/icons8-home-50.png" class="icons">
-            Home</a>
-            <a href="./Client Request List/clientRequestList.php" class="link">
-                <img src="../css/icons/icons8-request-50.png" class="icons">
-            Client Request List</a>
-            <a href="./Client History/clientHIstory.php" class="link">
-                <img src="../css/icons/icons8-history-50.png" class="icons">
-            Client History</a>
-            <a href="./Client History/archive.php" class="link">
-                <img src="../css/icons/icons8-package-50.png" class="icons">
-            Archive</a>
-            <!-- <a href="./Delivery Status/deliveryStatus.php" class="link">
-                <img src="../css/icons/icons8-shipped-50.png" class="icons">
-            Delivery Status</a> -->
-        </div>
 
-        <form action="logout.php" method="POST">
-            <a href="./logout.php" class="logout-text">
-                <img src="../css/icons/icons8-logout-50.png" class="icons">
-            Logout</a>
-        </form>
+            <a href="#" class="link">
+            <i class="bi bi-house-door-fill fs-5 text-white"></i>
+            Home</a>
+
+            <a href="./Client Request List/clientRequestList.php" class="link">
+            <i class="bi bi-question-octagon fs-5 text-white"></i>
+            Client Request List</a>
+
+            <a href="./Client History/clientHistory.php" class="link">
+            <i class="bi bi-clock-history fs-5 text-white"></i>
+            Client History</a>
+
+            <a href="./Client History/acceptedRequest.php" class="link">
+            <i class="bi bi-check2-circle fs-5 text-white"></i>
+            Accepted Request</a>
+
+            <a href="./Client History/archive.php" class="link">
+            <i class="bi bi-archive-fill fs-5 text-white"></i>
+            Archive</a>
+
+        </div>
     </div>
 
     <div class="greet-msg">
         <span class="greet">Dashboard</span>
-        <!-- <a href="" class="manage">
+        <a href="" class="manage btn-btn-success">
+        <i class="bi bi-person-fill-gear"></i>
         <span>Manage Your Account</span>
-        </a> -->
+        </a>
     </div>
 
     <div class="forms-wrapper">
         <div class="forms-container">
-            <div class="card">
+            <canvas id="adminChart"></canvas>
+
+            <div class="datetime">
+                <span class="time" style="color: #1328b1">4:30 PM</span>
+                <span class="date" style="color: brown;">Thursday, November 7, 2023</span>
+            </div>
+            <!-- <div class="card">
                 <p class="clientTitle">Total Client <br /> Request</p>
                 <?php
-                $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                $result = mysqli_query($conn, $query);
-                $total = mysqli_fetch_assoc($result);
-                $totalRows = $total['total_rows'];
+                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
+                // $result = mysqli_query($conn, $query);
+                // $total = mysqli_fetch_assoc($result);
+                // $totalRows = $total['total_rows'];
                 ?>
 
                 <p class="total"> <?php echo $totalRows ?> </p>
@@ -67,15 +79,15 @@ session_start();
             <div class="card" style="background-color: #D4F673;">
                 <p class="clientTitle">Client Request <br /> History</p>
                 <?php
-                $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                $result = mysqli_query($conn, $query);
-                $total = mysqli_fetch_assoc($result);
-                $totalRows = $total['total_rows'];
+                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
+                // $result = mysqli_query($conn, $query);
+                // $total = mysqli_fetch_assoc($result);
+                // $totalRows = $total['total_rows'];
                 ?>
 
                 <p class="total"> <?php echo $totalRows ?> </p>
                 
-            </div> 
+            </div>  -->
 
             <!-- <div class="card" style="background-color: #D39AFF;">
                 <p class="clientTitle">Total Clients</p>
@@ -112,29 +124,104 @@ session_start();
     </div> -->
     
 </body>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-            datasets: [{
-                label: 'Total Client Request',
-                data: [5, 25, 35, 50, 75, 100, 200, 500],
-                borderWidth: 1
-            }]
-            },
+        const timeElement = document.querySelector('.time')
+        const dateElement = document.querySelector('.date')
+
+        function formatTime(date) {
+            const hours12 = date.getHours() % 12 || 12
+            const minutes = date.getMinutes()
+            const isAM = date.getHours() < 12;
+
+            return `${hours12.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")} ${isAM ? "AM" : "PM"}`;
+        }
+
+        function formatDate(date) {
+            const DAYS = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ];
+            const MONTHS = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ];
+
+            return `${DAYS[date.getDay()]}, ${
+                MONTHS[date.getMonth()]
+            } ${date.getDate()} ${date.getFullYear()}`;
+        }
+
+        setInterval(() => {
+            const now = new Date();
+
+            timeElement.textContent = formatTime(now);
+            dateElement.textContent = formatDate(now);
+        }, 200);
+
+        // Setup Block
+
+        const data = {
+                        labels: [
+                            'Red',
+                            'Blue',
+                            'Yellow'
+                        ],
+                        datasets: [{
+                            label: 'My First Dataset',
+                            data: [300, 50, 100],
+                            backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    };
+        
+        // Config Block
+
+        const config = {
+
+            type: "doughnut",
+            data,
             options: {
-            scales: {
-                y: {
-                beginAtZero: false
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-            }
-        });
-    </script> -->
+        }
+
+        // Render Block
+        const adminChart = new Chart(
+            document.getElementById('adminChart'), config
+        );
+    </script>
 
 </html>

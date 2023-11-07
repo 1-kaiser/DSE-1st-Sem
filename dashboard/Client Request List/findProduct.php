@@ -87,22 +87,22 @@
 
             <div class="shop-container">
                 <img src="../../css/shops/gearbest.png" class="shop-img">
-                <a href="https://pcx.com.ph/" style="text-decoration: none;" class="btn btn-primary" target="_blank">GearBest</a>
+                <a href="https://gearbest.net/" style="text-decoration: none;" class="btn btn-primary" target="_blank">GearBest</a>
             </div>
 
             <div class="shop-container">
                 <img src="../../css/shops/lazada.png" class="shop-img">
-                <a href="https://pcx.com.ph/" style="text-decoration: none;" class="btn btn-primary" target="_blank">Lazada</a>
+                <a href="https://www.lazada.com.ph/" style="text-decoration: none;" class="btn btn-primary" target="_blank">Lazada</a>
             </div>
 
             <div class="shop-container">
                 <img src="../../css/shops/bestbuy.png" class="shop-img">
-                <a href="https://pcx.com.ph/" style="text-decoration: none;" class="btn btn-primary" target="_blank">BestBuy</a>
+                <a href="https://www.bestbuy.com/" style="text-decoration: none;" class="btn btn-primary" target="_blank">BestBuy</a>
             </div>
 
             <div class="shop-container">
                 <img src="../../css/shops//shopee.png" class="shop-img">
-                <a href="https://pcx.com.ph/" style="text-decoration: none;" class="btn btn-primary" target="_blank">Shopee</a>
+                <a href="https://shopee.ph/" style="text-decoration: none;" class="btn btn-primary" target="_blank">Shopee</a>
             </div>
         </div>
 

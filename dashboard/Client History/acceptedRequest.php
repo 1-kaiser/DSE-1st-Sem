@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archive</title>
+    <title>Accepted Request</title>
 
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -23,6 +23,7 @@
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
         <div class="links">
+
             <a href="../dashboard.php" class="link">
             <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
@@ -30,8 +31,8 @@
             <a href="../Client Request List/clientRequestList.php" class="link">
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
-            
-            <a href="#" class="link">
+
+            <a href="../Client History/clientHistory.php" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
             Client History</a>
 
@@ -47,7 +48,7 @@
     </div>
 
     <div class="greet-msg">
-        <span class="greet">Archive</span>
+        <span class="greet">Accepted Requests</span>
         <a href="" class="manage btn-btn-success">
         <i class="bi bi-person-fill-gear"></i>
         <span>Manage Your Account</span>
@@ -73,13 +74,13 @@
 
                         if (isset($_GET['id'])) {
 
-                            $deniedId = $_GET['id'];
+                            $acceptedId = $_GET['id'];
 
-                            $deniedQuery = "INSERT INTO archive (id, archiveName, archiveEmail, archiveContact, archiveRequest) SELECT id, name, email, contact, request FROM clientrequestlist WHERE id = '$deniedId'";
+                            $acceptedQuery = "INSERT INTO acceptedrequest (id, name, email, contact, request) SELECT id, name, email, contact, request FROM clientrequestlist WHERE id = '$acceptedId'";
                             
-                            if (mysqli_query($conn, $deniedQuery)) {
+                            if (mysqli_query($conn, $acceptedQuery)) {
 
-                                $deleteQuery = "DELETE FROM clientrequestlist WHERE id = '$deniedId'";
+                                $deleteQuery = "DELETE FROM clientrequestlist WHERE id = '$acceptedId'";
 
                                 if (mysqli_query($conn, $deleteQuery)) {
                                     // echo "Data from source_table deleted successfully.<br>";
@@ -90,25 +91,22 @@
                                 echo "Error: " . mysqli_error($conn);
                             }
                         }
-                        
-
-                        $query = "SELECT * FROM archive";
+                
+                        // Retrieving of data
+                        $query = "SELECT * FROM acceptedrequest";
                         $result = mysqli_query($conn, $query);
+
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
                                     <td id="id"><?php echo $row['id'];?></td>
-                                    <td id="name"><?php echo $row['archiveName'];?></td>
-                                    <td id="email"><?php echo $row['archiveEmail'];?></td>
-                                    <td id="contact"><?php echo $row['archiveContact'];?></td>
+                                    <td id="name"><?php echo $row['name'];?></td>
+                                    <td id="email"><?php echo $row['email'];?></td>
+                                    <td id="contact"><?php echo $row['contact'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
-
+                                        
                                         <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
-                                        <i class="bi bi-skip-backward"></i>
-                                        </a>
-
-                                        <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-danger">
-                                        Delete Permanently
+                                        <i class="bi bi-folder-plus"></i>&ensp;Manage Delivery
                                         </a>
                                     </td>
                                 </tr>
@@ -131,7 +129,6 @@
                         </div>
                     </div>
                     <!-- Modal End -->
-
                 </tbody>
             </table>
         </div>
@@ -174,12 +171,6 @@
             })
         })
 
-        // function getID(id) {
-        //     const id = document.getElementById('#id' + id)
-        //     const name = document.getElementById('#name' + id)
-        //     const email = document.getElementById('#email' + id)
-        //     const contact = document.getElementById('#contact' + id)
-        // }
     </script>
 </html>
 
