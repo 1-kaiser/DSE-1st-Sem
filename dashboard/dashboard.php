@@ -32,15 +32,19 @@ session_start();
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
 
-            <a href="./Client History/clientHistory.php" class="link">
+            <a href="./Client Request Status/clientRequestStatus.php" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
-            Client History</a>
+            Client Request Status</a>
 
-            <a href="./Client History/acceptedRequest.php" class="link">
+            <a href="./Delivery Status/deliveryStatus.php" class="link">
+            <i class="bi bi-truck fs-5 text-white"></i>
+            Delivery Status</a>
+
+            <a href="./Client Request Status/acceptedRequest.php" class="link">
             <i class="bi bi-check2-circle fs-5 text-white"></i>
             Accepted Request</a>
 
-            <a href="./Client History/archive.php" class="link">
+            <a href="./Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
 
@@ -60,8 +64,8 @@ session_start();
             <canvas id="adminChart"></canvas>
 
             <div class="datetime">
-                <span class="time" style="color: #1328b1">4:30 PM</span>
-                <span class="date" style="color: brown;">Thursday, November 7, 2023</span>
+                <span class="time" style="color: #1328b1; font-weight: 600">4:30 PM</span>
+                <span class="date" style="color: brown; font-weight: 600">Thursday, November 7, 2023</span>
             </div>
             <!-- <div class="card">
                 <p class="clientTitle">Total Client <br /> Request</p>
@@ -183,23 +187,24 @@ session_start();
             dateElement.textContent = formatDate(now);
         }, 200);
 
+        // Chart
+
         // Setup Block
 
         const data = {
                         labels: [
-                            'Red',
-                            'Blue',
-                            'Yellow'
+                            'Accepted Requests',
+                            'Denied Requests',
+                            'Pending Requests'
                         ],
                         datasets: [{
-                            label: 'My First Dataset',
                             data: [300, 50, 100],
                             backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
+                            '#7df1ad',
+                            '#f75d5d',
                             'rgb(255, 205, 86)'
                             ],
-                            hoverOffset: 4
+                            hoverOffset: 5
                         }]
                     };
         

@@ -48,7 +48,7 @@ session_start();
 
 </head>
 <body>
-    <div class="login-wrapper d-flex align-items-center justify-content-start">
+    <div class="login-wrapper d-flex align-items-center justify-content-center">
         
 
         <div class="login-container">
@@ -71,9 +71,6 @@ session_start();
                 <!-- <button name="loginSubmit" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary mt-2">Login</button> -->
                 <input type="submit" name="loginSubmit" data-bs-toggle="modal" class="btn btn-primary mt-2" value="Login"> 
             </form>
-        </div>
-        <div class="img-container">
-        <spline-viewer loading-anim url="https://prod.spline.design/yMKx3xQ6sZG8jUjj/scene.splinecode"></spline-viewer>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accepted Request</title>
+    <title>Client Request Status</title>
 
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -23,7 +23,6 @@
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
         <div class="links">
-
             <a href="../dashboard.php" class="link">
             <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
@@ -32,23 +31,26 @@
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
 
-            <a href="../Client History/clientHistory.php" class="link">
+            <a href="#" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
-            Client History</a>
+            Client Request Status</a>
 
-            <a href="../Client History/acceptedRequest.php" class="link">
+            <a href="../Delivery Status/deliveryStatus.php" class="link">
+            <i class="bi bi-truck fs-5 text-white"></i>
+            Delivery Status</a>
+            
+            <a href="./acceptedRequest.php" class="link">
             <i class="bi bi-check2-circle fs-5 text-white"></i>
             Accepted Request</a>
 
             <a href="./archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
-
         </div>
     </div>
 
     <div class="greet-msg">
-        <span class="greet">Accepted Requests</span>
+        <span class="greet">Client Request Status</span>
         <a href="" class="manage btn-btn-success">
         <i class="bi bi-person-fill-gear"></i>
         <span>Manage Your Account</span>
@@ -72,28 +74,7 @@
                     <?php 
                         require('../../reusable.php');
 
-                        if (isset($_GET['id'])) {
-
-                            $acceptedId = $_GET['id'];
-
-                            $acceptedQuery = "INSERT INTO acceptedrequest (id, name, email, contact, request) SELECT id, name, email, contact, request FROM clientrequestlist WHERE id = '$acceptedId'";
-                            
-                            if (mysqli_query($conn, $acceptedQuery)) {
-
-                                $deleteQuery = "DELETE FROM clientrequestlist WHERE id = '$acceptedId'";
-
-                                if (mysqli_query($conn, $deleteQuery)) {
-                                    // echo "Data from source_table deleted successfully.<br>";
-                                }
-                                // echo "Data from source_table inserted into destination_table successfully.<br>";
-
-                            } else {
-                                echo "Error: " . mysqli_error($conn);
-                            }
-                        }
-                
-                        // Retrieving of data
-                        $query = "SELECT * FROM acceptedrequest";
+                        $query = "SELECT * FROM clientrequestlist";
                         $result = mysqli_query($conn, $query);
 
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -104,16 +85,23 @@
                                     <td id="email"><?php echo $row['email'];?></td>
                                     <td id="contact"><?php echo $row['contact'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
+
+                                    <a href="./acceptedRequest.php?id=<?php echo $row['id'];?>">
+                                    <button class="btn btn-success" name="acceptedRequest"><i class="bi bi-check-circle"></i></button>
+                                    </a>
                                         
-                                        <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
-                                        <i class="bi bi-folder-plus"></i>&ensp;Manage Delivery
-                                        </a>
+                                    <a href="./archive.php?id=<?php echo $row['id'];?>">
+                                    <button class="btn btn-danger" name="deniedRequest"><i class="bi bi-trash"></i></button>
+                                    </a>
+
+                                    <!-- <a href="./makeForm.php?id=<?php echo $row['id'];?>" target="_blank" class="btn btn-success">Make Form</a> -->
                                     </td>
                                 </tr>
                             <?php
                         }
                     ?>
 
+                    
                     <!-- Modal Start -->
                     <div class="modal fade" id="checkRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -170,7 +158,6 @@
                 })
             })
         })
-
     </script>
 </html>
 

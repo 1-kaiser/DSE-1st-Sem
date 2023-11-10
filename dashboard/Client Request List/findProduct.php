@@ -21,21 +21,27 @@
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
         <div class="links">
-        <a href="../dashboard.php" class="link">
+
+            <a href="../dashboard.php" class="link">
             <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
-            <a href="./clientRequestList.php" class="link">
+
+            <a href="../Client Request List/clientRequestList.php" class="link">
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
-            <a href="../Client History/clientHIstory.php" class="link">
+
+            <a href="../Client Request Status/clientRequestStatus.php" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
-            Client History</a>
-            <a href="../Client History/archive.php" class="link">
+            Client Request Status</a>
+
+            <a href="../Delivery Status/deliveryStatus.php" class="link">
+            <i class="bi bi-truck fs-5 text-white"></i>
+            Delivery Status</a>
+
+            <a href="../Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
-            <!-- <a href="./Delivery Status/deliveryStatus.php" class="link">
-                <img src="../../css/icons/icons8-shipped-50.png" class="icons">
-            Delivery Status</a> -->
+            
         </div>
     </div>
 

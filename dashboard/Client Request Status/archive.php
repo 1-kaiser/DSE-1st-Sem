@@ -31,11 +31,15 @@
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
             
-            <a href="#" class="link">
+            <a href="./clientRequestStatus.php" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
-            Client History</a>
+            Client Request Status</a>
 
-            <a href="../Client History/acceptedRequest.php" class="link">
+            <a href="../Delivery Status/deliveryStatus.php" class="link">
+            <i class="bi bi-truck fs-5 text-white"></i>
+            Delivery Status</a>
+
+            <a href="../Client Request Status/acceptedRequest.php" class="link">
             <i class="bi bi-check2-circle fs-5 text-white"></i>
             Accepted Request</a>
 
