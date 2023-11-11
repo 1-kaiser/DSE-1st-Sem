@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 10:30 AM
+-- Generation Time: Nov 11, 2023 at 12:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,6 +24,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `acceptedrequest`
+--
+
+CREATE TABLE `acceptedrequest` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `contact` int(11) NOT NULL,
+  `request` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `acceptedrequest`
+--
+
+INSERT INTO `acceptedrequest` (`id`, `name`, `email`, `contact`, `request`) VALUES
+(4, 'EMMAN', 'emmanuelpunay6906@gmail.com', 2147483647, 'f');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `archive`
+--
+
+CREATE TABLE `archive` (
+  `id` int(11) NOT NULL,
+  `archiveName` varchar(200) NOT NULL,
+  `archiveEmail` varchar(200) NOT NULL,
+  `archiveContact` int(200) NOT NULL,
+  `archiveRequest` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `archive`
+--
+
+INSERT INTO `archive` (`id`, `archiveName`, `archiveEmail`, `archiveContact`, `archiveRequest`) VALUES
+(5, 'Yunjin', 'yunjin@gmail.com', 2147483647, 'iced tea'),
+(6, 'Chaewon', 'chae@gmail.com', 2147483647, 'drinks');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `clientrequestlist`
 --
 
@@ -40,24 +83,29 @@ CREATE TABLE `clientrequestlist` (
 --
 
 INSERT INTO `clientrequestlist` (`id`, `name`, `email`, `contact`, `request`) VALUES
-(13, 'Emmanuel Punay', 'eman656@gmail.com', '0934134232', 'DDR4 RAM\r\nArduino Sensor Kit\r\nAsus Motherboard'),
-(15, 'John Doe', 'johndoe@gmail.com', '09352381801', 'Magnifying Lens\r\n'),
-(16, 'Paulo Lozano', 'paulo981@gmail.com', '09234132892', 'Tripod\r\nDobsonian Base'),
-(17, 'John Robert Castillo', 'robertcastillo22@gmail.com', '092341423189', 'Processor Sockets\r\nPCI Slots'),
-(18, 'John Robert Castillo', 'robertcastillo22@gmail.com', '092341423189', 'Processor Sockets\r\nPCI Slots'),
-(19, 'asd', 'fas@gmail.com', 'sdf', 'sdf\r\n'),
-(20, 'sdf', 'sds@sdf', 'sdfs', 'd'),
-(21, 'asf', 'asdf@fsd', 'sdf', 'sdfsd'),
-(22, 'asdf', 'aasd@fas', 'asdfasfd', 'asdfa'),
-(23, 'asdf', 'asdfa@asdfa', 'asdfa', 'asdfa'),
-(24, 'asd', 'a@fds', 'sdfs', 'sdf'),
-(25, 'asf', 'asda@asd', 'asdas', 'asd'),
-(26, 'asdf', 'asdf@dfa', 'asdfa', 'asdfa'),
-(27, 'asdf', 'sdf@sdfg', '324', 'afasd'),
-(28, 'Haha', 'hehe@gmail.com', '1234', 'dfgkm'),
-(29, 'Steffanie Reyes', 'steffanie@gmail.com', '0946227367', 'Hotdog malake'),
-(30, 'Kap', 'kap@gmail.com', '09876543219', 'gege'),
-(31, 'Bebang', 'Bebang@gmail.com', '09123456789', 'bebangskie\r\n');
+(7, 'Sakura', 'sakura@gmail.coom', '09242324322', 'vinyl');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deliveries`
+--
+
+CREATE TABLE `deliveries` (
+  `delivery_id` int(11) NOT NULL,
+  `customerName` varchar(200) NOT NULL,
+  `customerAddress` varchar(200) NOT NULL,
+  `productName` varchar(200) NOT NULL,
+  `productPrice` int(200) NOT NULL,
+  `productQty` int(200) NOT NULL,
+  `orderDate` date NOT NULL,
+  `printDate` date NOT NULL,
+  `delivery` varchar(200) NOT NULL,
+  `sortCenter` varchar(200) NOT NULL,
+  `orderNo` int(200) NOT NULL,
+  `trackingNo` int(200) NOT NULL,
+  `sellerAddress` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -83,10 +131,28 @@ INSERT INTO `login` (`id`, `employee_id`, `password`) VALUES
 --
 
 --
+-- Indexes for table `acceptedrequest`
+--
+ALTER TABLE `acceptedrequest`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `archive`
+--
+ALTER TABLE `archive`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `clientrequestlist`
 --
 ALTER TABLE `clientrequestlist`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `deliveries`
+--
+ALTER TABLE `deliveries`
+  ADD PRIMARY KEY (`delivery_id`);
 
 --
 -- Indexes for table `login`
@@ -99,10 +165,28 @@ ALTER TABLE `login`
 --
 
 --
+-- AUTO_INCREMENT for table `acceptedrequest`
+--
+ALTER TABLE `acceptedrequest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `archive`
+--
+ALTER TABLE `archive`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `clientrequestlist`
 --
 ALTER TABLE `clientrequestlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `deliveries`
+--
+ALTER TABLE `deliveries`
+  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `login`
