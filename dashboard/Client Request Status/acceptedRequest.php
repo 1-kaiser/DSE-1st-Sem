@@ -60,10 +60,20 @@
 
     <div class="greet-msg">
         <span class="greet">Accepted Requests</span>
-        <a href="" class="manage btn-btn-success">
-        <i class="bi bi-person-fill-gear"></i>
-        <span>Manage Your Account</span>
-        </a>
+        
+        <!-- Dropdown -->
+        <div class="dropdown" style="margin-right: 18px;">
+            <a class="btn btn-warning dropdown-toggle btn-sm w-100 h-25" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill-gear"></i> Admin
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
+                <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="clientRequestList-wrapper">
@@ -105,24 +115,32 @@
 
                         if (isset($_POST['createDelivery'])) {
         
-                            $orderDate = $_POST['orderDate'];
-                            $printDate = $_POST['printDate'];
-                            $delivery = $_POST['delivery'];
-                            $sortCenter = $_POST['sortCenter'];
-                            $orderNo = $_POST['orderNo'];
-                            $trackingNo = $_POST['trackingNo'];
-                            $customerName = $_POST['customerName'];
-                            $customerAddress = $_POST['customerAddress'];
-                            $sellerAddress = $_POST['sellerAddress'];
-                            $productName = $_POST['productName'];
-                            $paidPrice = $_POST['paidPrice'];
-                            $quantity = $_POST['quantity'];
-                    
-                            $createQuery = "INSERT INTO deliveries VALUES (null, $customerName, $customerAddress, $productName, $paidPrice, $quantity, $orderDate, $printDate, $delivery, $sortCenter, $orderNo, $trackingNo, $sellerAddress)";
-                            mysqli_query($conn, $createQuery);
-                    
-                            echo "<script>alert('Created Successfully');</script>";
-                            header('./acceptedRequest.php');
+                            try {
+                                
+                                $orderDate = $_POST['orderDate'];
+                                $printDate = $_POST['printDate'];
+                                $delivery = $_POST['delivery'];
+                                $sortCenter = $_POST['sortCenter'];
+                                $orderNo = $_POST['orderNo'];
+                                $trackingNo = $_POST['trackingNo'];
+                                $customerName = $_POST['customerName'];
+                                $customerAddress = $_POST['customerAddress'];
+                                $sellerAddress = $_POST['sellerAddress'];
+                                $productName = $_POST['productName'];
+                                $productPrice = $_POST['productPrice'];
+                                $quantity = $_POST['quantity'];
+                        
+                                $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo, sellerAddress) 
+                                VALUES ('$customerName', '$customerAddress', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo', '$sellerAddress')";
+                                mysqli_query($conn, $createQuery);
+                        
+                                echo "<script>alert('Created Successfully');</script>";
+                                header('./acceptedRequest.php');
+
+                            } catch (mysqli_sql_exception $e) {
+                                $err = $e->getMessage();
+                                echo $err;
+                            }
                         }
                 
                         // Retrieving of data
@@ -187,7 +205,7 @@
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label for="buyerAddress" class="form-label">Customer Name</label>
-                                            <input type="text" name="customerName" name="customerName"  class="form-control border-secondary" id="customerName">
+                                            <input type="text" name="customerName" class="form-control border-secondary" id="customerName">
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
@@ -205,7 +223,7 @@
                                             <input type="text" name="productName" class="form-control border-secondary" id="productName">
 
                                             <label for="paidPrice" class="form-label">Paid Price</label>
-                                            <input type="number" name="paidPrice" class="form-control border-secondary" id="paidPrice">
+                                            <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice">
 
                                             <label for="quantity" class="form-label">Quantity</label>
                                             <input type="number" name="quantity" class="form-control border-secondary" id="quantity">

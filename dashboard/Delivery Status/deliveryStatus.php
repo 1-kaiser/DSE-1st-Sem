@@ -51,10 +51,20 @@
 
     <div class="greet-msg">
         <span class="greet">Delivery Status</span>
-        <a href="" class="manage btn-btn-success">
-        <i class="bi bi-person-fill-gear"></i>
-        <span>Manage Your Account</span>
-        </a>
+        
+        <!-- Dropdown -->
+        <div class="dropdown" style="margin-right: 18px;">
+            <a class="btn btn-warning dropdown-toggle btn-sm w-100 h-25" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill-gear"></i> Admin
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
+                <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="clientRequestList-wrapper">
@@ -65,8 +75,8 @@
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Order #</th>
                     <th scope="col" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
@@ -74,16 +84,16 @@
                     <?php 
                         require('../../reusable.php');
 
-                        $query = "SELECT * FROM clientrequestlist";
+                        $query = "SELECT * FROM deliveries";
                         $result = mysqli_query($conn, $query);
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
-                                    <td id="id"><?php echo $row['id'];?></td>
-                                    <td id="name"><?php echo $row['name'];?></td>
-                                    <td id="email"><?php echo $row['email'];?></td>
-                                    <td id="contact"><?php echo $row['contact'];?></td>
+                                    <td id="id"><?php echo $row['delivery_id'];?></td>
+                                    <td id="name"><?php echo $row['customerName'];?></td>
+                                    <td id="email"><?php echo $row['productName'];?></td>
+                                    <td id="contact"><?php echo $row['orderNo'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
 
                                     <button class="deliveryStatus btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliveryStatus">
@@ -95,6 +105,10 @@
                                 </tr>
                             <?php
                         }
+                    ?>
+
+                    <?php
+
                     ?>
 
                     <!-- Modal Start -->

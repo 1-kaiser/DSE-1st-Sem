@@ -50,7 +50,7 @@ session_start();
 <body>
     <div class="login-wrapper d-flex align-items-center justify-content-center">
         
-
+        <!-- Login Container Box -->
         <div class="login-container">
             <form action="" method="POST" class="form-container" id="loginForm" style="width: 17rem">
                 <div class="dito-title">
@@ -72,25 +72,11 @@ session_start();
                 <input type="submit" name="loginSubmit" data-bs-toggle="modal" class="btn btn-primary mt-2" value="Login"> 
             </form>
         </div>
+        <!-- Login Container Box -->
+        
     </div>
 
-    <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 </body>
     <script src="./css/bootstrap.bundle.min.js"></script>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.492/build/spline-viewer.js"></script>

@@ -264,7 +264,7 @@ use PHPMailer\PHPMailer\PHPMailer;
                 <div class="input-group mb-2">
 
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Product</span>
-                    <input type="text" class="form-control" name="productName[]" style="width: 8rem; margin-right: 6px;" required>
+                    <input type="text" class="form-control" value="<?php echo $row['request']?>" name="productName[]" style="width: 8rem; margin-right: 6px;" required>
 
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Price</span>
                     <input type="number" class="form-control" name="productPrice[]" style="width: 4rem;" required>
