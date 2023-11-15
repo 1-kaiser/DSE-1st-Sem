@@ -93,48 +93,10 @@ body {
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.54);
 }
 
-.btn {
-  width: 18rem;
-  height: 9rem;
-}
-
-.card {
-  width: 18rem;
-  height: 8rem;
-  background-color: #f4aaaa;
-  font-family: monospace;
-  letter-spacing: -0.5px;
-}
-
-.clientTitle {
-  margin: 1rem 0 0 1rem;
-  font-size: 20px;
-}
-
-.total {
-  margin: 0 0 1rem 14.5rem;
-  font-size: 20px;
-}
-
-.canvas-container {
-  width: 32rem;
-  height: 20rem;
-  margin: 4rem 0 0 14rem;
-}
-
-.forms-container {
+.formButtons {
   display: flex;
-  column-gap: 1rem;
-  width: 27rem;
-  height: 27rem;
-  padding: 4rem 0 0 4rem;
-}
-
-.datetime {
-  position: absolute;
-  display: flex;
-  left: 68rem;
-  top: 6rem;
-  flex-direction: column;
-  text-align: end;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
 }

@@ -1,5 +1,5 @@
 <?php
-require('../reusable.php');
+require('../../reusable.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -7,44 +7,46 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DITO | Dashboard</title>
+    <title>Delivery Status</title>
 
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/deliveryButtons.css">
     <!-- Icons -->
-    <link rel="stylesheet" href="../css/bootstrap-icons-1.11.1/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.1/bootstrap-icons.min.css">
+
 </head>
 <body>
-<div class="sidebar">
-        <img src="../css/dito.png" class="imgDito"> <br />
+
+    <div class="sidebar">
+        <img src="../../css/dito.png" class="imgDito"> <br />
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
         <div class="links">
 
-            <a href="#" class="link">
+            <a href="../dashboard.php" class="link">
             <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
 
-            <a href="./Client Request List/clientRequestList.php" class="link">
+            <a href="../Client Request List/clientRequestList.php" class="link">
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
 
-            <a href="./Client Request Status/clientRequestStatus.php" class="link">
+            <a href="../Client Request Status/clientRequestStatus.php" class="link">
             <i class="bi bi-clock-history fs-5 text-white"></i>
             Client Request Status</a>
 
-            <a href="./Delivery Status/deliveryStatus.php" class="link">
+            <a href="./deliveryStatus.php" class="link">
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
-            <a href="./Client Request Status/acceptedRequest.php" class="link">
+            <a href="../Client Request Status/acceptedRequest.php" class="link">
             <i class="bi bi-check2-circle fs-5 text-white"></i>
             Accepted Request</a>
 
-            <a href="./Client Request Status/archive.php" class="link">
+            <a href="../Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
 
@@ -52,7 +54,7 @@ session_start();
     </div>
 
     <div class="greet-msg">
-        <span class="greet">Dashboard</span>
+        <span class="greet">Delivery Status</span>
         <!-- Dropdown -->
         <div class="dropdown" style="margin-right: 18px;">
             <a class="btn btn-warning dropdown-toggle btn-sm w-100 h-25" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,44 +68,47 @@ session_start();
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>
         </div>
-
-        
     </div>
 
     <div class="forms-wrapper">
-        <div class="forms-container">
-            <canvas id="adminChart"></canvas>
 
-            <div class="datetime">
-                <span class="time" style="color: #1328b1; font-weight: 600">4:30 PM</span>
-                <span class="date" style="color: brown; font-weight: 600">Thursday, November 7, 2023</span>
+        <form action="" method="POST" class="formButtons">
+            <div class="btn1">
+                <div class="m-3">
+                    <button class="btn btn-warning" name="packedBySeller">Packed By Seller</button>
+                </div>
+
+                <div class="m-3 d-flex">
+                    <button class="btn btn-dark" style="margin-right: 1rem;" name="arrivedAtOverseasSortCenter">Arrived at Overseas Sort Center</button>
+                    <button class="btn btn-dark" name="departedFromOverseasSortCenter">Departed From Overseas Sort Center</button>
+                </div>
+            
+                <div class="m-3">
+                    <button class="btn btn-info" style="margin-right: 10px;" name="atCustoms">At Customs</button>
+                    <button class="btn btn-info" name="arrivedAtDestinationCountry">Arrived At Destination Country</button>
+                </div>
             </div>
 
-            <div class="track" style="margin: 5rem 0 0 3rem; width: 40rem;">
-                <!-- <div class="track-title" style="margin: 0 0 1rem 0;">
-                    <span style="font-size: 19px; font-family: sans-serif;">Delivery Status Tracker</span>
-                </div> -->
-                <table class="table" style="margin: 0; width: 41rem;">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Delivery Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="m-3">
+                <button class="btn btn-danger" style="margin-right: 10px;" name="arrivedAtSortCenter">Arrived at Sort Center</button>
+                <button class="btn btn-danger" name="departedFromSortCenter">Departed From Sort Center</button>
+            </div>
+            
+            <div class="m-3">
+                <button class="btn btn-primary" name="arrivedAtLogisticsHub">Arrived at Logistics Hub</button>
+                <button class="btn btn-primary" name="departedFromLogisticsHub">Departed From Logistics Hub</button>
             </div>
 
-        </div>
+            <div class="m-3">
+                <button class="btn btn-secondary" style="margin-right: 10px;" name="outForDelivery">Out For Delivery</button>
+                <button class="btn btn-secondary" name="packageArriving">Package Arriving</button>
+            </div>
+            
+            <div class="m-3">
+                <button class="btn btn-success" name="delivered">Delivered</button>
+            </div>
+        </form>
+        
     </div>
 
     
@@ -114,100 +119,6 @@ session_start();
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-
-        const timeElement = document.querySelector('.time')
-        const dateElement = document.querySelector('.date')
-
-        function formatTime(date) {
-            const hours12 = date.getHours() % 12 || 12
-            const minutes = date.getMinutes()
-            const isAM = date.getHours() < 12;
-
-            return `${hours12.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")} ${isAM ? "AM" : "PM"}`;
-        }
-
-        function formatDate(date) {
-            const DAYS = [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-            ];
-            const MONTHS = [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December"
-            ];
-
-            return `${DAYS[date.getDay()]}, ${
-                MONTHS[date.getMonth()]
-            } ${date.getDate()} ${date.getFullYear()}`;
-        }
-
-        setInterval(() => {
-            const now = new Date();
-
-            timeElement.textContent = formatTime(now);
-            dateElement.textContent = formatDate(now);
-        }, 200);
-
-        // Chart
-
-        // Setup Block
-
-        const data = {
-                        labels: [
-                            'Accepted Requests',
-                            'Denied Requests',
-                            'Pending Requests'
-                        ],
-                        datasets: [{
-                            data: [300, 50, 100],
-                            backgroundColor: [
-                            '#7df1ad',
-                            '#f75d5d',
-                            'rgb(255, 205, 86)'
-                            ],
-                            hoverOffset: 5
-                        }]
-                    };
-        
-        // Config Block
-
-        const config = {
-
-            type: "doughnut",
-            data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        }
-
-        // Render Block
-        const adminChart = new Chart(
-            document.getElementById('adminChart'), config
-        );
-    </script>
 
 </html>
 
