@@ -87,15 +87,6 @@
                         $query = "SELECT * FROM deliveries";
                         $result = mysqli_query($conn, $query);
 
-                        $deliveryStatus = "";
-
-                        if (isset($_POST['packedBySeller'])) {
-
-                            $deliveryStatus = "Packed by Seller";
-                            
-                            $delStatusRes = mysqli_query($conn, "INSERT INTO deliveries (deliveryStatus) VALUES ('$deliveryStatus')");
-                        }
-
                         while ($row = mysqli_fetch_assoc($result)) {
                             
                             ?>
@@ -106,7 +97,7 @@
                                     <td id="contact"><?php echo $row['deliveryStatus']?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
 
-                                    <a href="deliveryButtons.php?=<?php echo $row['delivery_id'];?>" class="deliveryStatus btn btn-primary">
+                                    <a href="./deliveryButtons.php?id=<?php echo $row['delivery_id'];?>" class="deliveryStatus btn btn-primary">
                                     Delivery Status
                                     </a>
 
@@ -115,55 +106,6 @@
                             <?php
                         }
                     ?>
-
-                    <!-- Modal Start -->
-                    <!-- <div class="modal fade" id="deliveryStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Client Request Details</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="" method="POST" >
-                                        <div class="m-3">
-                                            <button class="btn btn-warning" name="packedBySeller">Packed By Seller</button>
-                                        </div>
-
-                                        <div class="m-3 d-flex">
-                                            <button class="btn btn-dark" style="margin-right: 1rem;" name="arrivedAtOverseasSortCenter">Arrived at Overseas Sort Center</button>
-                                            <button class="btn btn-dark" name="departedFromOverseasSortCenter">Departed From Overseas Sort Center</button>
-                                        </div>
-                                    
-                                        <div class="m-3">
-                                            <button class="btn btn-info" style="margin-right: 10px;" name="atCustoms">At Customs</button>
-                                            <button class="btn btn-info" name="arrivedAtDestinationCountry">Arrived At Destination Country</button>
-                                        </div>
-
-                                        <div class="m-3">
-                                            <button class="btn btn-danger" style="margin-right: 10px;" name="arrivedAtSortCenter">Arrived at Sort Center</button>
-                                            <button class="btn btn-danger" name="departedFromSortCenter">Departed From Sort Center</button>
-                                        </div>
-                                        
-                                        <div class="m-3">
-                                            <button class="btn btn-primary" name="arrivedAtLogisticsHub">Arrived at Logistics Hub</button>
-                                            <button class="btn btn-primary" name="departedFromLogisticsHub">Departed From Logistics Hub</button>
-                                        </div>
-
-                                        <div class="m-3">
-                                            <button class="btn btn-secondary" style="margin-right: 10px;" name="outForDelivery">Out For Delivery</button>
-                                            <button class="btn btn-secondary" name="packageArriving">Package Arriving</button>
-                                        </div>
-                                        
-                                        <div class="m-3">
-                                            <button class="btn btn-success" name="delivered">Delivered</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Modal End -->
                 </tbody>
             </table>
         </div>

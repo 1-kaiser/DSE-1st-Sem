@@ -1,7 +1,3 @@
-<?php
-require('../../reusable.php');
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,48 +66,209 @@ session_start();
         </div>
     </div>
 
+    
+    
+    
+
+
     <div class="forms-wrapper">
+
+        <?php
+        require('../../reusable.php');
+        session_start();
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            // $query = "SELECT * FROM deliveries WHERE delivery_id = '$id' LIMIT 1";
+            // $result = mysqli_query($conn, $query);
+            // $row = mysqli_fetch_assoc($result);
+
+            $deliveryStatus = "";
+
+            if (isset($_POST['packedBySeller'])) {
+
+                $deliveryStatus = "Packed by Seller";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['arrivedAtOverseasSortCenter'])) {
+
+                $deliveryStatus = "Arrived at Overseas Sort Center";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['departedFromOverseasSortCenter'])) {
+
+                $deliveryStatus = "Departed From Overseas Sort Center";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['atCustoms'])) {
+
+                $deliveryStatus = "At Customs";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['arrivedAtDestinationCountry'])) {
+
+                $deliveryStatus = "Arrived At Destination Country";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['arrivedAtSortCenter'])) {
+
+                $deliveryStatus = "Arrived at Sort Center";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['departedFromSortCenter'])) {
+
+                $deliveryStatus = "Departed From Sort Center";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['arrivedAtLogisticsHub'])) {
+
+                $deliveryStatus = "Arrived at Logistics Hub";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['departedFromLogisticsHub'])) {
+
+                $deliveryStatus = "Departed From Logistics Hub";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['outForDelivery'])) {
+
+                $deliveryStatus = "Out For Delivery";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['packageArriving'])) {
+
+                $deliveryStatus = "Package Arriving";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            if (isset($_POST['delivered'])) {
+
+                $deliveryStatus = "Delivered";
+                $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
+                mysqli_query($conn, $pbsQuery);
+                echo "<script>
+                alert('Delivery Status Updated Successfully')
+                window.location.href = './deliveryStatus.php'</script>";
+            }
+
+            
+        }
+        ?>
 
         <form action="" method="POST" class="formButtons">
             <div class="btn1">
+                <div class="m-2">
+                    <button class="btn btn-warning" id="packedBySeller" name="packedBySeller" >Packed By Seller</button>
+                </div>
+
+                <div class="m-2">
+                    <button class="btn btn-dark" name="arrivedAtOverseasSortCenter" >Arrived at Overseas Sort Center</button>
+                </div>
+
+                <div class="m-2">
+                <button class="btn btn-dark" name="departedFromOverseasSortCenter" >Departed From Overseas Sort Center</button>
+                </div>
+            
+                <div class="m-2">
+                    <button class="btn btn-info" name="atCustoms" >At Customs</button>
+                    <button class="btn btn-info" name="arrivedAtDestinationCountry" >Arrived at Destination Country</button>
+                </div>
+            </div>
+
+            <div class="btn2">
                 <div class="m-3">
-                    <button class="btn btn-warning" name="packedBySeller">Packed By Seller</button>
+                    <button class="btn btn-danger" name="arrivedAtSortCenter" >Arrived at Sort Center</button>
+                    <button class="btn btn-danger" name="departedFromSortCenter" >Departed From Sort Center</button>
                 </div>
-
-                <div class="m-3 d-flex">
-                    <button class="btn btn-dark" style="margin-right: 1rem;" name="arrivedAtOverseasSortCenter">Arrived at Overseas Sort Center</button>
-                    <button class="btn btn-dark" name="departedFromOverseasSortCenter">Departed From Overseas Sort Center</button>
-                </div>
-            
+                
                 <div class="m-3">
-                    <button class="btn btn-info" style="margin-right: 10px;" name="atCustoms">At Customs</button>
-                    <button class="btn btn-info" name="arrivedAtDestinationCountry">Arrived At Destination Country</button>
+                    <button class="btn btn-primary" name="arrivedAtLogisticsHub" >Arrived at Logistics Hub</button>
+                    <button class="btn btn-primary" name="departedFromLogisticsHub" >Departed From Logistics Hub</button>
                 </div>
-            </div>
 
-            <div class="m-3">
-                <button class="btn btn-danger" style="margin-right: 10px;" name="arrivedAtSortCenter">Arrived at Sort Center</button>
-                <button class="btn btn-danger" name="departedFromSortCenter">Departed From Sort Center</button>
-            </div>
-            
-            <div class="m-3">
-                <button class="btn btn-primary" name="arrivedAtLogisticsHub">Arrived at Logistics Hub</button>
-                <button class="btn btn-primary" name="departedFromLogisticsHub">Departed From Logistics Hub</button>
-            </div>
-
-            <div class="m-3">
-                <button class="btn btn-secondary" style="margin-right: 10px;" name="outForDelivery">Out For Delivery</button>
-                <button class="btn btn-secondary" name="packageArriving">Package Arriving</button>
-            </div>
-            
-            <div class="m-3">
-                <button class="btn btn-success" name="delivered">Delivered</button>
+                <div class="m-3">
+                    <button class="btn btn-secondary" style="margin-right: 10px;" name="outForDelivery" >Out For Delivery</button>
+                    <button class="btn btn-secondary" name="packageArriving" >Package Arriving</button>
+                </div>
+                
+                <div class="m-3">
+                    <button class="btn btn-success" name="delivered" >Delivered</button>
+                </div>
             </div>
         </form>
-        
     </div>
 
-    
+    <!-- Modal Starts Here -->
+
+    <div class="modal fade" id="deliveryStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delivery Status Update</h1>
+            </div>
+            <div class="modal-body">
+                <img src="../../css/icons8-success.gif" style="width: 2rem; margin-right: 11px"><span>Delivery Status Updated Successfully!</span>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ends Here -->
 </body>
 
     <!-- Bootstrap CDN -->
@@ -120,63 +277,21 @@ session_start();
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
+    <script>
+        // $(function() {
+
+        //     $('#packedBySeller').click(function(e) {
+        //         e.preventDefault();
+
+        //         $('#deliveryStatus').modal('show');
+
+        //         setTimeout(() => {
+        //             window.location.href = "./deliveryStatus.php"
+        //         }, 1500);
+                
+        //     })
+        // })
+
+    </script>
+
 </html>
-
-
-            <!-- <div class="card">
-                <p class="clientTitle">Total Client <br /> Request</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p class="total"> <?php echo $totalRows ?> </p>
-
-            </div>  
-
-            <div class="card" style="background-color: #D4F673;">
-                <p class="clientTitle">Client Request <br /> History</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p class="total"> <?php echo $totalRows ?> </p>
-                
-            </div>  -->
-
-            <!-- <div class="card" style="background-color: #D39AFF;">
-                <p class="clientTitle">Total Clients</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p style="margin: 2rem 0 1rem 14.5rem;
-                        font-size: 20px;"> <?php echo $totalRows ?> </p>
-                
-            </div>  -->
-
-            <!-- <div class="card" style="background-color: #61E840;">
-                <p class="clientTitle">Total Deliveries</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p style="margin: 2rem 0 1rem 14.5rem;
-                        font-size: 20px;"></p> 
-            </div>  -->
-
-
-    <!-- <div class="canvas-container">
-        <canvas id="myChart"></canvas>
-    </div> -->

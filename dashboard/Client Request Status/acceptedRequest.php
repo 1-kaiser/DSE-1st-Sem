@@ -129,6 +129,11 @@
                                 $productName = $_POST['productName'];
                                 $productPrice = $_POST['productPrice'];
                                 $quantity = $_POST['quantity'];
+
+                                // Rand Number for Order and Tracking #
+                                // $min = pow(10, 14); 
+                                // $max = pow(10, 15) - 1;
+                                // $randomNumber = mt_rand($min, $max);
                         
                                 $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo, sellerAddress) 
                                 VALUES ('$customerName', '$customerAddress', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo', '$sellerAddress')";

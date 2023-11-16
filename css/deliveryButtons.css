@@ -85,7 +85,7 @@ body {
 }
 
 .forms-wrapper {
-  height: 85vh;
+  height: 50vh;
   width: 86vw;
   margin: 14px 0 0 11rem;
   background-color: white;
@@ -95,8 +95,13 @@ body {
 
 .formButtons {
   display: flex;
-  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  height: 85vh;
+  height: 50vh;
+}
+
+.btn1 {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: end;
 }
