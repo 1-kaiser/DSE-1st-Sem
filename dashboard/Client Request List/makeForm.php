@@ -228,10 +228,20 @@ use PHPMailer\PHPMailer\PHPMailer;
 
     <div class="greet-msg">
         <span class="greet">Client Request Form</span>
-        <a href="" class="manage btn-btn-success">
-        <i class="bi bi-person-fill-gear"></i>
-        <span>Manage Your Account</span>
-        </a>
+        
+        <!-- Dropdown -->
+        <div class="dropdown" style="margin-right: 18px;">
+            <a class="btn btn-warning dropdown-toggle btn-sm w-100 h-25" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill-gear"></i> Admin
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
+                <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="client-details">
@@ -244,10 +254,6 @@ use PHPMailer\PHPMailer\PHPMailer;
     </div>
 
     <div class="makeForm-wrapper d-flex justify-content-start align-items-center flex-column">
-
-        <!-- <div class="formTitle">
-            <h4>Request Product Form</h4>
-        </div> -->
 
         <form class="form-container" style="width: 53rem; margin: 0 0 0 8rem;" action="" id="add_form" method="POST" target="_blank">
 

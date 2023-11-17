@@ -1,7 +1,3 @@
-<?php
-require('../reusable.php');
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,10 +76,7 @@ session_start();
             </div>
 
             <div class="track" style="margin: 5rem 0 0 3rem; width: 40rem;">
-                <!-- <div class="track-title" style="margin: 0 0 1rem 0;">
-                    <span style="font-size: 19px; font-family: sans-serif;">Delivery Status Tracker</span>
-                </div> -->
-                <table class="table" style="margin: 0; width: 41rem;">
+                <table class="table table-striped" style="margin: 0; width: 41rem;">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
@@ -93,16 +86,29 @@ session_start();
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
+                        <?php
+                        require('../reusable.php');
+                        session_start();
+
+                        $result = mysqli_query($conn, "SELECT * FROM deliveries");
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            
+                            ?>
+
+                                <tr>
+                                    <td><?= $row['delivery_id']?></td>
+                                    <td><?= $row['customerName']?></td>
+                                    <td><?= $row['productName']?></td>
+                                    <td><?= $row['deliveryStatus']?></td>
+                                </tr>
+
+                            <?php
+                        }
+                        ?>
+                        
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
 

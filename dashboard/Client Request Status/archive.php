@@ -60,9 +60,9 @@
             </a>
 
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="./manageAccount.php" style="font-size: 14px;">
+                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
                 <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
-                <li><a class="dropdown-item" href="./logout.php" style="font-size: 14px;">
+                <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>
         </div>
@@ -104,6 +104,7 @@
                                 echo "Error: " . mysqli_error($conn);
                             }
                         }
+
                         
 
                         $query = "SELECT * FROM archive";
@@ -117,40 +118,24 @@
                                     <td id="contact"><?php echo $row['archiveContact'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
 
-                                        <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
+                                        <a href="./restoreFunc.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
                                         <i class="bi bi-skip-backward"></i>
                                         </a>
 
-                                        <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-danger">
+                                        <a href="./deleteFunc.php?id=<?php echo $row['id'];?>" class="btn btn-danger">
                                         Delete Permanently
                                         </a>
+                                        <!-- <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id'];?>">
+                                        Delete Permanently</button> -->
                                     </td>
                                 </tr>
                             <?php
                         }
                     ?>
-
-                    <!-- Modal Start -->
-                    <div class="modal fade" id="checkRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Client Request Details</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            <div class="mb-3"></div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal End -->
-
                 </tbody>
             </table>
         </div>
     </div>
-    
 </body>
     
     <!-- Bootstrap CDN -->
@@ -171,29 +156,29 @@
             } );
     </script>
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
 
-            $('.reqDetails').click(function() {
+            $('.deleteButton').click(function() {
                 let id = $(this).data('id')
                 $.ajax({
-                    url: 'clientDetails.php',
-                    method: 'post',
-                    data: {id: id},
+                    url: 'deleteFunc.php',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        
+                    },
                     success: function(response) {
-                        $('.modal-body').html(response)
-                        $('#checkRequest').modal('show')
+                        alert("Deleted Successfully")
+                        window.location.href = "./archive.php";
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
                     }
+                    
                 })
             })
         })
-
-        // function getID(id) {
-        //     const id = document.getElementById('#id' + id)
-        //     const name = document.getElementById('#name' + id)
-        //     const email = document.getElementById('#email' + id)
-        //     const contact = document.getElementById('#contact' + id)
-        // }
-    </script>
+    </script> -->
 </html>
 
