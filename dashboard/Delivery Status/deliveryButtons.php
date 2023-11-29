@@ -203,7 +203,15 @@
                 mysqli_query($conn, $pbsQuery);
                 echo "<script>
                 alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                var delStatus = document.querySelector('delivered')
+                function clicked(delStatus) {
+
+                    this.prop('disabled', true)
+                    window.location.href = './deliveryStatus.php'
+
+                }
+                </script>";
+
             }
 
             
@@ -247,7 +255,7 @@
                 </div>
                 
                 <div class="m-3">
-                    <button class="btn btn-success" name="delivered" >Delivered</button>
+                    <button class="btn btn-success" name="delivered" id="delivered">Delivered</button>
                 </div>
             </div>
         </form>
@@ -278,19 +286,13 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <script>
-        // $(function() {
+        $(function() {
 
-        //     $('#packedBySeller').click(function(e) {
-        //         e.preventDefault();
+            $('#packedBySeller').on("click", function() {
 
-        //         $('#deliveryStatus').modal('show');
-
-        //         setTimeout(() => {
-        //             window.location.href = "./deliveryStatus.php"
-        //         }, 1500);
-                
-        //     })
-        // })
+                $(this).prop("disabled", true)
+            })
+        })
 
     </script>
 

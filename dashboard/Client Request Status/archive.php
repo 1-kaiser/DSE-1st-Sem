@@ -96,7 +96,14 @@
                                 $deleteQuery = "DELETE FROM clientrequestlist WHERE id = '$deniedId'";
 
                                 if (mysqli_query($conn, $deleteQuery)) {
-                                    // echo "Data from source_table deleted successfully.<br>";
+                                    ?>
+                                    <script>
+                                        Swal.fire({
+                                        title: "The request has been sent to archive.",
+                                        icon: "success"
+                                        });
+                                    </script>
+                                    <?php
                                 }
                                 // echo "Data from source_table inserted into destination_table successfully.<br>";
 
@@ -104,8 +111,6 @@
                                 echo "Error: " . mysqli_error($conn);
                             }
                         }
-
-                        
 
                         $query = "SELECT * FROM archive";
                         $result = mysqli_query($conn, $query);
@@ -122,10 +127,10 @@
                                         <i class="bi bi-skip-backward"></i>
                                         </a>
 
-                                        <a href="./deleteFunc.php?id=<?php echo $row['id'];?>" class="btn btn-danger">
+                                        <a href="./deleteFunc.php?id=<?php echo $row['id'];?>" class="btn btn-danger deleteButton">
                                         Delete Permanently
                                         </a>
-                                        <!-- <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id'];?>">
+                                        <!-- <button class="btn btn-danger deleteButton" name="delete" data-id="<?php echo $row['id'];?>">
                                         Delete Permanently</button> -->
                                     </td>
                                 </tr>
@@ -136,6 +141,15 @@
             </table>
         </div>
     </div>
+
+    <?php
+    if (isset($_SESSION['notif'])) {
+        ?>
+        <div class="notif" data-notif="<?php $_SESSION['notif'];?>"></div>
+        <?php
+    }
+    ?>;
+
 </body>
     
     <!-- Bootstrap CDN -->
@@ -154,6 +168,41 @@
                     lengthMenu: [[5, 10, 20], [5, 10, 20]]
                 });
             } );
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.deleteButton').on("click", function(e) {
+                e.preventDefault()
+
+                const href = $(this).attr('href')
+
+                    Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.value) {
+                            document.location.href = href;
+                        }
+                    })
+            })
+
+            const notif = $('.notif').data('notif')
+            if (notif) {
+                Swal.fire({
+                    type: "success",
+                    title: "Record Deleted!",
+                    text: "Record has been deleted permanently."
+                })
+            }
+        })
+        
     </script>
 
     <!-- <script>

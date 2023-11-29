@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,47 +97,19 @@
                                 $deleteQuery = "DELETE FROM clientrequestlist WHERE id = '$acceptedId'";
 
                                 if (mysqli_query($conn, $deleteQuery)) {
-                                    // echo "Data from source_table deleted successfully.<br>";
+                                    ?>
+                                    <script>
+                                        Swal.fire({
+                                        title: "Request Accepted!",
+                                        icon: "success"
+                                        });
+                                    </script>
+                                    <?php
                                 }
                                 // echo "Data from source_table inserted into destination_table successfully.<br>";
 
                             } else {
                                 echo "Error: " . mysqli_error($conn);
-                            }
-                        }
-
-                        if (isset($_POST['createDelivery'])) {
-        
-                            try {
-                                
-                                $orderDate = $_POST['orderDate'];
-                                $printDate = $_POST['printDate'];
-                                $delivery = $_POST['delivery'];
-                                $sortCenter = $_POST['sortCenter'];
-                                $orderNo = $_POST['orderNo'];
-                                $trackingNo = $_POST['trackingNo'];
-                                $customerName = $_POST['customerName'];
-                                $customerAddress = $_POST['customerAddress'];
-                                $sellerAddress = $_POST['sellerAddress'];
-                                $productName = $_POST['productName'];
-                                $productPrice = $_POST['productPrice'];
-                                $quantity = $_POST['quantity'];
-
-                                // Rand Number for Order and Tracking #
-                                // $min = pow(10, 14); 
-                                // $max = pow(10, 15) - 1;
-                                // $randomNumber = mt_rand($min, $max);
-                        
-                                $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo, sellerAddress) 
-                                VALUES ('$customerName', '$customerAddress', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo', '$sellerAddress')";
-                                mysqli_query($conn, $createQuery);
-                        
-                                echo "<script>alert('Created Successfully');</script>";
-                                header('./acceptedRequest.php');
-
-                            } catch (mysqli_sql_exception $e) {
-                                $err = $e->getMessage();
-                                echo $err;
                             }
                         }
                 
@@ -154,12 +125,8 @@
                                     <td id="email"><?php echo $row['email'];?></td>
                                     <td id="contact"><?php echo $row['contact'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
-                                        
-                                        <!-- <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
-                                        <i class="bi bi-folder-plus"></i>&ensp;Manage Delivery
-                                        </a> -->
 
-                                        <button class="manageDelivery btn btn-primary" data-bs-toggle="modal" data-bs-target="#manageDelivery">
+                                        <button type="submit" class="manageDelivery btn btn-primary" >
                                         <i class="bi bi-folder-plus"></i> Manage Delivery
                                         </button>
                                     </td>
@@ -177,10 +144,10 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action="" method="POST" class="formDelivery row g-2">
+                                    <form action="" method="POST" class="formDelivery row g-2" id="deliveryDetails">
                                         <div class="m-3 d-flex align-items-center">
                                             <label class="form-label">Order Date</label>
-                                            <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate">
+                                            <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
 
                                             <label class="form-label">Print Date</label>
                                             <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate">
@@ -191,7 +158,7 @@
                                             <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery">
 
                                             <label class="form-label">Sort Center</label>
-                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter">
+                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" required>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
@@ -239,6 +206,41 @@
                     <!-- Modal End -->
                 </tbody>
             </table>
+                <?php
+                    // if (isset($_POST['createDelivery'])) {
+                    //     try {
+                            
+                    //         $orderDate = $_POST['orderDate'];
+                    //         $printDate = $_POST['printDate'];
+                    //         $delivery = $_POST['delivery'];
+                    //         $sortCenter = $_POST['sortCenter'];
+                    //         $orderNo = $_POST['orderNo'];
+                    //         $trackingNo = $_POST['trackingNo'];
+                    //         $customerName = $_POST['customerName'];
+                    //         $customerAddress = $_POST['customerAddress'];
+                    //         $sellerAddress = $_POST['sellerAddress'];
+                    //         $productName = $_POST['productName'];
+                    //         $productPrice = $_POST['productPrice'];
+                    //         $quantity = $_POST['quantity'];
+
+                    //         // Rand Number for Order and Tracking #
+                    //         // $min = pow(10, 14); 
+                    //         // $max = pow(10, 15) - 1;
+                    //         // $randomNumber = mt_rand($min, $max);
+
+                    //         $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo, sellerAddress) 
+                    //         VALUES ('$customerName', '$customerAddress', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo', '$sellerAddress')";
+                    //         mysqli_query($conn, $createQuery);
+
+                    //         echo "<script>alert('Created Successfully');</script>";
+                    //         header('./acceptedRequest.php');
+
+                    //     } catch (mysqli_sql_exception $e) {
+                    //         $err = $e->getMessage();
+                    //         echo $err;
+                    //     }
+                    // }
+                ?>
         </div>
     </div>
 </body>
@@ -251,6 +253,9 @@
     <!-- Data Tables -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Validation -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script>
 
     <script>
             $(document).ready( function () {
@@ -275,7 +280,50 @@
                         $('#manageDelivery').modal('show')
                     }
                 })
+
+                    $('#deliveryDetails').validate({
+                    rules: {
+                        orderDate: {
+                            required: true
+                        },
+                        printDate: {
+                            required: true
+                        },
+                        delivery: {
+                            required: true
+                        },
+                        sortCenter: {
+                            required: true
+                        },
+                        orderNo: {
+                            required: true
+                        },
+                        trackingNo: {
+                            required: true
+                        },
+                        customerName: {
+                            required: true
+                        },
+                        customerAddress: {
+                            required: true
+                        },
+                        sellerAddress: {
+                            required: true
+                        },
+                        productName: {
+                            required: true
+                        },
+                        productPrice: {
+                            required: true
+                        },
+                        quantity: {
+                            required: true
+                        }
+                    }
+                })
             })
+
+            
         })
 
     </script>

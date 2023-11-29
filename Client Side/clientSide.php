@@ -62,31 +62,33 @@ session_start();
 
         <form action="" method="POST" class="requestForm" id="formRequest">
 
-        <div class="form mb-3">
-            <input type="text" class="form-control" id="floatingName" placeholder="Name" name="clientName" required>
-        </div>
-        
-        <div class="form mb-3" >
-            <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
-        </div>
-                
-        <div class="form mb-3" >
-            <input type="number" class="form-control" id="floatingContact" placeholder="Contact Number" name="clientContact" required>
-        </div>
+            <div class="form mb-3">
+                <input type="text" class="form-control" id="floatingName" placeholder="Name" name="clientName" required>
+            </div>
+            
+            <div class="form mb-3" >
+                <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
+            </div>
+                    
+            <div class="form mb-3" >
+                <input type="number" class="form-control" id="floatingContact" placeholder="Contact Number" name="clientContact" required>
+            </div>
 
-        <div class="form mb-3">
-            <textarea class="form-control" id="clientRequest" placeholder="Your request" rows="3" name="clientRequest" required></textarea>
-        </div>
+            <div class="form mb-3">
+                <textarea class="form-control" id="clientRequest" placeholder="Your request" rows="3" name="clientRequest" required></textarea>
+            </div>
 
-            <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
+                <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
 
-            <!-- <button name="requestSubmit" type="button" data-bs-toggle="modal" data-bs-target="#myAlert" class="btn btn-primary float-end" style="width: 6rem;">Submit</button> -->
+                <!-- <button name="requestSubmit" type="button" data-bs-toggle="modal" data-bs-target="#myAlert" class="btn btn-primary float-end" style="width: 6rem;">Submit</button> -->
         </form>
     </div>
 
 
 </body>
+    <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Validation -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script>
     <script src="../css/aos.js"></script>

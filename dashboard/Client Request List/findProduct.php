@@ -38,6 +38,10 @@
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
+            <a href="../Client Request Status/acceptedRequest.php" class="link">
+            <i class="bi bi-check2-circle fs-5 text-white"></i>
+            Accepted Request</a>
+
             <a href="../Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>

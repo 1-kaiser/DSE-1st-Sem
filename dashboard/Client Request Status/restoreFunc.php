@@ -17,9 +17,6 @@ require('../../reusable.php');
                 window.location.href = './archive.php'</script>";
             }
         }
-        
-        
-        
     }
     
 ?>

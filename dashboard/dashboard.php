@@ -62,8 +62,6 @@
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>
         </div>
-
-        
     </div>
 
     <div class="forms-wrapper">
@@ -105,15 +103,39 @@
                             <?php
                         }
                         ?>
-                        
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    
 </body>
+
+    <?php
+
+        $pendingReqRes = mysqli_query($conn, "SELECT * FROM dito.clientrequestlist");
+        $pendingReq = array();
+
+        while ($pendingRow = mysqli_fetch_assoc($pendingReqRes)) {
+            $pendingReq[] = $pendingRow['id'];
+
+        }
+
+        $acceptedReqRes = mysqli_query($conn, "SELECT * FROM dito.acceptedrequest");
+        $acceptedReq = array();
+
+        while ($acceptedRow = mysqli_fetch_assoc($acceptedReqRes)) {
+            $acceptedReq[] = $acceptedRow['id'];
+
+        }
+
+        $deniedReqRes = mysqli_query($conn, "SELECT * FROM dito.archive");
+        $deniedReq = array();
+
+        while ($deniedRow = mysqli_fetch_assoc($deniedReqRes)) {
+            $deniedReq[] = $deniedRow['id'];
+
+        }
+    ?>
 
     <!-- Bootstrap CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
@@ -122,6 +144,8 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
 
     <script>
 
@@ -174,6 +198,11 @@
         }, 200);
 
         // Chart
+        
+        var pendingReq = <?php echo json_encode($pendingReq);?>;
+        console.log(pendingReq)
+        var acceptedReq = <?php echo json_encode($acceptedReq);?>;
+        var deniedReq = <?php echo json_encode($deniedReq);?>;
 
         // Setup Block
 
@@ -184,13 +213,17 @@
                             'Pending Requests'
                         ],
                         datasets: [{
-                            data: [300, 50, 100],
-                            backgroundColor: [
-                            '#7df1ad',
-                            '#f75d5d',
-                            'rgb(255, 205, 86)'
+                            data: [
+                            pendingReq, 
+                            deniedReq,
+                            acceptedReq 
                             ],
-                            hoverOffset: 5
+                            backgroundColor: [
+                            '#7df1ad', //Green
+                            '#f75d5d', // Red
+                            '#f7e56a' // Yellow
+                            ],
+                            hoverOffset: 3
                         }]
                     };
         
@@ -214,7 +247,6 @@
             document.getElementById('adminChart'), config
         );
     </script>
-
 </html>
 
 
