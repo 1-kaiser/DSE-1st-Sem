@@ -12,8 +12,6 @@ session_start();
             $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientRequest')";
             $result = mysqli_query($conn, $query);
 
-            $_SESSION['clientName'] = $clientName;
-
             redirect('./requestSuccess.php');
         }
 ?>

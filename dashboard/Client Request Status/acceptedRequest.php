@@ -85,6 +85,7 @@
                 <tbody>
                     <?php 
                         require('../../reusable.php');
+                        session_start();
 
                         if (isset($_GET['id'])) {
 
@@ -106,7 +107,6 @@
                                     </script>
                                     <?php
                                 }
-                                // echo "Data from source_table inserted into destination_table successfully.<br>";
 
                             } else {
                                 echo "Error: " . mysqli_error($conn);
@@ -133,6 +133,9 @@
                                 </tr>
                             <?php
                         }
+
+                        $_SESSION['randOrderNo'] = rand(10000000000000, 99999999999999);
+                        $_SESSION['randTrackingNo'] = rand(10000000000000, 99999999999999);
                     ?>
 
                     <div class="modal fade" id="manageDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -163,15 +166,15 @@
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label class="form-label" style="text-align: center">Order #</label>
-                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo">
+                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $_SESSION['randOrderNo'];?>">
 
                                             <label class="form-label" style="text-align: center">Tracking #</label>
-                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo">
+                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $_SESSION['randTrackingNo'];?>">
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label for="buyerAddress" class="form-label">Customer Name</label>
-                                            <input type="text" name="customerName" class="form-control border-secondary" id="customerName">
+                                            <input type="text" name="customerName" class="form-control border-secondary" id="customerName" value="">
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">

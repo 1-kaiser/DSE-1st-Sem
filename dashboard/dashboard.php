@@ -112,29 +112,29 @@
 
     <?php
 
-        $pendingReqRes = mysqli_query($conn, "SELECT * FROM dito.clientrequestlist");
-        $pendingReq = array();
+        // $pendingReqRes = mysqli_query($conn, "SELECT * FROM dito.clientrequestlist");
+        // $pendingReq = array();
 
-        while ($pendingRow = mysqli_fetch_assoc($pendingReqRes)) {
-            $pendingReq[] = $pendingRow['id'];
+        // while ($pendingRow = mysqli_fetch_assoc($pendingReqRes)) {
+        //     $pendingReq[] = $pendingRow['id'];
 
-        }
+        // }
 
-        $acceptedReqRes = mysqli_query($conn, "SELECT * FROM dito.acceptedrequest");
-        $acceptedReq = array();
+        // $acceptedReqRes = mysqli_query($conn, "SELECT * FROM dito.acceptedrequest");
+        // $acceptedReq = array();
 
-        while ($acceptedRow = mysqli_fetch_assoc($acceptedReqRes)) {
-            $acceptedReq[] = $acceptedRow['id'];
+        // while ($acceptedRow = mysqli_fetch_assoc($acceptedReqRes)) {
+        //     $acceptedReq[] = $acceptedRow['id'];
 
-        }
+        // }
 
-        $deniedReqRes = mysqli_query($conn, "SELECT * FROM dito.archive");
-        $deniedReq = array();
+        // $deniedReqRes = mysqli_query($conn, "SELECT * FROM dito.archive");
+        // $deniedReq = array();
 
-        while ($deniedRow = mysqli_fetch_assoc($deniedReqRes)) {
-            $deniedReq[] = $deniedRow['id'];
+        // while ($deniedRow = mysqli_fetch_assoc($deniedReqRes)) {
+        //     $deniedReq[] = $deniedRow['id'];
 
-        }
+        // }
     ?>
 
     <!-- Bootstrap CDN -->
@@ -199,10 +199,6 @@
 
         // Chart
         
-        var pendingReq = <?php echo json_encode($pendingReq);?>;
-        console.log(pendingReq)
-        var acceptedReq = <?php echo json_encode($acceptedReq);?>;
-        var deniedReq = <?php echo json_encode($deniedReq);?>;
 
         // Setup Block
 
@@ -213,11 +209,7 @@
                             'Pending Requests'
                         ],
                         datasets: [{
-                            data: [
-                            pendingReq, 
-                            deniedReq,
-                            acceptedReq 
-                            ],
+                            data: [12,5,3],
                             backgroundColor: [
                             '#7df1ad', //Green
                             '#f75d5d', // Red
