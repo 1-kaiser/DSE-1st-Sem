@@ -91,9 +91,16 @@
                 $deliveryStatus = "Packed by Seller";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['arrivedAtOverseasSortCenter'])) {
@@ -101,9 +108,16 @@
                 $deliveryStatus = "Arrived at Overseas Sort Center";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['departedFromOverseasSortCenter'])) {
@@ -111,9 +125,16 @@
                 $deliveryStatus = "Departed From Overseas Sort Center";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['atCustoms'])) {
@@ -121,9 +142,16 @@
                 $deliveryStatus = "At Customs";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['arrivedAtDestinationCountry'])) {
@@ -131,9 +159,16 @@
                 $deliveryStatus = "Arrived At Destination Country";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['arrivedAtSortCenter'])) {
@@ -141,9 +176,16 @@
                 $deliveryStatus = "Arrived at Sort Center";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['departedFromSortCenter'])) {
@@ -151,9 +193,16 @@
                 $deliveryStatus = "Departed From Sort Center";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['arrivedAtLogisticsHub'])) {
@@ -161,9 +210,16 @@
                 $deliveryStatus = "Arrived at Logistics Hub";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['departedFromLogisticsHub'])) {
@@ -171,9 +227,16 @@
                 $deliveryStatus = "Departed From Logistics Hub";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['outForDelivery'])) {
@@ -181,9 +244,16 @@
                 $deliveryStatus = "Out For Delivery";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['packageArriving'])) {
@@ -191,9 +261,16 @@
                 $deliveryStatus = "Package Arriving";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                window.location.href = './deliveryStatus.php'</script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             }
 
             if (isset($_POST['delivered'])) {
@@ -201,16 +278,16 @@
                 $deliveryStatus = "Delivered";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
-                echo "<script>
-                alert('Delivery Status Updated Successfully')
-                var delStatus = document.querySelector('delivered')
-                function clicked(delStatus) {
-
-                    this.prop('disabled', true)
-                    window.location.href = './deliveryStatus.php'
-
-                }
-                </script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = './deliveryStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
 
             }
 
@@ -261,22 +338,19 @@
         </form>
     </div>
 
-    <!-- Modal Starts Here -->
-
-    <div class="modal fade" id="deliveryStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Success -->
+    <div class="modal fade" id="notifSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Delivery Status Update</h1>
-            </div>
-            <div class="modal-body">
-                <img src="../../css/icons8-success.gif" style="width: 2rem; margin-right: 11px"><span>Delivery Status Updated Successfully!</span>
-            </div>
+                <div class="modal-header" style="background-color: #4aff4d;">
+                </div>
+                <div class="modal-body">
+                    Delivery Status Updated Successfully!
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Modal Ends Here -->
+    <!-- Modal Success -->
 </body>
 
     <!-- Bootstrap CDN -->
@@ -286,13 +360,13 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <script>
-        $(function() {
+        // $(function() {
 
-            $('#packedBySeller').on("click", function() {
+        //     $('#packedBySeller').on("click", function() {
 
-                $(this).prop("disabled", true)
-            })
-        })
+        //         $(this).prop("disabled", true)
+        //     })
+        // })
 
     </script>
 

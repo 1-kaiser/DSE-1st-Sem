@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
     require './vendor/phpmailer/phpmailer/src/SMTP.php';
     require_once __DIR__ . '/vendor/autoload.php';
     require('../../reusable.php');
+    session_start();
 
     //For PDF (Name, Email, Contact)
     $id = $_GET['id'];

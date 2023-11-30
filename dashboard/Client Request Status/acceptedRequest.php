@@ -111,6 +111,14 @@
                             } else {
                                 echo "Error: " . mysqli_error($conn);
                             }
+
+                            
+                            $displayQueryRes = mysqli_query($conn, "SELECT * FROM acceptedrequest WHERE id = '$acceptedId'");
+                            $displayRow = mysqli_fetch_assoc($displayQueryRes);
+                                
+                            
+                                
+                            
                         }
                 
                         // Retrieving of data
@@ -126,20 +134,28 @@
                                     <td id="contact"><?php echo $row['contact'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
 
-                                        <button type="submit" class="manageDelivery btn btn-primary" >
+                                        <!-- <a href="" class="manageDelivery btn btn-primary" data-bs-toggle="modal" data-bs-target="#manageDelivery" data-id="<?php echo $row['id'];?>">
                                         <i class="bi bi-folder-plus"></i> Manage Delivery
+                                        </a> -->
+
+                                        <!-- <button style="text-decoration: none;" class="manageDelivery btn btn-primary" data-id="<?php echo $row['id'];?>" data-bs-toggle="modal" data-bs-target="#checkRequest">
+                                        <i class="bi bi-folder-plus"></i> Manage Delivery
+                                        </button> -->
+
+                                        <button class="manageDelivery btn btn-primary" data-id="<?php echo $row['id'];?>" data-bs-toggle="modal" data-bs-target="#manageDelivery" >
+                                            <i class="bi bi-folder-plus"></i> Manage Delivery
                                         </button>
                                     </td>
                                 </tr>
                             <?php
                         }
 
-                        $_SESSION['randOrderNo'] = rand(10000000000000, 99999999999999);
-                        $_SESSION['randTrackingNo'] = rand(10000000000000, 99999999999999);
+                        $randOrderNo = rand(10000000000000, 99999999999999);
+                        $randTrackingNo = rand(10000000000000, 99999999999999);
                     ?>
 
                     <div class="modal fade" id="manageDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Delivery</h1>
@@ -148,59 +164,59 @@
                                 <div class="modal-body">
 
                                     <form action="" method="POST" class="formDelivery row g-2" id="deliveryDetails">
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label class="form-label">Order Date</label>
-                                            <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
+                                            <div class="m-3 d-flex align-items-center">
+                                                <label class="form-label">Order Date</label>
+                                                <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
 
-                                            <label class="form-label">Print Date</label>
-                                            <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate">
-                                        </div>
+                                                <label class="form-label">Print Date</label>
+                                                <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate" required>
+                                            </div>
 
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label class="form-label">Delivery</label>
-                                            <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery">
+                                            <div class="m-3 d-flex align-items-center">
+                                                <label class="form-label">Delivery</label>
+                                                <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" required>
 
-                                            <label class="form-label">Sort Center</label>
-                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" required>
-                                        </div>
+                                                <label class="form-label">Sort Center</label>
+                                                <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" required>
+                                            </div>
 
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label class="form-label" style="text-align: center">Order #</label>
-                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $_SESSION['randOrderNo'];?>">
+                                            <div class="m-3 d-flex align-items-center">
+                                                <label class="form-label" style="text-align: center">Order #</label>
+                                                <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" required>
 
-                                            <label class="form-label" style="text-align: center">Tracking #</label>
-                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $_SESSION['randTrackingNo'];?>">
-                                        </div>
+                                                <label class="form-label" style="text-align: center">Tracking #</label>
+                                                <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" required>
+                                            </div>
 
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label for="buyerAddress" class="form-label">Customer Name</label>
-                                            <input type="text" name="customerName" class="form-control border-secondary" id="customerName" value="">
-                                        </div>
+                                            <div class="m-3 d-flex align-items-center">
+                                                <label for="buyerAddress" class="form-label">Customer Name</label>
+                                                <input type="text" name="customerName" class="form-control border-secondary" id="customerName" value="" required>
+                                            </div>
 
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label for="buyerAddress" class="form-label">Customer Address</label>
-                                            <input type="text" name="customerAddress" class="form-control border-secondary" id="buyerAddress">
-                                        </div>
+                                            <!-- <div class="m-3 d-flex align-items-center">
+                                                <label for="buyerAddress" class="form-label">Customer Address</label>
+                                                <input type="text" name="customerAddress" class="form-control border-secondary" id="buyerAddress" required>
+                                            </div>
 
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label for="sellerAddress" class="form-label">Seller Address</label>
-                                            <input type="text" name="sellerAddress" class="form-control border-secondary" id="sellerAddress">
-                                        </div>
+                                            <div class="m-3 d-flex align-items-center">
+                                                <label for="sellerAddress" class="form-label">Seller Address</label>
+                                                <input type="text" name="sellerAddress" class="form-control border-secondary" id="sellerAddress" required>
+                                            </div> -->
 
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label for="productName" class="form-label">Product Name</label>
-                                            <input type="text" name="productName" class="form-control border-secondary" id="productName">
+                                            <div class="m-3 d-flex align-items-center">
+                                                <label for="productName" class="form-label">Product Name</label>
+                                                <input type="text" name="productName" class="form-control border-secondary" id="productName" required>
 
-                                            <label for="paidPrice" class="form-label">Paid Price</label>
-                                            <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice">
+                                                <label for="paidPrice" class="form-label">Paid Price</label>
+                                                <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
 
-                                            <label for="quantity" class="form-label">Quantity</label>
-                                            <input type="number" name="quantity" class="form-control border-secondary" id="quantity">
-                                        </div>
+                                                <label for="quantity" class="form-label">Quantity</label>
+                                                <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
+                                            </div>
 
-                                        <div class="col-12">
-                                            <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
-                                        </div>
+                                            <div class="col-12">
+                                                <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
+                                            </div>
                                     </form>
                                 </div>
                             </div>
@@ -210,42 +226,52 @@
                 </tbody>
             </table>
                 <?php
-                    // if (isset($_POST['createDelivery'])) {
-                    //     try {
+                    if (isset($_POST['createDelivery'])) {
+                        
                             
-                    //         $orderDate = $_POST['orderDate'];
-                    //         $printDate = $_POST['printDate'];
-                    //         $delivery = $_POST['delivery'];
-                    //         $sortCenter = $_POST['sortCenter'];
-                    //         $orderNo = $_POST['orderNo'];
-                    //         $trackingNo = $_POST['trackingNo'];
-                    //         $customerName = $_POST['customerName'];
-                    //         $customerAddress = $_POST['customerAddress'];
-                    //         $sellerAddress = $_POST['sellerAddress'];
-                    //         $productName = $_POST['productName'];
-                    //         $productPrice = $_POST['productPrice'];
-                    //         $quantity = $_POST['quantity'];
+                            $orderDate = $_POST['orderDate'];
+                            $printDate = $_POST['printDate'];
+                            $delivery = $_POST['delivery'];
+                            $sortCenter = $_POST['sortCenter'];
+                            $orderNo = $_POST['orderNo'];
+                            $trackingNo = $_POST['trackingNo'];
+                            $customerName = $_POST['customerName'];
+                            $productName = $_POST['productName'];
+                            $productPrice = $_POST['productPrice'];
+                            $quantity = $_POST['quantity'];
 
-                    //         // Rand Number for Order and Tracking #
-                    //         // $min = pow(10, 14); 
-                    //         // $max = pow(10, 15) - 1;
-                    //         // $randomNumber = mt_rand($min, $max);
+                            $createQuery = "INSERT INTO deliveries (customerName, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo) 
+                            VALUES ('$customerName', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo')";
+                            mysqli_query($conn, $createQuery);
 
-                    //         $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo, sellerAddress) 
-                    //         VALUES ('$customerName', '$customerAddress', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo', '$sellerAddress')";
-                    //         mysqli_query($conn, $createQuery);
-
-                    //         echo "<script>alert('Created Successfully');</script>";
-                    //         header('./acceptedRequest.php');
-
-                    //     } catch (mysqli_sql_exception $e) {
-                    //         $err = $e->getMessage();
-                    //         echo $err;
-                    //     }
-                    // }
+                            ?>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#notifSuccess').modal('show')
+                                        setTimeout(() => {
+                                            window.location.href = '../Delivery Status/deliveryStatus.php'
+                                        }, 1500);
+                                    })
+                                </script>
+                            <?php
+                    }
                 ?>
         </div>
     </div>
+    
+    <!-- Modal Success -->
+    <div class="modal fade" id="notifSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #4aff4d;">
+                </div>
+                <div class="modal-body">
+                    Delivery created successfully!
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Success -->
 </body>
     
     <!-- Bootstrap CDN -->
@@ -272,62 +298,62 @@
     <script>
         $(document).ready(function() {
 
-            $('.manageDelivery').click(function() {
-                let id = $(this).data('id')
-                $.ajax({
-                    url: 'requestDetails.php',
-                    method: 'post',
-                    data: {id: id},
-                    success: function(response) {
-                        $('.manageDelivery').html(response)
-                        $('#manageDelivery').modal('show')
-                    }
-                })
+            // $('.manageDelivery').click(function() {
+            //     let id = $(this).data('id')
+            //     $.ajax({
+            //         url: 'requestDetails.php',
+            //         method: 'POST',
+            //         data: {id: id},
+            //         success: function(response) {
+            //             $('.modal-body').html(response)
+            //             $('#manageDelivery').modal('show')
+            //         }
+            //     })
 
-                    $('#deliveryDetails').validate({
-                    rules: {
-                        orderDate: {
-                            required: true
-                        },
-                        printDate: {
-                            required: true
-                        },
-                        delivery: {
-                            required: true
-                        },
-                        sortCenter: {
-                            required: true
-                        },
-                        orderNo: {
-                            required: true
-                        },
-                        trackingNo: {
-                            required: true
-                        },
-                        customerName: {
-                            required: true
-                        },
-                        customerAddress: {
-                            required: true
-                        },
-                        sellerAddress: {
-                            required: true
-                        },
-                        productName: {
-                            required: true
-                        },
-                        productPrice: {
-                            required: true
-                        },
-                        quantity: {
-                            required: true
-                        }
-                    }
-                })
-            })
+            // $('#deliveryDetails').validate({
+            //     rules: {
+            //         orderDate: {
+            //             required: true
+            //         },
+            //         printDate: {
+            //             required: true
+            //         },
+            //         delivery: {
+            //             required: true
+            //         },
+            //         sortCenter: {
+            //             required: true
+            //         },
+            //         orderNo: {
+            //             required: true
+            //         },
+            //         trackingNo: {
+            //             required: true
+            //         },
+            //         customerName: {
+            //             required: true
+            //         },
+            //         customerAddress: {
+            //             required: true
+            //         },
+            //         sellerAddress: {
+            //             required: true
+            //         },
+            //         productName: {
+            //             required: true
+            //         },
+            //         productPrice: {
+            //             required: true
+            //         },
+            //         quantity: {
+            //             required: true
+            //         }
+            //     }
+            // })
+        })  
 
-            
-        })
+    
+        
 
     </script>
 </html>

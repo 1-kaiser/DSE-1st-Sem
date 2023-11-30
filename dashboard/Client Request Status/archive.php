@@ -105,8 +105,6 @@
                                     </script>
                                     <?php
                                 }
-                                // echo "Data from source_table inserted into destination_table successfully.<br>";
-
                             } else {
                                 echo "Error: " . mysqli_error($conn);
                             }
@@ -142,13 +140,19 @@
         </div>
     </div>
 
-    <?php
-    if (isset($_SESSION['notif'])) {
-        ?>
-        <div class="notif" data-notif="<?php $_SESSION['notif'];?>"></div>
-        <?php
-    }
-    ?>;
+    <!-- Modal Success -->
+    <div class="modal fade" id="notifSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #4aff4d;">
+                </div>
+                <div class="modal-body">
+                    Record deleted successfully!
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Success -->
 
 </body>
     
@@ -188,19 +192,14 @@
                     confirmButtonText: "Yes, delete it!"
                     }).then((result) => {
                         if (result.value) {
-                            document.location.href = href;
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                document.location.href = href
+                            }, 1500);
                         }
                     })
             })
 
-            const notif = $('.notif').data('notif')
-            if (notif) {
-                Swal.fire({
-                    type: "success",
-                    title: "Record Deleted!",
-                    text: "Record has been deleted permanently."
-                })
-            }
         })
         
     </script>
