@@ -88,7 +88,7 @@
 
             if (isset($_POST['packedBySeller'])) {
 
-                $deliveryStatus = "Packed by Seller";
+                $_SESSION['deliveryStatus'] = "Packed by Seller";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
                 ?>

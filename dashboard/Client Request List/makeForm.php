@@ -88,6 +88,10 @@ use PHPMailer\PHPMailer\PHPMailer;
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
 
+        // $_SESSION['productName'] = $_POST['productName'];
+        // $_SESSION['productPrice'] = $_POST['productPrice'];
+        // $_SESSION['productQuantity'] = $_POST['productQuantity'];
+
         foreach ($productName as $key => $value) {
             // $queryProductInsert = "INSERT INTO clientform VALUES (null, '$value', '$productPrice[$key]', '$productQuantity[$key]')";
             // $queryProductResult = mysqli_query($conn, $queryProductInsert);
@@ -232,7 +236,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         
         <!-- Dropdown -->
         <div class="dropdown" style="margin-right: 18px;">
-            <a class="btn btn-warning dropdown-toggle btn-sm w-100 h-25" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-warning dropdown-toggle btn-sm w-100" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill-gear"></i> Admin
             </a>
 

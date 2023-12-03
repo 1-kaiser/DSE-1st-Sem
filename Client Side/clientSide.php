@@ -7,9 +7,16 @@ session_start();
         $clientName = validate($_POST['clientName']);
         $clientEmail = validate($_POST['clientEmail']);
         $clientContact = validate($_POST['clientContact']);
+        $clientAddress = validate($_POST['clientAddress']);
         $clientRequest = $_POST['clientRequest'];
 
-            $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientRequest')";
+        $_SESSION['clientName'] = $clientName;
+        $_SESSION['clientEmail'] = $clientEmail;
+        $_SESSION['clientContact'] = $clientContact;
+        $_SESSION['clientAdress'] = $clientAddress;
+        $_SESSION['clientRequest'] = $clientRequest;
+
+            $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientAddress', '$clientRequest')";
             $result = mysqli_query($conn, $query);
 
             redirect('./requestSuccess.php');
@@ -72,6 +79,10 @@ session_start();
                 <input type="number" class="form-control" id="floatingContact" placeholder="Contact Number" name="clientContact" required>
             </div>
 
+            <div class="form mb-3" >
+                <input type="text" class="form-control" id="floatingAddress" placeholder="Address" name="clientAdress" required>
+            </div>
+
             <div class="form mb-3">
                 <textarea class="form-control" id="clientRequest" placeholder="Your request" rows="3" name="clientRequest" required></textarea>
             </div>
@@ -116,6 +127,9 @@ session_start();
                         maxlength: 11,
                         minlength: 11
                     },
+                    clientAddress: {
+                        required: true
+                    }
                 },
                 messages: {
                     clientName: {
@@ -129,6 +143,7 @@ session_start();
                         required: "Please enter your contact",
                         minlength: "Must 11 digits length"
                     },
+                    clientAddress: "Please enter your address",
                     clientRequest: "Please enter your request"
                 }
             })

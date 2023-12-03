@@ -95,12 +95,32 @@
                                     <td id="name"><?php echo $row['customerName'];?></td>
                                     <td id="email"><?php echo $row['productName'];?></td>
                                     <td id="contact"><?php echo $row['deliveryStatus']?></td>
-                                    <td style="display: flex; justify-content: center; column-gap: 8px">
-                                        <a href="./deliveryButtons.php?id=<?php echo $row['delivery_id'];?>" class="deliveryStatus btn btn-primary">
-                                        Delivery Status
-                                        </a>
+                                    <?php
 
-                                    </td>
+                                        if ($row['deliveryStatus'] <> "Delivered") {
+                                            ?>
+
+                                                <td style="display: flex; justify-content: center; column-gap: 8px">
+                                                    <a href="./deliveryButtons.php?id=<?php echo $row['delivery_id'];?>" class="deliveryStatus btn btn-primary">
+                                                    Delivery Status
+                                                    </a>
+                                                </td>
+
+                                            <?php
+                                        } else {
+                                            ?>
+                                                <td style="display: flex; justify-content: center; column-gap: 8px">
+                                                    <center>-------</center>
+                                                </td>
+                                            <?php
+                                        }
+                                    
+                                    ?>
+
+
+
+                                    
+                                    
                                 </tr>
                             <?php
                         }
