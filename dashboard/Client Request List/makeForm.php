@@ -19,6 +19,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         
         //Client Product Request
         $productName = $_POST['productName'];
+        $productBrand = $_POST['productBrand'];
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
 
@@ -45,17 +46,20 @@ use PHPMailer\PHPMailer\PHPMailer;
             $html .= "<h1 style='font-size: 1.5rem'>Request Confirmation</h1>";
             $html .= "<p style='font-size: 14px'> Name: ". $row['name'] ."</p>";
             $html .= "<p style='font-size: 14px'> Email: ". $row['email'] ."</p>";
+            $html .= "<p style='font-size: 14px'> Address: ". $row['address'] ."</p>";
             $html .= "<p style='font-size: 14px'> Contact: ". $row['contact'] ."</p>";
 
             $html .= "<table style='border: 1px solid black; width: 100%; border-collapse: collapse;'>";
             $html .= "<tr>";
                 $html .= "<th style='border:1px solid black; padding: 10px;'>Product Name</th>";
+                $html .= "<th style='border:1px solid black; padding: 10px;'>Product Brand</th>";
                 $html .= "<th style='border:1px solid black; padding: 10px;'>Quantity</th>";
                 $html .= "<th style='border:1px solid black; padding: 10px;'>Price</th>";
             $html .= "</tr>";
             foreach ($productName as $keys => $values) {
                 $html .= "<tr>";
                 $html .= '<td style="text-align: center; border:1px solid black; padding: 10px;">'. $values .'</td>';
+                $html .= "<td style='text-align: center; border:1px solid black; padding: 10px;'>". $productBrand[$keys] ."</td>";
                 $html .= "<td style='text-align: center; border:1px solid black; padding: 10px;'>". $productQuantity[$keys] ."</td>";
                 $html .= "<td style='text-align: center; border:1px solid black; padding: 10px;'>". $productPrice[$keys] ."</td>";
                 $html .= "</tr>";
@@ -85,6 +89,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         
         //Client Product Request
         $productName = $_POST['productName'];
+        $productBrand = $_POST['productBrand'];
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
 
@@ -114,18 +119,21 @@ use PHPMailer\PHPMailer\PHPMailer;
             $html .= "<h1 style='font-size: 1.5rem'>Request Confirmation</h1>";
             $html .= "<p style='font-size: 14px'> Name: ". $row['name'] ."</p>";
             $html .= "<p style='font-size: 14px'> Email: ". $row['email'] ."</p>";
+            $html .= "<p style='font-size: 14px'> Address: ". $row['address'] ."</p>";
             $html .= "<p style='font-size: 14px'> Contact: ". $row['contact'] ."</p>";
 
 
             $html .= "<table style='border: 1px solid black; width: 100%; border-collapse: collapse;'>";
             $html .= "<tr>";
                 $html .= "<th style='border:1px solid black; padding: 10px;'>Product Name</th>";
+                $html .= "<th style='border:1px solid black; padding: 10px;'>Product Brand</th>";
                 $html .= "<th style='border:1px solid black; padding: 10px;'>Quantity</th>";
                 $html .= "<th style='border:1px solid black; padding: 10px;'>Price</th>";
             $html .= "</tr>";
             foreach ($productName as $keys => $values) {
                 $html .= "<tr>";
                 $html .= '<td style="text-align: center; border:1px solid black; padding: 10px;">'. $values .'</td>';
+                $html .= "<td style='text-align: center; border:1px solid black; padding: 10px;'>". $productBrand[$keys] ."</td>";
                 $html .= "<td style='text-align: center; border:1px solid black; padding: 10px;'>". $productQuantity[$keys] ."</td>";
                 $html .= "<td style='text-align: center; border:1px solid black; padding: 10px;'>". $productPrice[$keys] ."</td>";
                 $html .= "</tr>";
@@ -170,11 +178,16 @@ use PHPMailer\PHPMailer\PHPMailer;
    
             try {
                 $mail->send();
-                echo "<script>
-                $(document).ready(function() {
-                    $('#emailSent').modal('show');
-                })
-                </script>";
+                ?>
+                    <script>
+                        $(document).ready(function() {
+                            $('#notifSuccess').modal('show')
+                            setTimeout(() => {
+                                window.location.href = '../Client Request Status/clientRequestStatus.php'
+                            }, 1500);
+                        })
+                    </script>
+                <?php
             } catch (Exception $e) {
                 echo 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo;
             }
@@ -241,8 +254,8 @@ use PHPMailer\PHPMailer\PHPMailer;
             </a>
 
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
-                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <!-- <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li> -->
                 <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>
@@ -277,6 +290,9 @@ use PHPMailer\PHPMailer\PHPMailer;
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Product</span>
                     <input type="text" class="form-control" value="<?php echo $row['request']?>" name="productName[]" style="width: 8rem; margin-right: 6px;" required>
 
+                    <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Brand</span>
+                    <input type="text" class="form-control" name="productBrand[]" style="width: 4rem;" required>
+
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Price</span>
                     <input type="number" class="form-control" name="productPrice[]" style="width: 4rem;" required>
 
@@ -290,21 +306,19 @@ use PHPMailer\PHPMailer\PHPMailer;
         </form> 
     </div>
 
-        <div class="modal fade" id="emailSent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        <img src="../../css/icons8-success.gif" alt="" srcset="">
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal Success -->
+    <div class="modal fade" id="notifSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #4aff4d;">
                 </div>
                 <div class="modal-body">
-                    Email sent successfully.
-                </div>
+                    Email sent successfully!
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Modal Success -->
 </body>
 
     <!-- Bootstrap CDN -->
@@ -324,6 +338,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 
                         <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Product</span>
                         <input type="text" class="form-control" name="productName[]" style="width: 8rem; margin-right: 6px;" required>
+
+                        <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Brand</span>
+                        <input type="text" class="form-control" name="productBrand[]" style="width: 4rem;" required>
 
                         <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Price</span>
                         <input type="number" class="form-control" name="productPrice[]" style="width: 4rem;" required>

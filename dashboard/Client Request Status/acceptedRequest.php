@@ -61,8 +61,8 @@
             </a>
 
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
-                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <!-- <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li> -->
                 <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>
@@ -112,13 +112,9 @@
                                 echo "Error: " . mysqli_error($conn);
                             }
 
-                            
                             $displayQueryRes = mysqli_query($conn, "SELECT * FROM acceptedrequest WHERE id = '$acceptedId'");
                             $displayRow = mysqli_fetch_assoc($displayQueryRes);
-                                
-                            
-                                
-                            
+  
                         }
                 
                         // Retrieving of data
@@ -207,12 +203,19 @@
                                                 <label for="productName" class="form-label">Product Name</label>
                                                 <input type="text" name="productName" class="form-control border-secondary" id="productName" required>
 
+                                                <label for="productBrand" class="form-label">Product Brand</label>
+                                                <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" required>
+                                            </div>
+
+                                            <div class="m-3 d-flex align-items-center">
                                                 <label for="paidPrice" class="form-label">Paid Price</label>
                                                 <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
 
                                                 <label for="quantity" class="form-label">Quantity</label>
                                                 <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
                                             </div>
+
+                                                
 
                                             <div class="col-12">
                                                 <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
@@ -228,7 +231,6 @@
                 <?php
                     if (isset($_POST['createDelivery'])) {
                         
-                            
                             $orderDate = $_POST['orderDate'];
                             $printDate = $_POST['printDate'];
                             $delivery = $_POST['delivery'];
@@ -237,11 +239,12 @@
                             $trackingNo = $_POST['trackingNo'];
                             $customerName = $_POST['customerName'];
                             $productName = $_POST['productName'];
+                            $productBrand = $_POST['productBrand'];
                             $productPrice = $_POST['productPrice'];
                             $quantity = $_POST['quantity'];
 
-                            $createQuery = "INSERT INTO deliveries (customerName, productName, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo) 
-                            VALUES ('$customerName', '$productName', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo')";
+                            $createQuery = "INSERT INTO deliveries (customerName, productName, productBrand, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo) 
+                            VALUES ('$customerName', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo')";
                             mysqli_query($conn, $createQuery);
 
                             ?>

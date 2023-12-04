@@ -61,8 +61,8 @@
             </a>
 
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
-                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <!-- <li><a class="dropdown-item" href="../manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li> -->
                 <li><a class="dropdown-item" href="../logout.php" style="font-size: 14px;">
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>

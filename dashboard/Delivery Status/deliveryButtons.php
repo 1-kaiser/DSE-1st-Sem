@@ -58,18 +58,13 @@
             </a>
 
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="./manageAccount.php" style="font-size: 14px;">
-                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li>
+                <!-- <li><a class="dropdown-item" href="./manageAccount.php" style="font-size: 14px;">
+                <i class="bi bi-people-fill" style="margin-right: 1rem;"></i>Manage Account</a></li> -->
                 <li><a class="dropdown-item" href="./logout.php" style="font-size: 14px;">
                 <i class="bi bi-box-arrow-right" style="margin-right: 1rem;"></i>Logout</a></li>
             </ul>
         </div>
     </div>
-
-    
-    
-    
-
 
     <div class="forms-wrapper">
 
@@ -88,7 +83,7 @@
 
             if (isset($_POST['packedBySeller'])) {
 
-                $_SESSION['deliveryStatus'] = "Packed by Seller";
+                $deliveryStatus = "Packed by Seller";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
                 ?>
@@ -101,6 +96,7 @@
                         })
                     </script>
                 <?php
+            
             }
 
             if (isset($_POST['arrivedAtOverseasSortCenter'])) {

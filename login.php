@@ -66,6 +66,12 @@ session_start();
 <body>
     <!-- Login Wrapper -->
     <div class="login-wrapper d-flex align-items-center justify-content-center">
+
+        <div class="loginCard d-flex" style="box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);">
+
+        <div class="loginPic">
+            <img src="./css/products/loginPic.jpg" style="height: 27rem;">
+        </div>
         
         <!-- Login Container Box -->
         <div class="login-container">
@@ -89,6 +95,10 @@ session_start();
             </form>
         </div>
         <!-- Login Container Box -->
+
+        </div>
+
+        
     </div>
     <!-- Login Wrapper -->
 

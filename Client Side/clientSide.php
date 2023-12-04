@@ -10,11 +10,11 @@ session_start();
         $clientAddress = validate($_POST['clientAddress']);
         $clientRequest = $_POST['clientRequest'];
 
-        $_SESSION['clientName'] = $clientName;
-        $_SESSION['clientEmail'] = $clientEmail;
-        $_SESSION['clientContact'] = $clientContact;
-        $_SESSION['clientAdress'] = $clientAddress;
-        $_SESSION['clientRequest'] = $clientRequest;
+        // $_SESSION['clientName'] = $clientName;
+        // $_SESSION['clientEmail'] = $clientEmail;
+        // $_SESSION['clientContact'] = $clientContact;
+        // $_SESSION['clientAdress'] = $clientAddress;
+        // $_SESSION['clientRequest'] = $clientRequest;
 
             $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientAddress', '$clientRequest')";
             $result = mysqli_query($conn, $query);
@@ -80,7 +80,7 @@ session_start();
             </div>
 
             <div class="form mb-3" >
-                <input type="text" class="form-control" id="floatingAddress" placeholder="Address" name="clientAdress" required>
+                <input type="text" class="form-control" id="floatingAddress" placeholder="Address" name="clientAddress" required>
             </div>
 
             <div class="form mb-3">
