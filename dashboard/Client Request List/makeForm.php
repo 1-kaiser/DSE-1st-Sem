@@ -163,12 +163,12 @@ use PHPMailer\PHPMailer\PHPMailer;
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'doe913885@gmail.com';
-            $mail->Password = 'xsog ulql bezu mfca';
+            $mail->Username = 'ditolmisctna@gmail.com';
+            $mail->Password = 'pbep tvhw isct dzbk';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
 
-            $mail->setFrom('doe913885@gmail.com');
+            $mail->setFrom('ditolmisctna@gmail.com');
             $mail->addAddress($row['email']);
             $mail->addStringAttachment($pdfContent, 'Request-Confirmation.pdf');
 
