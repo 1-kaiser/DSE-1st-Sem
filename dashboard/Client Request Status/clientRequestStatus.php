@@ -83,6 +83,7 @@
                 <tbody>
                     <?php 
                         require('../../reusable.php');
+                        include('../../notif.php');
 
                         $query = "SELECT * FROM clientrequestlist";
                         $result = mysqli_query($conn, $query);
@@ -125,6 +126,7 @@
     <!-- Data Tables -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
 
     <script>
             $(document).ready( function () {

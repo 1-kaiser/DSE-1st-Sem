@@ -85,13 +85,14 @@
                 <tbody>
                     <?php 
                         require('../../reusable.php');
+                        include('../../notif.php');
                         session_start();
 
                         if (isset($_GET['id'])) {
 
                             $acceptedId = $_GET['id'];
 
-                            $acceptedQuery = "INSERT INTO acceptedrequest (id, name, email, contact, address, request) SELECT id, name, email, contact, request FROM clientrequestlist WHERE id = '$acceptedId'";
+                            $acceptedQuery = "INSERT INTO acceptedrequest (id, name, email, contact, address, request) SELECT id, name, email, contact, address, request FROM clientrequestlist WHERE id = '$acceptedId'";
                             
                             if (mysqli_query($conn, $acceptedQuery)) {
 
@@ -292,6 +293,8 @@
     <!-- Validation -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script>
+    <!-- Sweet Alert
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
     <script>
             $(document).ready( function () {
@@ -313,7 +316,6 @@
                     method: 'post',
                     data: {id: id},
                     success: function(data) {
-                        alert(data)
                         let arrayData = $.parseJSON(data)
                         $('#customerName').val(arrayData.name)
                         $('#customerAddress').val(arrayData.address)

@@ -84,6 +84,7 @@
                 <tbody>
                     <?php 
                         require('../../reusable.php');
+                        include('../../notif.php');
 
                         if (isset($_GET['id'])) {
 

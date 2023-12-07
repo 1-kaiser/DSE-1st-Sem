@@ -1,10 +1,11 @@
 <?php
 require('../../reusable.php');
+include('../../notif.php');
 
     if (isset($_GET['id'])) {
         
         $id = $_GET['id'];
-        $restoreQuery = "INSERT INTO clientrequestlist (id, name, email, contact, request) SELECT id, archiveName, archiveEmail, archiveContact, archiveRequest FROM archive WHERE id = '$id'";
+        $restoreQuery = "INSERT INTO clientrequestlist (id, name, email, contact, address, request) SELECT id, archiveName, archiveEmail, archiveContact, archiveAddress, archiveRequest FROM archive WHERE id = '$id'";
         
         if (mysqli_query($conn, $restoreQuery)) {
             
@@ -59,4 +60,6 @@ require('../../reusable.php');
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
