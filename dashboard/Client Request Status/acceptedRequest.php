@@ -212,7 +212,7 @@
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
-                                            <label for="paidPrice" class="form-label">Paid Price</label>
+                                            <label for="paidPrice" class="form-label">Price</label>
                                             <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
 
                                             <label for="quantity" class="form-label">Quantity</label>

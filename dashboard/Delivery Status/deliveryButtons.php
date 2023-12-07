@@ -70,6 +70,7 @@
 
         <?php
         require('../../reusable.php');
+        include('../../notif.php');
         session_start();
 
         if (isset($_GET['id'])) {
