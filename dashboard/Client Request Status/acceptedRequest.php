@@ -91,7 +91,7 @@
 
                             $acceptedId = $_GET['id'];
 
-                            $acceptedQuery = "INSERT INTO acceptedrequest (id, name, email, contact, request) SELECT id, name, email, contact, request FROM clientrequestlist WHERE id = '$acceptedId'";
+                            $acceptedQuery = "INSERT INTO acceptedrequest (id, name, email, contact, address, request) SELECT id, name, email, contact, request FROM clientrequestlist WHERE id = '$acceptedId'";
                             
                             if (mysqli_query($conn, $acceptedQuery)) {
 
@@ -138,7 +138,7 @@
                                         <i class="bi bi-folder-plus"></i> Manage Delivery
                                         </button> -->
 
-                                        <button class="manageDelivery btn btn-primary" data-id="<?php echo $row['id'];?>" data-bs-toggle="modal" data-bs-target="#manageDelivery" >
+                                        <button class="manageDelivery btn btn-primary" value="<?php echo $row['id'];?>" data-id="" data-bs-toggle="modal" data-bs-target="#manageDelivery" >
                                             <i class="bi bi-folder-plus"></i> Manage Delivery
                                         </button>
                                     </td>
@@ -160,66 +160,69 @@
                                 <div class="modal-body">
 
                                     <form action="" method="POST" class="formDelivery row g-2" id="deliveryDetails">
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label class="form-label">Order Date</label>
-                                                <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label class="form-label">Order Date</label>
+                                            <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
 
-                                                <label class="form-label">Print Date</label>
-                                                <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate" required>
-                                            </div>
+                                            <label class="form-label">Print Date</label>
+                                            <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate" required>
+                                        </div>
 
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label class="form-label">Delivery</label>
-                                                <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" required>
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label class="form-label">Delivery</label>
+                                            <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" required>
 
-                                                <label class="form-label">Sort Center</label>
-                                                <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" required>
-                                            </div>
+                                            <label class="form-label">Sort Center</label>
+                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" required>
+                                        </div>
 
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label class="form-label" style="text-align: center">Order #</label>
-                                                <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" required>
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label class="form-label" style="text-align: center">Order #</label>
+                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" required>
 
-                                                <label class="form-label" style="text-align: center">Tracking #</label>
-                                                <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" required>
-                                            </div>
+                                            <label class="form-label" style="text-align: center">Tracking #</label>
+                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" required>
+                                        </div>
 
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label for="buyerAddress" class="form-label">Customer Name</label>
-                                                <input type="text" name="customerName" class="form-control border-secondary" id="customerName" value="" required>
-                                            </div>
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label for="buyerAddress" class="form-label">Customer Name</label>
+                                            <input type="text" name="customerName" class="form-control border-secondary" id="customerName" value="" readonly>
+                                        
+                                            <label for="customerAddress" class="form-label">Customer Address</label>
+                                            <input type="text" name="customerAddress" class="form-control border-secondary" id="customerAddress" readonly>
+                                        </div>
 
-                                            <!-- <div class="m-3 d-flex align-items-center">
-                                                <label for="buyerAddress" class="form-label">Customer Address</label>
-                                                <input type="text" name="customerAddress" class="form-control border-secondary" id="buyerAddress" required>
-                                            </div>
+                                        <!-- <div class="m-3 d-flex align-items-center">
+                                            <label for="buyerAddress" class="form-label">Customer Address</label>
+                                            <input type="text" name="customerAddress" class="form-control border-secondary" id="buyerAddress" required>
+                                        </div>
 
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label for="sellerAddress" class="form-label">Seller Address</label>
-                                                <input type="text" name="sellerAddress" class="form-control border-secondary" id="sellerAddress" required>
-                                            </div> -->
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label for="sellerAddress" class="form-label">Seller Address</label>
+                                            <input type="text" name="sellerAddress" class="form-control border-secondary" id="sellerAddress" required>
+                                        </div> -->
 
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label for="productName" class="form-label">Product Name</label>
-                                                <input type="text" name="productName" class="form-control border-secondary" id="productName" required>
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label for="productName" class="form-label">Product Name</label>
+                                            <input type="text" name="productName" class="form-control border-secondary" id="productName" readonly>
 
-                                                <label for="productBrand" class="form-label">Product Brand</label>
-                                                <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" required>
-                                            </div>
+                                            <label for="productBrand" class="form-label">Product Brand</label>
+                                            <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" required>
+                                        </div>
 
-                                            <div class="m-3 d-flex align-items-center">
-                                                <label for="paidPrice" class="form-label">Paid Price</label>
-                                                <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
+                                        <div class="m-3 d-flex align-items-center">
+                                            <label for="paidPrice" class="form-label">Paid Price</label>
+                                            <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
 
-                                                <label for="quantity" class="form-label">Quantity</label>
-                                                <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
-                                            </div>
+                                            <label for="quantity" class="form-label">Quantity</label>
+                                            <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
+                                        </div>
 
-                                                
+                                            
 
-                                            <div class="col-12">
-                                                <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
-                                            </div>
+                                        <div class="col-12">
+                                            <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
+                                        </div>    
                                     </form>
                                 </div>
                             </div>
@@ -238,13 +241,14 @@
                             $orderNo = $_POST['orderNo'];
                             $trackingNo = $_POST['trackingNo'];
                             $customerName = $_POST['customerName'];
+                            $customerAddress = $_POST['customerAddress'];
                             $productName = $_POST['productName'];
                             $productBrand = $_POST['productBrand'];
                             $productPrice = $_POST['productPrice'];
                             $quantity = $_POST['quantity'];
 
-                            $createQuery = "INSERT INTO deliveries (customerName, productName, productBrand, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo) 
-                            VALUES ('$customerName', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo')";
+                            $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo) 
+                            VALUES ('$customerName', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo')";
                             mysqli_query($conn, $createQuery);
 
                             ?>
@@ -301,17 +305,22 @@
     <script>
         $(document).ready(function() {
 
-            // $('.manageDelivery').click(function() {
-            //     let id = $(this).data('id')
-            //     $.ajax({
-            //         url: 'requestDetails.php',
-            //         method: 'POST',
-            //         data: {id: id},
-            //         success: function(response) {
-            //             $('.modal-body').html(response)
-            //             $('#manageDelivery').modal('show')
-            //         }
-            //     })
+            $('.manageDelivery').on("click", function(e) {
+                e.preventDefault()
+                let id = $(this).val()
+                $.ajax({
+                    url: 'requestDetails.php',
+                    method: 'post',
+                    data: {id: id},
+                    success: function(data) {
+                        alert(data)
+                        let arrayData = $.parseJSON(data)
+                        $('#customerName').val(arrayData.name)
+                        $('#customerAddress').val(arrayData.address)
+                        $('#productName').val(arrayData.request)
+                    }
+                })
+            })
 
             // $('#deliveryDetails').validate({
             //     rules: {
