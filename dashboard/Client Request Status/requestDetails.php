@@ -7,9 +7,10 @@ include('../../reusable.php');
         $result = mysqli_query($conn, "SELECT * FROM acceptedrequest WHERE id = '$id'");
             $row = mysqli_fetch_assoc($result);
             $name = $row['name'];
+            $email = $row['email'];
             $address = $row['address'];
             $request = $row['request'];
-            $array = array('name' => $name, 'address' => $address, 'request' => $request);
+            $array = array('name' => $name, 'email' => $email, 'address' => $address, 'request' => $request);
             echo json_encode($array);
     
     }

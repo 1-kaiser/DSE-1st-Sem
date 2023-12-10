@@ -32,13 +32,17 @@
             <i class="bi bi-clock-history fs-5 text-white"></i>
             Client Request Status</a>
 
-            <a href="./Delivery Status/deliveryStatus.php" class="link">
-            <i class="bi bi-truck fs-5 text-white"></i>
-            Delivery Status</a>
-
             <a href="./Client Request Status/acceptedRequest.php" class="link">
             <i class="bi bi-check2-circle fs-5 text-white"></i>
             Accepted Request</a>
+
+            <a href="./Delivery Status/deliveryStatus.php" class="link">
+            <i class="bi bi-truck fs-5 text-white"></i>
+            Delivery Status</a>
+            
+            <a href="./Monitoring/monitoring.php" class="link">
+            <i class="bi bi-bookmark-fill fs-5 text-white"></i>
+            Monitoring</a>
 
             <a href="./Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>

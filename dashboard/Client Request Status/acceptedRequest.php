@@ -36,13 +36,17 @@
             <i class="bi bi-clock-history fs-5 text-white"></i>
             Client Request Status</a>
 
+            <a href="./acceptedRequest.php" class="link">
+            <i class="bi bi-check2-circle fs-5 text-white"></i>
+            Accepted Request</a>
+
             <a href="../Delivery Status/deliveryStatus.php" class="link">
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
-            <a href="./acceptedRequest.php" class="link">
-            <i class="bi bi-check2-circle fs-5 text-white"></i>
-            Accepted Request</a>
+            <a href="../Monitoring/monitoring.php" class="link">
+            <i class="bi bi-bookmark-fill fs-5 text-white"></i>
+            Monitoring</a>
 
             <a href="./archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
@@ -149,6 +153,8 @@
 
                         $randOrderNo = rand(10000000000000, 99999999999999);
                         $randTrackingNo = rand(10000000000000, 99999999999999);
+                        $sort_center = "DITO LMSICITNA";
+                        $carrierContact = rand(9000000000, 9999999999);
                     ?>
 
                     <div class="modal fade" id="manageDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -165,24 +171,34 @@
                                             <label class="form-label">Order Date</label>
                                             <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
 
-                                            <label class="form-label">Print Date</label>
+                                            <label class="form-label">Expected Deliver Date</label>
                                             <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate" required>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
-                                            <label class="form-label">Delivery</label>
-                                            <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" required>
+                                            <!-- <label class="form-label">Carrier</label>
+                                            <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" required> -->
 
-                                            <label class="form-label">Sort Center</label>
-                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" required>
+                                            <label class="form-label" style="margin-right: 1rem;">Carrier</label>
+                                            <select class="form-select border-secondary" name="carrier" style="width: 11rem;">
+                                                <option>Ernesto Santos</option>
+                                                <option>Two</option>
+                                                <option>Three</option>
+                                            </select>
+
+                                            <label class="form-label text-center">Carrier Contact</label>
+                                            <input type="number" name="carrierContact" class="form-control w-25 border-secondary" id="carrierContact" value="0<?= $carrierContact?>" readonly>
+
+                                            <label class="form-label text-center">Sort Center</label>
+                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" value="<?= $sort_center?>" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label class="form-label" style="text-align: center">Order #</label>
-                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" required>
+                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" readonly>
 
                                             <label class="form-label" style="text-align: center">Tracking #</label>
-                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" required>
+                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
@@ -204,14 +220,17 @@
                                         </div> -->
 
                                         <div class="m-3 d-flex align-items-center">
-                                            <label for="productName" class="form-label">Product Name</label>
-                                            <input type="text" name="productName" class="form-control border-secondary" id="productName" readonly>
+                                            <label for="customerEmail" class="form-label text-center">Customer Email</label>
+                                            <input type="text" name="customerEmail" class="form-control border-secondary" id="customerEmail" readonly>
 
-                                            <label for="productBrand" class="form-label">Product Brand</label>
-                                            <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" required>
+                                            <label for="productName" class="form-label text-center">Product Name</label>
+                                            <input type="text" name="productName" class="form-control border-secondary" id="productName" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
+                                            <label for="productBrand" class="form-label text-center">Product Brand</label>
+                                            <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" required>
+
                                             <label for="paidPrice" class="form-label">Price</label>
                                             <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
 
@@ -235,21 +254,23 @@
                 <?php
                     if (isset($_POST['createDelivery'])) {
                         
-                            $orderDate = $_POST['orderDate'];
-                            $printDate = $_POST['printDate'];
-                            $delivery = $_POST['delivery'];
-                            $sortCenter = $_POST['sortCenter'];
-                            $orderNo = $_POST['orderNo'];
-                            $trackingNo = $_POST['trackingNo'];
                             $customerName = $_POST['customerName'];
+                            $customerEmail = $_POST['customerEmail'];
                             $customerAddress = $_POST['customerAddress'];
                             $productName = $_POST['productName'];
                             $productBrand = $_POST['productBrand'];
                             $productPrice = $_POST['productPrice'];
                             $quantity = $_POST['quantity'];
+                            $orderDate = $_POST['orderDate'];
+                            $printDate = $_POST['printDate'];
+                            $carrier = $_POST['carrier'];
+                            $carrierContact = $_POST['carrierContact'];
+                            $sortCenter = $_POST['sortCenter'];
+                            $orderNo = $_POST['orderNo'];
+                            $trackingNo = $_POST['trackingNo'];
 
-                            $createQuery = "INSERT INTO deliveries (customerName, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, delivery, sortCenter, orderNo, trackingNo) 
-                            VALUES ('$customerName', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$delivery', '$sortCenter', '$orderNo', '$trackingNo')";
+                            $createQuery = "INSERT INTO deliveries (customerName, customerEmail, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, carrier, carrierContact, sortCenter, orderNo, trackingNo) 
+                            VALUES ('$customerName', '$customerEmail', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$carrier', '$carrierContact', '$sortCenter', '$orderNo', '$trackingNo')";
                             mysqli_query($conn, $createQuery);
 
                             ?>
@@ -318,6 +339,7 @@
                     success: function(data) {
                         let arrayData = $.parseJSON(data)
                         $('#customerName').val(arrayData.name)
+                        $('#customerEmail').val(arrayData.email)
                         $('#customerAddress').val(arrayData.address)
                         $('#productName').val(arrayData.request)
                     }
