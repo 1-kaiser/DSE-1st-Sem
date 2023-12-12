@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Request List</title>
+    <title>Delivered Details</title>
 
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="../../css/clientRequestList.css">
+    <link rel="stylesheet" href="../../css/deliveryStatus.css">
     <!-- Data Tables -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
@@ -23,12 +23,11 @@
         <span class="admin-text">Admin</span> 
         <hr style="color: white;"/>
         <div class="links">
-
             <a href="../dashboard.php" class="link">
             <i class="bi bi-house-door-fill fs-5 text-white"></i>
             Home</a>
 
-            <a href="#" class="link">
+            <a href="../Client Request List/clientRequestList.php" class="link">
             <i class="bi bi-question-octagon fs-5 text-white"></i>
             Client Request List</a>
 
@@ -40,7 +39,7 @@
             <i class="bi bi-check2-circle fs-5 text-white"></i>
             Accepted Request</a>
 
-            <a href="../Delivery Status/deliveryStatus.php" class="link">
+            <a href="./deliveryStatus.php" class="link">
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
@@ -51,12 +50,11 @@
             <a href="../Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
             Archive</a>
-
         </div>
     </div>
 
     <div class="greet-msg">
-        <span class="greet">Client Request List</span>
+        <span class="greet">Delivery Status</span>
         
         <!-- Dropdown -->
         <div class="dropdown" style="margin-right: 18px;">
@@ -76,78 +74,49 @@
     <div class="clientRequestList-wrapper">
 
         <div class="table-container">
-            <table class="table table-striped ml-4" style="width: 60rem; margin: 2rem 0 0 7rem;" id="myTable">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col" style="text-align: center;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        require('../../reusable.php');
+            <div class="saveToImage">
 
-                        $query = "SELECT * FROM clientrequestlist";
-                        $result = mysqli_query($conn, $query);
+                <hr style="width: 50rem; margin: 0 0 0 4rem; border: 1px solid black;">
 
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            ?>
-                                <tr>
-                                    <td id="id"><?php echo $row['id'];?></td>
-                                    <td id="name"><?php echo $row['name'];?></td>
-                                    <td id="email"><?php echo $row['email'];?></td>
-                                    <td id="contact"><?php echo $row['contact'];?></td>
-                                    <td style="display: flex; justify-content: center; column-gap: 8px">
-                                        
-                                        <button style="text-decoration: none;" class="reqDetails btn btn-secondary" data-id="<?php echo $row['id'];?>" data-bs-toggle="modal" data-bs-target="#checkRequest">
-                                        <i class="bi bi-view-list"></i>
-                                        </button>
-                                        
-                                        <a href="./findProduct.php?id=<?php echo $row['id'];?>" class="btn btn-primary">
-                                        <i class="bi bi-bag-fill"></i>
-                                        </a>
-
-                                        <a href="./makeForm.php?id=<?php echo $row['id'];?>" target="_blank" class="btn btn-success">Make Form</a>
-                                    </td>
-                                </tr>
-                            <?php
-                        }
-                    ?>
-                    <!-- Modal Start -->
-                    <div class="modal fade" id="checkRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Client Request Details</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                            <div class="mb-3"></div>
-                            </div>
-                            </div>
-                        </div>
+                <div class="paperTitle d-flex" style="margin: 1rem 0 0 4rem;">
+                    <img src="../../css/dito.png" style="width: 3rem; margin: 0 10px 0 0;">
+                    <div class="paperTitleText d-flex flex-column justify-content-center" style="font-size: 13px;">
+                    <span>DITO LMISCTNA</span>
+                    <span>Innovation and Technology Office</span>
                     </div>
-                    <!-- Modal End -->
-                </tbody>
-            </table>
+                    <div class="lasalle" style="font-size: 13px; display: flex; margin: 4px 0 0 23.7rem;">
+                        <span>De La Salle University-Manila</span>
+                    </div>
+                </div>
+
+                <hr style="width: 50rem; margin: 1rem 0 0 4rem; border: 1px solid black;">
+
+                <div class="tablePaperContainer" style="margin: 1rem 0 0 6rem; width: 85%;">
+                    <table class="table" style="border: 1px solid black;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product Name</th>
+                                <th>Product Brand</th>
+                                <th>Product Price</th>
+                                <th>Quantity</th>
+                            </tr>   
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+            </div>
         </div>
     </div>
-
-    <!-- Modal Starts Here -->
-    <?php
-    // $id = $row['id'];
-    // $query = "SELECT * FROM clientrequestlist WHERE id = '$id' LIMIT 1";
-    // $result = mysqli_query($conn, $query);
-    // $row = mysqli_fetch_assoc($result);
-    ?>
-
-        
-
-    <!-- Modal Ends Here -->
-    
 </body>
     
     <!-- Bootstrap CDN -->
@@ -168,7 +137,7 @@
             } );
     </script>
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
 
             $('.reqDetails').click(function() {
@@ -184,6 +153,6 @@
                 })
             })
         })
-    </script>
+    </script> -->
 </html>
 

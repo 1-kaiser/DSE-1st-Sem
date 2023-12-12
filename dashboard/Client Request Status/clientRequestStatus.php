@@ -43,9 +43,9 @@
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
-            <a href="../Monitoring/monitoring.php" class="link">
+            <!-- <a href="../Monitoring/monitoring.php" class="link">
             <i class="bi bi-bookmark-fill fs-5 text-white"></i>
-            Monitoring</a>
+            Monitoring</a> -->
 
             <a href="./archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>

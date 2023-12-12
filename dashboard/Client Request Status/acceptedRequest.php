@@ -44,9 +44,9 @@
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
-            <a href="../Monitoring/monitoring.php" class="link">
+            <!-- <a href="../Monitoring/monitoring.php" class="link">
             <i class="bi bi-bookmark-fill fs-5 text-white"></i>
-            Monitoring</a>
+            Monitoring</a> -->
 
             <a href="./archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
@@ -182,8 +182,15 @@
                                             <label class="form-label" style="margin-right: 1rem;">Carrier</label>
                                             <select class="form-select border-secondary" name="carrier" style="width: 11rem;">
                                                 <option>Ernesto Santos</option>
-                                                <option>Two</option>
-                                                <option>Three</option>
+                                                <option>Harvey Beloria</option>
+                                                <option>Mike Wazowski</option>
+                                                <option>Efren De Castro</option>
+                                                <option>Denzel Rivera</option>
+                                                <option>John Carlo Catchero</option>
+                                                <option>Mike Wazowski</option>
+                                                <option>Charles Drio</option>
+                                                <option>Angelito Abanilla</option>
+                                                <option>Mark Vince Tan</option>
                                             </select>
 
                                             <label class="form-label text-center">Carrier Contact</label>
@@ -241,6 +248,7 @@
                                             
 
                                         <div class="col-12">
+                                            
                                             <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
                                         </div>    
                                     </form>
@@ -345,52 +353,7 @@
                     }
                 })
             })
-
-            // $('#deliveryDetails').validate({
-            //     rules: {
-            //         orderDate: {
-            //             required: true
-            //         },
-            //         printDate: {
-            //             required: true
-            //         },
-            //         delivery: {
-            //             required: true
-            //         },
-            //         sortCenter: {
-            //             required: true
-            //         },
-            //         orderNo: {
-            //             required: true
-            //         },
-            //         trackingNo: {
-            //             required: true
-            //         },
-            //         customerName: {
-            //             required: true
-            //         },
-            //         customerAddress: {
-            //             required: true
-            //         },
-            //         sellerAddress: {
-            //             required: true
-            //         },
-            //         productName: {
-            //             required: true
-            //         },
-            //         productPrice: {
-            //             required: true
-            //         },
-            //         quantity: {
-            //             required: true
-            //         }
-            //     }
-            // })
         })  
-
-    
-        
-
     </script>
 </html>
 

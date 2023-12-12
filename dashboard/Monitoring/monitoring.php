@@ -78,11 +78,11 @@
             <table class="table table-striped ml-4" style="width: 60rem; margin: 2rem 0 0 7rem;" id="myTable">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col" style="text-align: center;">Action</th>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col">Client Name</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col" class="text-center">Delivery Status</th>
+                    <th scope="col" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,10 +90,14 @@
                         require('../../reusable.php');
                         include('../../notif.php');
 
-                        $delivered = "Delivered";
+                        if (isset($_GET['id'])) {
+                            $id = $_GET['id'];
+
+                            $deliveredDeleted = mysqli_query($conn, "DELETE FROM deliveries WHERE delivery_id = '$id'");
+                        }
                 
                         // Retrieving of data
-                        $query = "SELECT * FROM deliveries WHERE deliveryStatus = '$delivered'";
+                        $query = "SELECT * FROM delivered";
                         $result = mysqli_query($conn, $query);
 
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -101,29 +105,25 @@
                                 <tr>
                                     <td id="id"><?php echo $row['delivery_id'];?></td>
                                     <td id="name"><?php echo $row['customerName'];?></td>
-                                    <td id="email"><?php echo $row['customerEmail'];?></td>
-                                    <td id="contact"><?php echo $row['deliveryStatus'];?></td>
+                                    <td id="email"><?php echo $row['productName'];?></td>
+                                    <td id="delStatus" class="text-center"><?php echo $row['deliveryStatus'];?></td>
                                     <td style="display: flex; justify-content: center; column-gap: 8px">
 
-                                        <button class="manageDelivery btn btn-primary" value="<?php echo $row['delivery_id'];?>" data-id="" data-bs-toggle="modal" data-bs-target="#manageDelivery" >
-                                            <i class="bi bi-folder-plus"></i> Manage Delivery
-                                        </button>
+                                    <button class="checkDelivery btn btn-success" value="" data-id="<?= $row['delivery_id'];?>" data-bs-toggle="modal" data-bs-target="#checkDelivery">
+                                    Check
+                                    </button>
+
                                     </td>
                                 </tr>
                             <?php
                         }
-
-                        $randOrderNo = rand(10000000000000, 99999999999999);
-                        $randTrackingNo = rand(10000000000000, 99999999999999);
-                        $sort_center = "DITO LMSICITNA";
-                        $carrierContact = rand(9000000000, 9999999999);
                     ?>
 
-                    <div class="modal fade" id="manageDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="checkDelivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Manage Delivery</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Client's Delivered Request Information</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -131,15 +131,18 @@
                                     <form action="" method="POST" class="formDelivery row g-2" id="deliveryDetails">
                                         <div class="m-3 d-flex align-items-center">
                                             <label class="form-label">Order Date</label>
-                                            <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" required>
+                                            <input type="date" name="orderDate" class="form-control w-25 border-secondary" style="margin-right: 1rem;" id="orderDate" readonly>
 
-                                            <label class="form-label">Expected Deliver Date</label>
-                                            <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate" required>
+                                            <label class="form-label text-center">Expected Deliver Date</label>
+                                            <input type="date" name="printDate" class="form-control w-25 border-secondary" id="printDate" readonly>
+
+                                            <label class="form-label text-center">Delivery Status</label>
+                                            <input type="text" name="deliveryStatus" class="form-control w-25 border-secondary" id="deliveryStatus" value="Delivered" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
                                             <!-- <label class="form-label">Carrier</label>
-                                            <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" required> -->
+                                            <input type="text" name="delivery" class="form-control w-25 border-secondary" id="delivery" readonly> -->
 
                                             <label class="form-label" style="margin-right: 1rem;">Carrier</label>
                                             <select class="form-select border-secondary" name="carrier" style="width: 11rem;">
@@ -149,18 +152,18 @@
                                             </select>
 
                                             <label class="form-label text-center">Carrier Contact</label>
-                                            <input type="number" name="carrierContact" class="form-control w-25 border-secondary" id="carrierContact" value="0<?= $carrierContact?>" readonly>
+                                            <input type="number" name="carrierContact" class="form-control w-25 border-secondary" id="carrierContact" value="" readonly>
 
                                             <label class="form-label text-center">Sort Center</label>
-                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" value="<?= $sort_center?>" readonly>
+                                            <input type="text" name="sortCenter" class="form-control w-25 border-secondary" id="sortCenter" value="" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label class="form-label" style="text-align: center">Order #</label>
-                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" readonly>
+                                            <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="" readonly>
 
                                             <label class="form-label" style="text-align: center">Tracking #</label>
-                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" readonly>
+                                            <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
@@ -170,16 +173,6 @@
                                             <label for="customerAddress" class="form-label">Customer Address</label>
                                             <input type="text" name="customerAddress" class="form-control border-secondary" id="customerAddress" readonly>
                                         </div>
-
-                                        <!-- <div class="m-3 d-flex align-items-center">
-                                            <label for="buyerAddress" class="form-label">Customer Address</label>
-                                            <input type="text" name="customerAddress" class="form-control border-secondary" id="buyerAddress" required>
-                                        </div>
-
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label for="sellerAddress" class="form-label">Seller Address</label>
-                                            <input type="text" name="sellerAddress" class="form-control border-secondary" id="sellerAddress" required>
-                                        </div> -->
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label for="customerEmail" class="form-label text-center">Customer Email</label>
@@ -191,20 +184,18 @@
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label for="productBrand" class="form-label text-center">Product Brand</label>
-                                            <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" required>
+                                            <input type="text" name="productBrand" class="form-control border-secondary" id="productBrand" readonly>
 
                                             <label for="paidPrice" class="form-label">Price</label>
-                                            <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" required>
+                                            <input type="number" name="productPrice" class="form-control border-secondary" id="productPrice" readonly>
 
                                             <label for="quantity" class="form-label">Quantity</label>
-                                            <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
+                                            <input type="number" name="quantity" class="form-control border-secondary" id="quantity" readonly>
                                         </div>
 
-                                            
-
-                                        <div class="col-12">
+                                        <!-- <div class="col-12">
                                             <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
-                                        </div>    
+                                        </div>     -->
                                     </form>
                                 </div>
                             </div>
@@ -213,40 +204,6 @@
                     <!-- Modal End -->
                 </tbody>
             </table>
-                <?php
-                    if (isset($_POST['createDelivery'])) {
-                        
-                            $customerName = $_POST['customerName'];
-                            $customerEmail = $_POST['customerEmail'];
-                            $customerAddress = $_POST['customerAddress'];
-                            $productName = $_POST['productName'];
-                            $productBrand = $_POST['productBrand'];
-                            $productPrice = $_POST['productPrice'];
-                            $quantity = $_POST['quantity'];
-                            $orderDate = $_POST['orderDate'];
-                            $printDate = $_POST['printDate'];
-                            $carrier = $_POST['carrier'];
-                            $carrierContact = $_POST['carrierContact'];
-                            $sortCenter = $_POST['sortCenter'];
-                            $orderNo = $_POST['orderNo'];
-                            $trackingNo = $_POST['trackingNo'];
-
-                            $createQuery = "INSERT INTO deliveries (customerName, customerEmail, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, carrier, carrierContact, sortCenter, orderNo, trackingNo) 
-                            VALUES ('$customerName', '$customerEmail', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$carrier', '$carrierContact', '$sortCenter', '$orderNo', '$trackingNo')";
-                            mysqli_query($conn, $createQuery);
-
-                            ?>
-                                <script>
-                                    $(document).ready(function() {
-                                        $('#notifSuccess').modal('show')
-                                        setTimeout(() => {
-                                            window.location.href = '../Delivery Status/deliveryStatus.php'
-                                        }, 1500);
-                                    })
-                                </script>
-                            <?php
-                    }
-                ?>
         </div>
     </div>
     
@@ -290,24 +247,22 @@
 
     <script>
         $(document).ready(function() {
-
-            $('.manageDelivery').on("click", function(e) {
+            $('.checkDelivery').on("click", function(e) {
                 e.preventDefault()
-                let id = $(this).val()
+                const id = $(this).data('id')
+                alert(id)
                 $.ajax({
-                    url: 'requestDetails.php',
+                    url: './details.php',
                     method: 'post',
                     data: {id: id},
                     success: function(data) {
-                        let arrayData = $.parseJSON(data)
-                        $('#customerName').val(arrayData.name)
-                        $('#customerEmail').val(arrayData.email)
-                        $('#customerAddress').val(arrayData.address)
-                        $('#productName').val(arrayData.request)
+                        console.log(data)
+                    }, error: function(xhr, status) {
+                        console.log(xhr.error, status.error)
                     }
                 })
             })
-        })  
+        })
     </script>
 </html>
 

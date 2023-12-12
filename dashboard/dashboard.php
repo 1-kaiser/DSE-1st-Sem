@@ -40,9 +40,9 @@
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
             
-            <a href="./Monitoring/monitoring.php" class="link">
+            <!-- <a href="./Monitoring/monitoring.php" class="link">
             <i class="bi bi-bookmark-fill fs-5 text-white"></i>
-            Monitoring</a>
+            Monitoring</a> -->
 
             <a href="./Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
@@ -92,18 +92,15 @@
                         require('../reusable.php');
                         session_start();
 
-                        $result = mysqli_query($conn, "SELECT * FROM deliveries");
+                        $result = mysqli_query($conn, "SELECT * FROM delivered");
                         while ($row = mysqli_fetch_assoc($result)) {
-                            
                             ?>
-
                                 <tr>
                                     <td><?= $row['delivery_id']?></td>
                                     <td><?= $row['customerName']?></td>
                                     <td><?= $row['productName']?></td>
                                     <td><?= $row['deliveryStatus']?></td>
                                 </tr>
-
                             <?php
                         }
                         ?>
@@ -148,8 +145,6 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    
 
     <script>
 

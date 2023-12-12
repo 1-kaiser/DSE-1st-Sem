@@ -42,9 +42,9 @@
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
-            <a href="../Monitoring/monitoring.php" class="link">
+            <!-- <a href="../Monitoring/monitoring.php" class="link">
             <i class="bi bi-bookmark-fill fs-5 text-white"></i>
-            Monitoring</a>
+            Monitoring</a> -->
 
             <a href="../Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
@@ -677,6 +677,13 @@
                 $deliveryStatus = "Delivered";
                 $pbsQuery = "UPDATE deliveries SET deliveryStatus = '$deliveryStatus' WHERE delivery_id = '$id'";
                 mysqli_query($conn, $pbsQuery);
+                
+                // if (mysqli_query($conn, $pbsQuery)) {
+
+                //     $deliveredRecordQuery = "INSERT INTO delivered (delivery_id, customerName, customerEmail, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, carrier, carrierContact, sortCenter, orderNo, trackingNo, deliveryStatus) 
+                //     SELECT delivery_id, customerName, customerEmail, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, carrier, carrierContact, sortCenter, orderNo, trackingNo, deliveryStatus FROM deliveries WHERE delivery_id = '$id'";
+                //     mysqli_query($conn, $deliveredRecordQuery);
+                // }
 
                 //PHP Mailer
                 $mail = new PHPMailer(true);

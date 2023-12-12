@@ -43,9 +43,9 @@
             <i class="bi bi-truck fs-5 text-white"></i>
             Delivery Status</a>
 
-            <a href="../Monitoring/monitoring.php" class="link">
+            <!-- <a href="../Monitoring/monitoring.php" class="link">
             <i class="bi bi-bookmark-fill fs-5 text-white"></i>
-            Monitoring</a>
+            Monitoring</a> -->
 
             <a href="../Client Request Status/archive.php" class="link">
             <i class="bi bi-archive-fill fs-5 text-white"></i>
@@ -79,8 +79,8 @@
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Delivery Status</th>
+                    <th scope="col" class="text-center">Product Name</th>
+                    <th scope="col" class="text-center">Delivery Status</th>
                     <th scope="col" style="text-align: center;">Action</th>
                     </tr>
                 </thead>
@@ -98,8 +98,8 @@
                                 <tr>
                                     <td id="id"><?php echo $row['delivery_id'];?></td>
                                     <td id="name"><?php echo $row['customerName'];?></td>
-                                    <td id="email"><?php echo $row['productName'];?></td>
-                                    <td id="contact"><?php echo $row['deliveryStatus']?></td>
+                                    <td id="email" class="text-center"><?php echo $row['productName'];?></td>
+                                    <td id="contact" class="text-center"><?php echo $row['deliveryStatus']?></td>
                                     <?php
 
                                         if ($row['deliveryStatus'] <> "Delivered") {
@@ -112,10 +112,17 @@
                                                 </td>
 
                                             <?php
+                                            
                                         } else {
                                             ?>
-                                                <td style="display: flex; justify-content: center; column-gap: 8px">
+                                                <td style="display: flex; justify-content: center;">
                                                     <center>-------</center>
+                                                    <!-- <a href="./details.php?id=<?= $row['delivery_id']?>" class="btn btn-success">
+                                                        <span>Check</span>
+                                                    </a> -->
+                                                    <!-- <button class="btn btn-success">
+                                                        <i class="bi bi-printer-fill fs-5 text-white"></i><span style="margin-left: 9px;">Print</span>
+                                                    </button> -->
                                                 </td>
                                             <?php
                                         }
