@@ -1,5 +1,6 @@
 <?php
 require('../reusable.php');
+include('../notif.php');
 session_start();
 
     if (isset($_POST['clientRequest'])) {
@@ -31,6 +32,10 @@ session_start();
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/clientSide.css">
     <link rel="stylesheet" href="../css/aos.css">
+    <!-- reCaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Google AJAX API -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="homepage-wrapper">
@@ -65,32 +70,45 @@ session_start();
             <strong data-aos="fade-up">Need a Request?</strong>
         </div>
 
-        <form action="" method="POST" class="requestForm" id="formRequest">
-
-            <div class="form mb-3">
-                <input type="text" class="form-control" id="floatingName" placeholder="Name" name="clientName" required>
-            </div>
-            
-            <div class="form mb-3" >
-                <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
-            </div>
-                    
-            <div class="form mb-3" >
-                <input type="number" class="form-control" id="floatingContact" placeholder="Contact Number" name="clientContact" required>
+        <div class="requestContainer d-flex gap-5">
+            <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.6015400909164!2d120.99059027402363!3d14.564764185917339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c97ed286459b%3A0x5927068d997eae2a!2sDe%20La%20Salle%20University%20Manila!5e0!3m2!1sen!2sph!4v1702649125350!5m2!1sen!2sph" 
+                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
-            <div class="form mb-3" >
-                <input type="text" class="form-control" id="floatingAddress" placeholder="Address" name="clientAddress" required>
-            </div>
+            <form action="" method="POST" class="requestForm" id="formRequest">
 
-            <div class="form mb-3">
-                <textarea class="form-control" id="clientRequest" placeholder="Your request" rows="3" name="clientRequest" required></textarea>
-            </div>
+                <div class="form mb-3">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Name" name="clientName" required>
+                </div>
+                
+                <div class="form mb-3" >
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="Email address" name="clientEmail" required>
+                </div>
+                        
+                <div class="form mb-3" >
+                    <input type="number" class="form-control" id="floatingContact" placeholder="Contact Number" name="clientContact" required>
+                </div>
 
-                <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
+                <div class="form mb-3" >
+                    <input type="text" class="form-control" id="floatingAddress" placeholder="Address" name="clientAddress" required>
+                </div>
 
-                <!-- <button name="requestSubmit" type="button" data-bs-toggle="modal" data-bs-target="#myAlert" class="btn btn-primary float-end" style="width: 6rem;">Submit</button> -->
-        </form>
+                <div class="form mb-3">
+                    <textarea class="form-control" id="clientRequest" placeholder="Your request" rows="3" name="clientRequest" required></textarea>
+                </div>
+
+                <div class="form mb-3">
+                    <div class="g-recaptcha" data-sitekey="6LcDqzIpAAAAAPLMHYb4tt8PkFnQsCZaKE5ck_7P"></div>
+                </div>
+
+                    <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
+
+                    <!-- <button name="requestSubmit" type="button" data-bs-toggle="modal" data-bs-target="#myAlert" class="btn btn-primary float-end" style="width: 6rem;">Submit</button> -->
+            </form>
+        </div>
+
+        
     </div>
 
 
@@ -149,4 +167,18 @@ session_start();
             })
         })
     </script>
+
+                    <!-- <script>
+                    $(document).on("click", "#reqSubmit", function() {
+
+                        const response = grecaptcha.getResponse()
+                        
+                        if (response.length > 0) {
+                            window.location.href = './requestSuccess.php'
+                        } else {
+                            
+                            return false
+                        }
+                    })
+                </script> -->
 </html>

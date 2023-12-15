@@ -92,7 +92,7 @@
                         require('../reusable.php');
                         session_start();
 
-                        $result = mysqli_query($conn, "SELECT * FROM delivered");
+                        $result = mysqli_query($conn, "SELECT * FROM deliveries");
                         while ($row = mysqli_fetch_assoc($result)) {
                             ?>
                                 <tr>
@@ -113,29 +113,47 @@
 
     <?php
 
-        // $pendingReqRes = mysqli_query($conn, "SELECT * FROM dito.clientrequestlist");
-        // $pendingReq = array();
+        // Pending Requests
+        $pendingReqRes = mysqli_query($conn, "SELECT * FROM dito.clientrequestlist");
+        $pendingReq = array();
 
-        // while ($pendingRow = mysqli_fetch_assoc($pendingReqRes)) {
-        //     $pendingReq[] = $pendingRow['id'];
+        while ($pendingRow = mysqli_fetch_assoc($pendingReqRes)) {
+            $pendingReq[] = $pendingRow['id'];
+        }
 
-        // }
+        $pendingSum = array_sum($pendingReq);
+        $pendingString = (string)$pendingSum;
+        $pendingLength = strlen($pendingString);
+        json_encode($pendingLength);
+        // Pending Requests
 
-        // $acceptedReqRes = mysqli_query($conn, "SELECT * FROM dito.acceptedrequest");
-        // $acceptedReq = array();
+        // Accepted Requests
+        $acceptedReqRes = mysqli_query($conn, "SELECT * FROM dito.acceptedrequest");
+        $acceptedReq = array();
 
-        // while ($acceptedRow = mysqli_fetch_assoc($acceptedReqRes)) {
-        //     $acceptedReq[] = $acceptedRow['id'];
+        while ($acceptedRow = mysqli_fetch_assoc($acceptedReqRes)) {
+            $acceptedReq[] = $acceptedRow['id'];
+        }
 
-        // }
+        $acceptedSum = array_sum($acceptedReq);
+        $acceptedString = (string)$acceptedSum;
+        $acceptedLength = strlen($acceptedString);
+        json_encode($acceptedLength);
+        // Accepted Requests
 
-        // $deniedReqRes = mysqli_query($conn, "SELECT * FROM dito.archive");
-        // $deniedReq = array();
+        // Denied Requests
+        $deniedReqRes = mysqli_query($conn, "SELECT * FROM dito.archive");
+        $deniedReq = array();
 
-        // while ($deniedRow = mysqli_fetch_assoc($deniedReqRes)) {
-        //     $deniedReq[] = $deniedRow['id'];
+        while ($deniedRow = mysqli_fetch_assoc($deniedReqRes)) {
+            $deniedReq[] = $deniedRow['id'];
+        }
 
-        // }
+        $deniedSum = array_sum($deniedReq);
+        $deniedString = (string)$deniedSum;
+        $deniedLength = strlen($deniedString);
+        json_encode($deniedLength);
+        // Denied Requests
     ?>
 
     <!-- Bootstrap CDN -->
@@ -147,6 +165,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+
+        
 
         const timeElement = document.querySelector('.time')
         const dateElement = document.querySelector('.date')
@@ -197,7 +217,13 @@
         }, 200);
 
         // Chart
-        
+        var pendSum = <?php echo $pendingLength;?>;
+        var pendModified = pendSum - 1;
+        var acceptSum = <?php echo $acceptedLength?>;
+        var acceptModified = acceptSum - 1;
+        var denySum = <?php echo $deniedLength?>;
+        var denyModified = denySum - 1;
+
 
         // Setup Block
 
@@ -208,7 +234,11 @@
                             'Pending Requests'
                         ],
                         datasets: [{
-                            data: [12,5,3],
+                            data: [
+                                acceptModified,
+                                denyModified,
+                                pendModified
+                            ],
                             backgroundColor: [
                             '#7df1ad', //Green
                             '#f75d5d', // Red

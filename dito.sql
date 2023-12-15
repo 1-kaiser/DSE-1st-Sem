@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 10:48 AM
+-- Generation Time: Dec 12, 2023 at 10:11 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,6 +32,7 @@ CREATE TABLE `acceptedrequest` (
   `name` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `contact` varchar(11) NOT NULL,
+  `address` varchar(100) NOT NULL,
   `request` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,11 +40,10 @@ CREATE TABLE `acceptedrequest` (
 -- Dumping data for table `acceptedrequest`
 --
 
-INSERT INTO `acceptedrequest` (`id`, `name`, `email`, `contact`, `request`) VALUES
-(10, 'Emmanuel Punay', 'emmanuelpunay6906@gmail.com', '09351686906', 'Wireless Mouse'),
-(18, 'Emman Nimedez', 'nimedez@gmail.com', '09232428342', 'Side'),
-(47, 'John Robert Castillo', 'robert@gmail.com', '09234234232', 'Hand Clutch and Engine for Motorcycle'),
-(50, 'Eliezar Punay', 'eliezarpunay10@gmail.com', '09939017182', 'Laptop');
+INSERT INTO `acceptedrequest` (`id`, `name`, `email`, `contact`, `address`, `request`) VALUES
+(10, 'Emmanuel Punay', 'emmanuelpunay6906@gmail.com', '09351686906', '', 'Wireless Mouse'),
+(47, 'John Robert Castillo', 'robert@gmail.com', '09234234232', '', 'Hand Clutch and Engine for Motorcycle'),
+(65, 'Emman Punay', 'emmanuelpunay6906@gmail.com', '09234232933', '2nd Ave, Caloocan', 'Motherboard ITX');
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,7 @@ CREATE TABLE `archive` (
   `archiveName` varchar(200) NOT NULL,
   `archiveEmail` varchar(200) NOT NULL,
   `archiveContact` varchar(200) NOT NULL,
+  `archiveAddress` varchar(100) NOT NULL,
   `archiveRequest` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -63,9 +64,8 @@ CREATE TABLE `archive` (
 -- Dumping data for table `archive`
 --
 
-INSERT INTO `archive` (`id`, `archiveName`, `archiveEmail`, `archiveContact`, `archiveRequest`) VALUES
-(48, 'Aeron Romart De Guia', 'romart@gmail.com', '09234234233', '2 Packs of Yellow Paper'),
-(49, 'Iverson Fredrick Norberte', 'fredrick@gmail.com', '09253453452', 'Magnifying Glass');
+INSERT INTO `archive` (`id`, `archiveName`, `archiveEmail`, `archiveContact`, `archiveAddress`, `archiveRequest`) VALUES
+(62, 'sdf', 'fda@dfsd', '32423234234', '', 'sjsdfklj');
 
 -- --------------------------------------------------------
 
@@ -82,12 +82,39 @@ CREATE TABLE `clientrequestlist` (
   `request` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `clientrequestlist`
+-- Table structure for table `delivered`
 --
 
-INSERT INTO `clientrequestlist` (`id`, `name`, `email`, `contact`, `address`, `request`) VALUES
-(53, 'Ruen Malvar', 'malvar@gmail.com', '09242342899', '143 Blk. St. Dagat-dagatan, Caloocan City', 'A4 Size Photo Paper');
+CREATE TABLE `delivered` (
+  `delivery_id` int(11) NOT NULL DEFAULT 0,
+  `customerName` varchar(200) NOT NULL,
+  `customerEmail` varchar(100) NOT NULL,
+  `customerAddress` varchar(100) NOT NULL,
+  `productName` varchar(200) NOT NULL,
+  `productBrand` varchar(100) NOT NULL,
+  `productPrice` int(200) NOT NULL,
+  `productQty` int(200) NOT NULL,
+  `orderDate` date NOT NULL,
+  `printDate` date NOT NULL,
+  `carrier` varchar(200) NOT NULL,
+  `carrierContact` varchar(100) NOT NULL,
+  `sortCenter` varchar(200) NOT NULL,
+  `orderNo` varchar(200) NOT NULL,
+  `trackingNo` varchar(200) NOT NULL,
+  `deliveryStatus` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `delivered`
+--
+
+INSERT INTO `delivered` (`delivery_id`, `customerName`, `customerEmail`, `customerAddress`, `productName`, `productBrand`, `productPrice`, `productQty`, `orderDate`, `printDate`, `carrier`, `carrierContact`, `sortCenter`, `orderNo`, `trackingNo`, `deliveryStatus`) VALUES
+(28, 'Emmanuel Punay', '', '', 'Wireless Mouse', 'wer', 3, 3, '2023-12-11', '2023-12-24', 'One', '09348398489', 'DITO LMSICITNA', '29774031160286', '89283930734577', 'Delivered'),
+(29, 'asdf', '', 'dfsdfsdfs', 'sdfsdf', 'asus', 1231, 1, '2023-12-10', '2023-12-12', 'Ernesto Santos', '09499718994', 'DITO LMSICITNA', '52857197178222', '56748231129104', 'Delivered'),
+(37, 'Harry Potter', 'emmanuelpunay6906@gmail.com', 'Hogwarts, USA', 'Elder Wand ', 'asus', 23, 23, '2023-12-12', '2023-12-31', 'Ernesto Santos', '09643914724', 'DITO LMSICITNA', '62396818500356', '96399874097360', 'Delivered');
 
 -- --------------------------------------------------------
 
@@ -98,13 +125,16 @@ INSERT INTO `clientrequestlist` (`id`, `name`, `email`, `contact`, `address`, `r
 CREATE TABLE `deliveries` (
   `delivery_id` int(11) NOT NULL,
   `customerName` varchar(200) NOT NULL,
+  `customerEmail` varchar(100) NOT NULL,
+  `customerAddress` varchar(100) NOT NULL,
   `productName` varchar(200) NOT NULL,
   `productBrand` varchar(100) NOT NULL,
   `productPrice` int(200) NOT NULL,
   `productQty` int(200) NOT NULL,
   `orderDate` date NOT NULL,
   `printDate` date NOT NULL,
-  `delivery` varchar(200) NOT NULL,
+  `carrier` varchar(200) NOT NULL,
+  `carrierContact` varchar(100) NOT NULL,
   `sortCenter` varchar(200) NOT NULL,
   `orderNo` varchar(200) NOT NULL,
   `trackingNo` varchar(200) NOT NULL,
@@ -115,13 +145,11 @@ CREATE TABLE `deliveries` (
 -- Dumping data for table `deliveries`
 --
 
-INSERT INTO `deliveries` (`delivery_id`, `customerName`, `productName`, `productBrand`, `productPrice`, `productQty`, `orderDate`, `printDate`, `delivery`, `sortCenter`, `orderNo`, `trackingNo`, `deliveryStatus`) VALUES
-(9, 'Emmanuel Punay', 'Wireless Mouse', '', 138, 1, '2023-11-18', '2023-11-26', 'DITO Logistics', 'DITO', '012349192037', '982374039873245', 'Delivered'),
-(18, 'Emman Nimedez', 'Airpods', '', 22000, 2, '2023-11-13', '2023-11-19', 'Lazada Logistics', 'LEX PH', '51727901184684', '19007773981169', 'Delivered'),
-(19, 'Amelie Cornelio', 'DDR4 RAM', '', 12000, 3, '2023-12-03', '2023-11-28', 'Lazada Logistics', 'LEX PH', '93026718573195', '68563142991175', 'Departed From Overseas Sort Center'),
-(20, 'Snow White', 'Arduino Sensor', '', 12398, 2, '2023-11-19', '2023-12-03', 'Lazada Logistics', 'LEX PH', '73567042957550', '36644706689561', 'Arrived at Logistics Hub'),
-(21, 'Omar Three', 'Vaoe', '', 32912, 3, '2023-12-03', '2023-12-02', 'Omar One', 'Omar 2', '94683792763418', '86043834999596', 'Package Arriving'),
-(22, 'John Robert Castillo', 'A4 Photo Paper', 'PH', 400, 2, '2023-12-16', '2023-12-09', 'asdfasdf', 'asd', '33242964151468', '93140293274700', 'Departed From Sort Center');
+INSERT INTO `deliveries` (`delivery_id`, `customerName`, `customerEmail`, `customerAddress`, `productName`, `productBrand`, `productPrice`, `productQty`, `orderDate`, `printDate`, `carrier`, `carrierContact`, `sortCenter`, `orderNo`, `trackingNo`, `deliveryStatus`) VALUES
+(9, 'Emmanuel Punay', '', '', 'Wireless Mouse', '', 138, 1, '2023-11-18', '2023-11-26', 'DITO Logistics', '', 'DITO', '012349192037', '982374039873245', 'Delivered'),
+(38, 'John Robert Castillo', 'robert@gmail.com', '', 'Hand Clutch and Engine for Motorcycle', 'sdf', 23, 3, '2023-12-24', '2023-12-10', 'Ernesto Santos', '09863063147', 'DITO LMSICITNA', '80712685732420', '78875894748076', 'Delivered'),
+(39, 'John Robert Castillo', 'robert@gmail.com', '', 'Hand Clutch and Engine for Motorcycle', 'asd', 234, 3, '2023-12-25', '2023-12-17', 'Ernesto Santos', '09881258299', 'DITO LMSICITNA', '38861658020299', '66577567889934', 'Arrived at Logistics Hub'),
+(40, 'Emman Punay', 'emmanuelpunay6906@gmail.com', '2nd Ave, Caloocan', 'Motherboard ITX', 'ASUS', 9200, 1, '2023-12-12', '2023-12-20', 'Ernesto Santos', '09799571458', 'DITO LMSICITNA', '28300553393074', '34586792544646', 'Delivered');
 
 -- --------------------------------------------------------
 
@@ -187,25 +215,25 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `acceptedrequest`
 --
 ALTER TABLE `acceptedrequest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `archive`
 --
 ALTER TABLE `archive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `clientrequestlist`
 --
 ALTER TABLE `clientrequestlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
-  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `login`

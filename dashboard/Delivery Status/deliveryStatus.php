@@ -116,7 +116,8 @@
                                         } else {
                                             ?>
                                                 <td style="display: flex; justify-content: center;">
-                                                    <center>-------</center>
+                                                <i class="bi bi-check2-circle"></i>
+                                                    <!-- <center>-------</center> -->
                                                     <!-- <a href="./details.php?id=<?= $row['delivery_id']?>" class="btn btn-success">
                                                         <span>Check</span>
                                                     </a> -->

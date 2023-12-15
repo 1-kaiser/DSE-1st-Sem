@@ -245,8 +245,6 @@
                                             <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
                                         </div>
 
-                                            
-
                                         <div class="col-12">
                                             
                                             <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
@@ -261,7 +259,7 @@
             </table>
                 <?php
                     if (isset($_POST['createDelivery'])) {
-                        
+
                             $customerName = $_POST['customerName'];
                             $customerEmail = $_POST['customerEmail'];
                             $customerAddress = $_POST['customerAddress'];
@@ -281,6 +279,10 @@
                             VALUES ('$customerName', '$customerEmail', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$carrier', '$carrierContact', '$sortCenter', '$orderNo', '$trackingNo')";
                             mysqli_query($conn, $createQuery);
 
+                            if ($customerName) {
+                                $deleteAccepted = mysqli_query($conn, "DELETE FROM acceptedrequest WHERE name = '$customerName'");
+                            }
+                            
                             ?>
                                 <script>
                                     $(document).ready(function() {
