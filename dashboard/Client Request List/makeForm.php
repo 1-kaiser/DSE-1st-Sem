@@ -69,7 +69,7 @@
                 // $subTotal += $subTotal;
             }
 
-            $serveFee = intval(implode('', $serviceFee));
+            $serveFee = $serviceFee;
 
             $total = $subTotal + $serveFee;
 
@@ -85,7 +85,7 @@
 
             $html .= "<p style=''>Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
 
             $html .= "
                     <p style='font-size: 12px; margin-top: 5rem'><strong><i>Note</i></strong>: The request confirmation that we have been emailed to you has a 1 week validity.

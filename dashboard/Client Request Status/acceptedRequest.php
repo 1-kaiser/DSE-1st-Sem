@@ -105,10 +105,12 @@
                                 if (mysqli_query($conn, $deleteQuery)) {
                                     ?>
                                     <script>
-                                        Swal.fire({
-                                        title: "Request Accepted!",
-                                        icon: "success"
-                                        });
+                                        $(document).ready(function() {
+                                            $('#requestNotifSuccess').modal('show')
+                                            setTimeout(() => {
+                                                window.location.href = './acceptedRequest.php'
+                                            }, 1500);
+                                        })
                                     </script>
                                     <?php
                                 }
@@ -291,6 +293,20 @@
                 ?>
         </div>
     </div>
+
+    <!-- Modal Success for Accepted Request -->
+    <div class="modal fade" id="requestNotifSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #4aff4d;">
+                </div>
+                <div class="modal-body">
+                    Request Accepted!
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Success for Accepted Request -->
     
     <!-- Modal Success -->
     <div class="modal fade" id="notifSuccess" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
