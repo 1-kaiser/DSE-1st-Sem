@@ -7,6 +7,7 @@
     require './vendor/phpmailer/phpmailer/src/SMTP.php';
     require_once __DIR__ . '/vendor/autoload.php';
     require('../../reusable.php');
+    include('../../notif.php');
     session_start();
 
     //For PDF (Name, Email, Contact)
@@ -84,7 +85,7 @@
 
             $html .= "<p style=''>Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
 
             $html .= "
                     <p style='font-size: 12px; margin-top: 5rem'><strong><i>Note</i></strong>: The request confirmation that we have been emailed to you has a 1 week validity.
@@ -103,6 +104,7 @@
         $productBrand = $_POST['productBrand'];
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
+        $serviceFee = $_POST['serviceFee'];
 
             $mpdf = new \Mpdf\Mpdf([
                 'default_font' => 'san-serif',
@@ -147,9 +149,23 @@
                 // $subTotal += $subTotal;
             }
 
+            $serveFee = $serviceFee;
+
+            $total = $subTotal + $serveFee;
+
+            $html .= "<p style=''>Subtotal:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;" .$subTotal. "</p>";
+
+            $html .= "<p style=''>Service Fee:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$serveFee. "</p>";
+
+            $html .= "<hr style='width: 100%; border: 1px solid black'>";
+
             $html .= "<p style=''>Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;" .$subTotal. "</p>";
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
 
             $html .= "
                     <p style='font-size: 12px; margin-top: 5rem'><strong><i>Note</i></strong>: The request confirmation that we have been emailed to you has a 1 week validity.

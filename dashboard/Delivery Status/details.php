@@ -54,25 +54,36 @@
             
             $html .= "</table>";
 
-
-                $subTotal *= $row['productQty'];
+                $serviceFee = 200;
+                $subTotal = $row['productQty'] * $row['productPrice'];
+                $total = $serviceFee + $subTotal;
                 // $subTotal += $subTotal;
 
-            $html .= "<p style=''>Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;" .$subTotal. "</p>";
+                $html .= "<p style=''>Subtotal:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;" .$subTotal. "</p>";
+    
+                $html .= "<p style=''>Service Fee:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$serviceFee. "</p>";
+    
+                $html .= "<hr style='width: 100%; border: 1px solid black'>";
+    
+                $html .= "<p style=''>Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
 
-            $html .= "<p style='font-size: 14px'> Order Date: ". $row['orderDate'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Expected Delivery Date: ". $row['printDate'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Carrier: ". $row['carrier'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Carrier Contact: ". $row['carrierContact'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Sort Center: ". $row['sortCenter'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Order #: ". $row['orderNo'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Tracking #: ". $row['trackingNo'] ."</p>";
-            $html .= "<p style='font-size: 14px'> Delivery Status: ". $row['deliveryStatus'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Order Date: ". $row['orderDate'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Expected Delivery Date: ". $row['printDate'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Carrier: ". $row['carrier'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Carrier Contact: ". $row['carrierContact'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Sort Center: ". $row['sortCenter'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Order #: ". $row['orderNo'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Tracking #: ". $row['trackingNo'] ."</p>";
+                $html .= "<p style='font-size: 14px'> Delivery Status: ". $row['deliveryStatus'] ."</p>";
 
-            $mpdf->WriteHTML($html);
-            $mpdf->Output($row['customerName'].' - Client-Delivered-Package-Record.pdf', 'I');
+                $mpdf->WriteHTML($html);
+                $mpdf->Output($row['customerName'].' - Client-Delivered-Package-Record.pdf', 'I');
 
             
     }
