@@ -224,7 +224,6 @@
         var denySum = <?php echo $deniedLength?>;
         var denyModified = denySum - 1;
 
-
         // Setup Block
 
         const data = {

@@ -82,6 +82,7 @@
                     <th scope="col" class="text-center">Product Name</th>
                     <th scope="col" class="text-center">Delivery Status</th>
                     <th scope="col" style="text-align: center;">Action</th>
+                    <th scope="col" style="text-align: center;">Print</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,29 +112,26 @@
                                                     </a>
                                                 </td>
 
+                                                <td><center>-------</center></td>
+
                                             <?php
                                             
                                         } else {
                                             ?>
                                                 <td style="display: flex; justify-content: center;">
-                                                <i class="bi bi-check2-circle"></i>
-                                                    <!-- <center>-------</center> -->
-                                                    <!-- <a href="./details.php?id=<?= $row['delivery_id']?>" class="btn btn-success">
-                                                        <span>Check</span>
-                                                    </a> -->
-                                                    <!-- <button class="btn btn-success">
-                                                        <i class="bi bi-printer-fill fs-5 text-white"></i><span style="margin-left: 9px;">Print</span>
-                                                    </button> -->
+                                                    <i class="bi bi-check2-circle"></i>
+                                                </td>
+
+                                                <td>
+                                                    <center>
+                                                        <a href="details.php?delivery_id=<?php echo $row['delivery_id'];?>" class="btn btn-success" target="_blank">
+                                                            <i class="bi bi-printer-fill"></i>  
+                                                        </a>
+                                                    </center>
                                                 </td>
                                             <?php
                                         }
-                                    
-                                    ?>
-
-
-
-                                    
-                                    
+                                    ?> 
                                 </tr>
                             <?php
                         }
@@ -142,6 +140,8 @@
             </table>
         </div>
     </div>
+
+    
 </body>
     
     <!-- Bootstrap CDN -->

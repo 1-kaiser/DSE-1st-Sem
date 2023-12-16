@@ -201,11 +201,14 @@
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
-                                            <label class="form-label" style="text-align: center">Order #</label>
+                                            <label class="form-label text-center">Order #</label>
                                             <input type="number" name="orderNo" class="form-control border-secondary" id="orderNo" value="<?= $randOrderNo;?>" readonly>
 
-                                            <label class="form-label" style="text-align: center">Tracking #</label>
+                                            <label class="form-label text-center">Tracking #</label>
                                             <input type="number" name="trackingNo" class="form-control border-secondary" id="trackingNo" value="<?= $randTrackingNo;?>" readonly>
+
+                                            <label for="customerContact" class="form-label text-center">Customer Contact</label>
+                                            <input type="number" name="customerContact" class="form-control border-secondary" id="customerContact" value="" readonly>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
@@ -215,16 +218,6 @@
                                             <label for="customerAddress" class="form-label">Customer Address</label>
                                             <input type="text" name="customerAddress" class="form-control border-secondary" id="customerAddress" readonly>
                                         </div>
-
-                                        <!-- <div class="m-3 d-flex align-items-center">
-                                            <label for="buyerAddress" class="form-label">Customer Address</label>
-                                            <input type="text" name="customerAddress" class="form-control border-secondary" id="buyerAddress" required>
-                                        </div>
-
-                                        <div class="m-3 d-flex align-items-center">
-                                            <label for="sellerAddress" class="form-label">Seller Address</label>
-                                            <input type="text" name="sellerAddress" class="form-control border-secondary" id="sellerAddress" required>
-                                        </div> -->
 
                                         <div class="m-3 d-flex align-items-center">
                                             <label for="customerEmail" class="form-label text-center">Customer Email</label>
@@ -262,6 +255,7 @@
 
                             $customerName = $_POST['customerName'];
                             $customerEmail = $_POST['customerEmail'];
+                            $customerContact = $_POST['customerContact'];
                             $customerAddress = $_POST['customerAddress'];
                             $productName = $_POST['productName'];
                             $productBrand = $_POST['productBrand'];
@@ -275,8 +269,8 @@
                             $orderNo = $_POST['orderNo'];
                             $trackingNo = $_POST['trackingNo'];
 
-                            $createQuery = "INSERT INTO deliveries (customerName, customerEmail, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, carrier, carrierContact, sortCenter, orderNo, trackingNo) 
-                            VALUES ('$customerName', '$customerEmail', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$carrier', '$carrierContact', '$sortCenter', '$orderNo', '$trackingNo')";
+                            $createQuery = "INSERT INTO deliveries (customerName, customerEmail, customerContact, customerAddress, productName, productBrand, productPrice, productQty, orderDate, printDate, carrier, carrierContact, sortCenter, orderNo, trackingNo) 
+                            VALUES ('$customerName', '$customerEmail', '$customerContact', '$customerAddress', '$productName', '$productBrand', '$productPrice', '$quantity', '$orderDate', '$printDate', '$carrier', '$carrierContact', '$sortCenter', '$orderNo', '$trackingNo')";
                             mysqli_query($conn, $createQuery);
 
                             if ($customerName) {
@@ -350,6 +344,7 @@
                         let arrayData = $.parseJSON(data)
                         $('#customerName').val(arrayData.name)
                         $('#customerEmail').val(arrayData.email)
+                        $('#customerContact').val(arrayData.contact)
                         $('#customerAddress').val(arrayData.address)
                         $('#productName').val(arrayData.request)
                     }

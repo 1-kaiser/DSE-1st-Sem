@@ -1,6 +1,6 @@
 <?php
-use Mpdf\Mpdf;
-use PHPMailer\PHPMailer\PHPMailer;
+    use Mpdf\Mpdf;
+    use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     require './vendor/phpmailer/phpmailer/src/Exception.php';
     require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
@@ -22,11 +22,8 @@ use PHPMailer\PHPMailer\PHPMailer;
         $productBrand = $_POST['productBrand'];
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
+        $serviceFee = $_POST['serviceFee'];
 
-        foreach ($productName as $key => $value) {
-            // $queryProductInsert = "INSERT INTO clientform VALUES (null, '$value', '$productPrice[$key]', '$productQuantity[$key]')";
-            // $queryProductResult = mysqli_query($conn, $queryProductInsert);
-        }
             $mpdf = new \Mpdf\Mpdf([
                 'default_font' => 'san-serif',
                 'chroot' => __DIR__
@@ -71,9 +68,23 @@ use PHPMailer\PHPMailer\PHPMailer;
                 // $subTotal += $subTotal;
             }
 
+            $serveFee = intval(implode('', $serviceFee));
+
+            $total = $subTotal + $serveFee;
+
+            $html .= "<p style=''>Subtotal:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;" .$subTotal. "</p>";
+
+            $html .= "<p style=''>Service Fee:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$serveFee. "</p>";
+
+            $html .= "<hr style='width: 100%; border: 1px solid black'>";
+
             $html .= "<p style=''>Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;" .$subTotal. "</p>";
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" .$total. "</p>";
 
             $html .= "
                     <p style='font-size: 12px; margin-top: 5rem'><strong><i>Note</i></strong>: The request confirmation that we have been emailed to you has a 1 week validity.
@@ -93,14 +104,6 @@ use PHPMailer\PHPMailer\PHPMailer;
         $productPrice = $_POST['productPrice'];
         $productQuantity = $_POST['productQuantity'];
 
-        // $_SESSION['productName'] = $_POST['productName'];
-        // $_SESSION['productPrice'] = $_POST['productPrice'];
-        // $_SESSION['productQuantity'] = $_POST['productQuantity'];
-
-        foreach ($productName as $key => $value) {
-            // $queryProductInsert = "INSERT INTO clientform VALUES (null, '$value', '$productPrice[$key]', '$productQuantity[$key]')";
-            // $queryProductResult = mysqli_query($conn, $queryProductInsert);
-        }
             $mpdf = new \Mpdf\Mpdf([
                 'default_font' => 'san-serif',
                 'chroot' => __DIR__
@@ -114,7 +117,6 @@ use PHPMailer\PHPMailer\PHPMailer;
             <p style='font-size: 10px; position: absolute; left: 41.3rem; top: 3.6rem;'>De La Salle University-Manila</p>
             <hr style='width: 100%; color: black; height: .5px;'/>
             ";
-
 
             $html .= "<h1 style='font-size: 1.5rem'>Request Confirmation</h1>";
             $html .= "<p style='font-size: 14px'> Name: ". $row['name'] ."</p>";
@@ -297,11 +299,19 @@ use PHPMailer\PHPMailer\PHPMailer;
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Brand</span>
                     <input type="text" class="form-control" name="productBrand[]" style="width: 4rem;" required>
 
+                </div>
+
+                <div class="input-group mb-2">
+
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Price</span>
                     <input type="number" class="form-control" name="productPrice[]" style="width: 4rem;" required>
 
                     <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Quantity</span>
                     <input type="number" class="form-control" name="productQuantity[]" style="width: 2rem;" required>
+
+                    <span class="input-group-text" id="basic-addon1" style="background-color: #c1c1c1;">Service Fee</span>
+                    <input type="number" class="form-control" name="serviceFee" required>
+
                 </div>
             </div>
             <a href="makeForm.php" target="_self">
@@ -353,6 +363,8 @@ use PHPMailer\PHPMailer\PHPMailer;
                         <input type="number" class="form-control" name="productQuantity[]" style="width: 2rem;" required>
                         <button class="delete btn btn-danger">X</button>
                     </div>
+
+                    
                 `); 
             });
 
