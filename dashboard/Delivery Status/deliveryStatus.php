@@ -118,7 +118,7 @@
                                             
                                         } else {
                                             ?>
-                                                <td style="display: flex; justify-content: center;">
+                                                <td style="text-align: center;">
                                                     <i class="bi bi-check2-circle"></i>
                                                 </td>
 

@@ -40,7 +40,7 @@ body {
 }
 
 .requestTitle {
-  margin: 3rem 0 31px 0;
+  margin: 4rem 0 19px 0;
   font-family: sans-serif;
   font-size: 26px;
 }
@@ -87,4 +87,11 @@ body {
   color: red;
   letter-spacing: 1px;
   font-family: sans-serif;
+}
+
+.testimonials-wrapper {
+  height: 100vh;
+  background-color: #b2f2bf;
+  padding: 40px 0;
+  text-align: center;
 }

@@ -83,8 +83,8 @@
         include('../../notif.php');
         session_start();
 
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
+        if (isset($_GET['delivery_id'])) {
+            $id = $_GET['delivery_id'];
 
             $deliveryStatus = "";
 

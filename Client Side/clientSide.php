@@ -11,12 +11,6 @@ session_start();
         $clientAddress = validate($_POST['clientAddress']);
         $clientRequest = $_POST['clientRequest'];
 
-        // $_SESSION['clientName'] = $clientName;
-        // $_SESSION['clientEmail'] = $clientEmail;
-        // $_SESSION['clientContact'] = $clientContact;
-        // $_SESSION['clientAdress'] = $clientAddress;
-        // $_SESSION['clientRequest'] = $clientRequest;
-
             $query = "INSERT INTO clientrequestlist VALUES (null, '$clientName', '$clientEmail', '$clientContact', '$clientAddress', '$clientRequest')";
             $result = mysqli_query($conn, $query);
 
@@ -64,6 +58,11 @@ session_start();
 
     <div class="homepage3-wrapper" id="aboutUs"></div>
 
+    <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.6015400909164!2d120.99059027402363!3d14.564764185917339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c97ed286459b%3A0x5927068d997eae2a!2sDe%20La%20Salle%20University%20Manila!5e0!3m2!1sen!2sph!4v1702649125350!5m2!1sen!2sph" 
+                width="1349" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
     <div class="request-wrapper" id="request">
 
         <div class="requestTitle">
@@ -71,10 +70,6 @@ session_start();
         </div>
 
         <div class="requestContainer d-flex gap-5">
-            <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.6015400909164!2d120.99059027402363!3d14.564764185917339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c97ed286459b%3A0x5927068d997eae2a!2sDe%20La%20Salle%20University%20Manila!5e0!3m2!1sen!2sph!4v1702649125350!5m2!1sen!2sph" 
-                width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
 
             <form action="" method="POST" class="requestForm" id="formRequest">
 
@@ -103,8 +98,6 @@ session_start();
                 </div>
 
                     <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
-
-                    <!-- <button name="requestSubmit" type="button" data-bs-toggle="modal" data-bs-target="#myAlert" class="btn btn-primary float-end" style="width: 6rem;">Submit</button> -->
             </form>
         </div>
 

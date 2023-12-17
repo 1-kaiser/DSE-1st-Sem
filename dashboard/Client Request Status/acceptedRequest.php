@@ -226,7 +226,7 @@
                                             <input type="text" name="customerEmail" class="form-control border-secondary" id="customerEmail" readonly>
 
                                             <label for="productName" class="form-label text-center">Product Name</label>
-                                            <input type="text" name="productName" class="form-control border-secondary" id="productName" readonly>
+                                            <input type="text" name="productName" class="form-control border-secondary" id="productName" required>
                                         </div>
 
                                         <div class="m-3 d-flex align-items-center">
@@ -240,9 +240,14 @@
                                             <input type="number" name="quantity" class="form-control border-secondary" id="quantity" required>
                                         </div>
 
-                                        <div class="col-12">
-                                            
-                                            <button type="submit" name="createDelivery" class="btn btn-primary float-end">Create Delivery</button>
+                                        <div class="col-12" id="newField">
+
+                                            <!-- <button class="add_form_field btn btn-primary" style="margin-left: 12px;">Add New Field &nbsp; 
+                                                <span style="font-size:16px; font-weight:bold;">+</span>
+                                            </button> -->
+
+                                            <button type="submit" name="createDelivery" class="btn btn-primary float-end" style="margin-right: 20px;">Create Delivery</button>
+                                        
                                         </div>    
                                     </form>
                                 </div>
@@ -362,7 +367,6 @@
                         $('#customerEmail').val(arrayData.email)
                         $('#customerContact').val(arrayData.contact)
                         $('#customerAddress').val(arrayData.address)
-                        $('#productName').val(arrayData.request)
                     }
                 })
             })
