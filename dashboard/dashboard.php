@@ -218,9 +218,9 @@
 
         // Chart
         var pendSum = <?php echo $pendingLength;?>;
-        var pendModified = pendSum - 1;
+        var pendModified = pendSum - 2;
         var acceptSum = <?php echo $acceptedLength?>;
-        var acceptModified = acceptSum - 1;
+        var acceptModified = acceptSum - 2;
         var denySum = <?php echo $deniedLength?>;
         var denyModified = denySum - 1;
 
@@ -268,62 +268,3 @@
         );
     </script>
 </html>
-
-
-            <!-- <div class="card">
-                <p class="clientTitle">Total Client <br /> Request</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p class="total"> <?php echo $totalRows ?> </p>
-
-            </div>  
-
-            <div class="card" style="background-color: #D4F673;">
-                <p class="clientTitle">Client Request <br /> History</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p class="total"> <?php echo $totalRows ?> </p>
-                
-            </div>  -->
-
-            <!-- <div class="card" style="background-color: #D39AFF;">
-                <p class="clientTitle">Total Clients</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p style="margin: 2rem 0 1rem 14.5rem;
-                        font-size: 20px;"> <?php echo $totalRows ?> </p>
-                
-            </div>  -->
-
-            <!-- <div class="card" style="background-color: #61E840;">
-                <p class="clientTitle">Total Deliveries</p>
-                <?php
-                // $query = "SELECT COUNT(*) as total_rows FROM clientrequestlist";
-                // $result = mysqli_query($conn, $query);
-                // $total = mysqli_fetch_assoc($result);
-                // $totalRows = $total['total_rows'];
-                ?>
-
-                <p style="margin: 2rem 0 1rem 14.5rem;
-                        font-size: 20px;"></p> 
-            </div>  -->
-
-
-    <!-- <div class="canvas-container">
-        <canvas id="myChart"></canvas>
-    </div> -->

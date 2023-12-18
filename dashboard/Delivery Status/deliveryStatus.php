@@ -107,7 +107,7 @@
                                             ?>
 
                                                 <td style="display: flex; justify-content: center; column-gap: 8px">
-                                                    <a href="./deliveryButtons.php?id=<?= $row['delivery_id'];?>" class="deliveryStatus btn btn-primary">
+                                                    <a href="./deliveryButtons.php?delivery_id=<?= $row['delivery_id'];?>" class="deliveryStatus btn btn-primary">
                                                     Delivery Status
                                                     </a>
                                                 </td>

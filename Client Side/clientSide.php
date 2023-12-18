@@ -100,11 +100,7 @@ session_start();
                     <input type="submit" id="reqSubmit" class="btn btn-primary float-end" style="width: 6rem;" value="Submit" name="requestSubmit">
             </form>
         </div>
-
-        
     </div>
-
-
 </body>
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -160,18 +156,4 @@ session_start();
             })
         })
     </script>
-
-                    <!-- <script>
-                    $(document).on("click", "#reqSubmit", function() {
-
-                        const response = grecaptcha.getResponse()
-                        
-                        if (response.length > 0) {
-                            window.location.href = './requestSuccess.php'
-                        } else {
-                            
-                            return false
-                        }
-                    })
-                </script> -->
 </html>
