@@ -1,1 +1,1 @@
-<h1><strong>Database System Enterprise</strong></h1>
+Case Study Title: <strong>DITO Logistics Management Integrating System-Controlled Innovators' Technical Needs Aid</strong>
